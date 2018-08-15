@@ -29,9 +29,9 @@
 
 
 \renewcommand{\thesection}{\Roman{section}}
-\renewcommand{\thesubsection}{\alph{subsection})}
-\renewcommand{\thesubsubsection}{\roman{subsubsection}}
-\renewcommand{\theparagraph}{\arabic{paragraph}}
+\renewcommand{\thesubsection}{{\color{gray}\thesection~}\alph{subsection})}
+\renewcommand{\thesubsubsection}{{\color{gray}\thesubsection~}\roman{subsubsection}}
+\renewcommand{\theparagraph}{{\color{gray}\thesubsubsection~}\arabic{paragraph}}
 
 \newcommand{\comments}[1]{{\scriptsize\color{gray} #1}} % pour les commentaires
 

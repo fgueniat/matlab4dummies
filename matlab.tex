@@ -116,7 +116,13 @@ Hello World
 
 You can see also that the 'Hello World has been assignated to a variable named ans.
 
-\defbox{ans}{Short for answer. The results of the command is always stored in the variable ans, if it is not assigned to an other variable. }
+\defbox{ans}{\mcode{ans} is short for answer. 
+
+	The results of the command is always stored in the variable ans, except if it is assigned to a given variable. Consequently, the command \mcode{ 1+1}  will affect the variable \mcode{ans}, but \mcode{x=1+1} will not, and \mcode{2} will be assign to \mcode{x}. 
+
+	\mcode{ans} can be re-used in the prompt: \mcode{x = ans+1}. 
+However, a good practice is to assign the result to a user-defined variable.
+}
 
 
 Now, try without the quotes, and you will see:
@@ -131,7 +137,11 @@ Hello World is understood by \matlab as a function/variable and then an option f
 
 The main reason behind that is that we want to print a string.
 
-\defbox{String}{Chain of character. It has to be between quotes: 'some text' or double quotes: "some text".}
+\defbox{String}{A string is a chain of characters. It is \emph{not} a number. 
+
+It has to be between quotes: 'some text' or double quotes: "some text".
+It should not be mixed with numbers.
+}
 
 
 Try now to add a semi colon at the end of the line:
@@ -142,12 +152,19 @@ Try now to add a semi colon at the end of the line:
 
 Nothing is printed in the prompt.
 
-\defbox{Prompt}{The $>>$ sign. Once enter is hit, \matlab will interpret the line}
+\defbox{Prompt}{The prompt is the $>>$ sign. 
+
+Once enter is hit, \matlab will interpret the line, and send back any results.
+}
 
 One of the most important tip to remember: \matlab will always print the result of a line if it does not have a ";" at the end of the line.
 
 \tipbox{
-Do not forget  the ";" at the end of lines. 
+Do not forget  the ";" at the end of lines !
+
+It is not a big deal when dealing with small matrices and small vectors.
+But when an image is being manipulated, it means that \matlab is manipulated a matrix with dimension around $1000\times1000$.
+Forgetting the ";" sign means that \matlab will show around a \emph{million} numbers every line of your script!
 }
 
 
@@ -213,7 +230,16 @@ ans =
 10
 \end{lstlisting}
 
-\defbox{variable}{a name that is associated with an value. Values can be results, functions or complex objects. They are usually assigned with the sign =}
+\defbox{variable}{A variable is essentially a name that is associated with a value. 
+
+Values can be of several types:
+\begin{itemize}
+\item results, such as string, numbers or matrices: \mcode{x = 3.}
+\item functions, for instance \mcode{sin} is a built-in function
+\item complex objects, for instance, a plot
+\end{itemize}
+They are usually assigned with the sign "="
+}
 
 %%!!!!!!!!!!!!111
 \subsubsection{Naming convention}
@@ -225,7 +251,19 @@ However:
 	\item a few names are protected
 \end{itemize}
 
-\tipbox{Try to use clever name for variables, it will help to understand the code.  }
+\tipbox{Try to use clever name for variables, it will help to understand the code.
+
+	If all the results are named \mcode{result\_1,result\_2,result\_3}, it is hard to know what they should contain.
+
+	On the contrary, if you have the variable \mcode{name\_city}, you expect it to be a string and having a proper name.
+
+	In a similar way, if you have the variable \mcode{motor\_freq}, you expect it to be a number.
+
+
+	Also, if you have the variable \mcode{price\_pond}, the variable \mcode{price\_dollar} and the variable \mcode{rate\_dollar2pound}, the line \mcode{price\_pound = rate\_dollar2pond * price\_dollar} is pretty explicit.
+	If the variables where instead named \mcode{x,y,z}, then the line \mcode{x = y*z} is much more cryptic.
+}
+
 
 The choice of a name is important, for you a, \mcode{x} is good for an unknown, \mcode{s} if you expect its value to be a string, \mcode{v} if it is a vector... More complex names can be used, such as \mcode{x\_problem\_1}. Try to be consistent thorough the piece of code !
 
@@ -237,7 +275,16 @@ A few tips:
 	\item Consequently, avoid unecessary use of index (e.g. \mcode{result\_1, result\_2} etc.)
 \end{itemize}
 
-\tipbox{You can use the following name convention: \mcode{UpperCamelCase} for functions, \mbox{\mcode{CAPITALIZED\_WITH\_UNDERSCORES}} for constants, and \mbox{\mcode{lowercase\_separated\_by\_underscores}} for other variables.}
+\tipbox{
+	Many naming convention exist.
+	
+	However, you can use the following name convention: \\
+	\begin{itemize}
+		\item \mcode{UpperCamelCase} for functions: \mcode{MyFunction}
+		\item \mbox{\mcode{CAPITALIZED\_WITH\_UNDERSCORES}} for constants \mcode{Pi=3.14}
+		\item \mbox{\mcode{lowercase\_separated\_by\_underscores}} for other variables \mcode{name\_of\_univ = 'BCU'}.
+	\end{itemize}
+		}
 
 
 %%!!!!!!!!!!!!111
@@ -288,7 +335,9 @@ It allows to:
 It is possible to enter multiple commands per line. 
 Use commas "," or semicolons ";" for that ; the commas will \emph{not} suppress the outputs.
 
-\tipbox{Try to avoid multiple commands per line, most of the time, it makes the code harder to read.}
+\tipbox{Try to avoid multiple commands per line, most of the time, it makes the code harder to read. 
+Nevertheless, it makes sense when assigning a few variables that are related.
+}
 
 \begin{lstlisting}
 >> x = 2 ; y = 3 ; z = 4 ;
@@ -340,7 +389,13 @@ For instance, if you want to look for the sine function:
 \todoimage{help sine}
 
 
-\tipbox{Use the help! It is \emph{very} useful and you will mostly find any function/tool/infos that you need.}
+\tipbox{Use the help! It is \emph{very} useful and you will mostly find any function/tool/infos that you need.
+
+Usually, the help contains a few examples. Do not hesitate to read them carefully, and to try them.
+They will help understanding how to use the functions and properties of \matlab.
+
+There is also a "See Also" section that can be useful when looking for a particular topic.
+}
 
 %%!!!!!!!!!!!!111
 \subsubsection{Using a function}
@@ -355,13 +410,17 @@ ans =
 You ask \matlab to evaluate the function \mcode{sin} in $3.14\approx \pi$. 
 For that, you just put the argument in parenthesis.
 
-\tipbox{Trigonometric functions in \matlab are in radiant!}
+\tipbox{
+	Trigonometric functions in \matlab are in radiant. \mcode{sin(360)} is hence different from $0$ but rather close to $0.96$.
+	
+	In a similar spirit, \mcode{log} in \matlab is the natural logarithm, and not the $\log$ in base 10.
+}
 
-Typical functions are available with an explicit name,see Tab.~\ref{tab-func}. Similarly, many constants are implemented in \matlab.
+Typical functions are available with somewhat explicit names, see Tab.~\ref{tab-funcs_matlab}. Similarly, many useful constants for the engineer are implemented in \matlab, see Tab.~\ref{tab-consts_matlab}.
 
 \begin{table}[h!]
 	\caption{A few function names in \matlab. Many others are already implemented in \matlab.}
-	\label{tab-func}
+	\label{tab-funcs_matlab}
 \center
 \begin{tabular}{|l|c||l|c||l|c|}
 	\hline
@@ -390,12 +449,15 @@ Typical functions are available with an explicit name,see Tab.~\ref{tab-func}. S
 
 \begin{table}[h!]
 	\caption{A few useful constant names in \matlab.}
-	\label{tab-func}
+	\label{tab-consts_matlab}
 \center
 \begin{tabular}{|l|c|}
 	\hline
-	$\pi$ & pi \\
-
+	$\pi\approx 3.14$ & \mcode{pi} \\
+	$i = \sqrt{-1} $ & \mcode{i} \\
+	$i = \sqrt{-1} $ & \mcode{j} \\
+	$\infty$ & \mcode{Inf }\\
+	Not a Number & \mcode{NaN} \\
 	\hline
 \end{tabular}
 \end{table}
@@ -423,14 +485,15 @@ Typical functions are available with an explicit name,see Tab.~\ref{tab-func}. S
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Linear Algebra}
+\chapter{Basic Linear Algebra}
 
 Linear algebra is the fundations of \matlab, and what makes it popular.
 
 In particular, \matlab makes the manipulation of matrices and vectors very easy.
+
 This section will show how to do:
 \begin{itemize}
-	\item operations involving arrays, or vectors
+	\item operations involving vectors
 	\item operations involving matrices
 	\item operations involving both arrays and matrices
 \end{itemize}
@@ -583,7 +646,19 @@ ans =
 
 
 
-\tipbox{The colon operator is useful to generate lists and extract sub-parts of vectors/matrices.}
+\tipbox{The colon operator is pivotal in \matlab. 
+	
+	It is noticeably useful to 
+	\begin{itemize}
+		\item generate lists: \mcode{x= 1:20}
+		\item controlling loops (more in a following chapter): \mcode{for i=1:20}
+		\item transform a matrix in a column vector \mcode{M(:)}
+		\item extract sub-parts of vectors/matrices \mcode{M(2:4,1:2:8)}
+	\end{itemize}
+
+	More details in Sec.~\ref{sssec-colon}.
+
+}
 
 \subsection{Basic operations on vectors}
 \subsubsection{Addition/subtraction}
@@ -730,7 +805,7 @@ The last line shows that a matrix is virtually stacked vectors.
 
 
 
-\todo{exercices}
+\todo{exercises}
 Try to create the vector $x = (1,2,3,4)$.
 
 
@@ -738,6 +813,42 @@ Try to create the vector $x = (1,2,3,4)$.
 
 \section{Useful built-in functions for vectors and matrices}
 \subsection{Generating a vector}
+
+\subsubsection{The colon operator}
+\label{sssec-colon}
+One of the most powerful operator in \matlab is the colon operator ":".
+It allows in particular to generate lists.
+
+We have seen already that \mcode{v(2:5)} gives the elements of \mcode{v} between the 2nd and 5th position.
+What it does is actually ask \matlab to send back elements of \mcode{v} in position $2,3,4,5$.
+These positions are \emph{generated} by the command \mcode{2:5}.
+\begin{lstlisting}
+>> 2:5
+ans = 
+2 3 4 5
+\end{lstlisting}
+
+The command \mcode{a:b} hence generates a vector, starting in a, each element being incremented by 1, until it would be greater than b.
+\begin{lstlisting}
+>> 4:8
+ans = 
+4 5 6 7 8
+>> 4.5:8
+ans = 
+4.5 5.5 6.5 7.5
+\end{lstlisting}
+In the second example, the last item is $7.5$. $8.5$ would be larger than $8$ and is hence omitted.
+
+It is possible to force the increment. 
+The command \mcode{a:da:b} generates a vector, starting in a, each element being incremented by da, until it would be greater than b.
+\begin{lstlisting}
+>> 0:.1:1
+ans = 
+0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.
+\end{lstlisting}
+
+\subsubsection{Other functions}
+
 \begin{table}[h!]
 	\caption{A few functions that generate vectors.}
 	\label{tab-func}
@@ -746,11 +857,16 @@ Try to create the vector $x = (1,2,3,4)$.
 	\hline
 	name & description & illustration\\
 	\hline
-	\mcode{linspace(a,b,n)} & linearly spaced n-dimensional vector & \mcode{linspace(0,10,101)} \\
-							& lbetween a and b & \\
+	colon operator : & see Sec~\ref{sssec-colon} & 0:10:.5 \\
+	\mcode{linspace(a,b,n)} & linearly spaced n-dimensional vector & \mcode{linspace(0,1,11)} \\
+							& between a and b & \\
+	\mcode{diag(A)} & diagonal of matrix (A)  & \mcode{diag([[1,2];[3,4]])} \\
+							& between a and b & \\	
 	\hline
 \end{tabular}
 \end{table}
+
+
 
 \subsection{Generating a matrix}
 \begin{table}[h!]
@@ -763,7 +879,10 @@ Try to create the vector $x = (1,2,3,4)$.
 	\hline
 	\mcode{zeros(m,n)} & $m,n$-dimensional matrix filled with $0$ & \mcode{zeros(2,4)} \\
 	\mcode{ones(m,n)} & $m,n$-dimensional matrix filled with $1$ & \mcode{ones(2,4)} \\
+	\mcode{rand(m,n)} & $m,n$-dimensional matrix filled with  & \mcode{rand(2,4)} \\
+					 & random numbers taken between $0$ and $1$ &  \\
 	\mcode{eye(n)} & n-dimensional identify matrix & \mcode{eye(10)} \\
+	\mcode{diag(v)} & matrix filled with 0 with \mcode{v} as diagonal & \mcode{diag([1,2,3])} \\
 	\hline
 \end{tabular}
 \end{table}
