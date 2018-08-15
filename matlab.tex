@@ -726,11 +726,66 @@ M =
 0 1
 \end{lstlisting}
 
+The last line shows that a matrix is virtually stacked vectors.
 
 
 
 \todo{exercices}
 Try to create the vector $x = (1,2,3,4)$.
+
+
+
+
+\section{Useful built-in functions for vectors and matrices}
+\subsection{Generating a vector}
+\begin{table}[h!]
+	\caption{A few functions that generate vectors.}
+	\label{tab-func}
+\center
+\begin{tabular}{|l|c|l|}
+	\hline
+	name & description & illustration\\
+	\hline
+	\mcode{linspace(a,b,n)} & linearly spaced n-dimensional vector & \mcode{linspace(0,10,101)} \\
+							& lbetween a and b & \\
+	\hline
+\end{tabular}
+\end{table}
+
+\subsection{Generating a matrix}
+\begin{table}[h!]
+	\caption{A few functions that generate vectors.}
+	\label{tab-func}
+\center
+\begin{tabular}{|l|c|l|}
+	\hline
+	name & description & illustration\\
+	\hline
+	\mcode{zeros(m,n)} & $m,n$-dimensional matrix filled with $0$ & \mcode{zeros(2,4)} \\
+	\mcode{ones(m,n)} & $m,n$-dimensional matrix filled with $1$ & \mcode{ones(2,4)} \\
+	\mcode{eye(n)} & n-dimensional identify matrix & \mcode{eye(10)} \\
+	\hline
+\end{tabular}
+\end{table}
+
+
+\section{What to remember}
+\subsection{Creating a matrix}
+Follow the procedure:
+\begin{itemize}
+	\item start with a bracket [
+	\item write each element of a column, separated with space or commas
+	\item separate rows with a semi-colon
+	\item end with the bracket ]
+\end{itemize}
+
+\subsection{Manipulating matrices}
+You can
+\begin{itemize}
+	\item add, subtract, multiply matrices if their sizes are compatible
+	\item access to the ith element of matrix \mcode{M} using \mcode{M(i)}
+	\item access to the (ith,jth) element of matrix \mcode{M} using \mcode{M(i,j)}
+\end{itemize}	
 
 \bibliographystyle{ieeetr}
 \bibliography{biblio}
