@@ -258,6 +258,7 @@ x =
 0
 \end{lstlisting}
 
+
 %%!!!!!!!!!!!!111
 \subsubsection{Exercices}
 \begin{enumerate}
@@ -270,6 +271,18 @@ x =
 Then, reassign to the variable \mcode{girlfriend\_name} the value \mcode{'Kiara'}, and to the variable \mcode{ex\_girlfriend\_name} the value \mcode{'Adilah'}.
 
 \end{enumerate}
+
+
+\subsection{Workspace}
+When you have created a variable, it is available in the \emph{workspace}.
+It is the area (usually) on the right.
+It allows to:
+\begin{itemize}
+	\item show what variables are currently known to \matlab
+	\item know what is present in the memory
+	\item indicate what there is in the variables
+	\item eventually modify the content of a variable
+\end{itemize}
 
 \subsection{Entering multiple commands per line}
 It is possible to enter multiple commands per line. 
@@ -426,7 +439,12 @@ This section will show how to do:
 \section{Vectors}
 \subsection{Creation of a vector}
 \subsubsection{Line vector}
-Creating a vector is easy. You just put all the components between brackets.
+Creating a vector \mcode{v} is easy. You just put all the components between brackets.
+\begin{lstlisting}
+>> v = [1 2 3]
+v =
+1 2 3
+\end{lstlisting}
 
 Let's create Cartesian vectors in dimension two. $e_x = (1,0)$ and $e_y = (0,1)$:
 
@@ -447,12 +465,13 @@ Creating a column vector is similar to creating a line vector, except that the e
 
 
 \begin{lstlisting}
->> ex = [1;0]
-ex =
+>> v = [1;0;4]
+v =
 1
 0
->> ey = [0;1]
-ey =
+4
+>> w = [0;1]
+w =
 0
 1
 \end{lstlisting}
@@ -477,8 +496,14 @@ ans =
 \end{lstlisting}
 
 
-\subsection{Access to the element of a vector}
-Accessing the element of a vector is just calling the vector with specifying the desired element.
+\subsection{Access to the elements of a vector}
+
+\subsubsection{Access to one element}
+
+The first element of a vector \mcode{v} is \mcode{v(1)}.
+The second element is \mcode{v(2)}, and so forth.
+
+Accessing the element of a vector is just calling the vector with specifying the desired element:
 
 \begin{lstlisting}
 >> x = [1 3 4 -2.5 8]
@@ -513,6 +538,48 @@ ans =
 >> x(end-2)
 ans = 
 4
+\end{lstlisting}
+
+
+
+\subsubsection{Access to several elements}
+
+The operator ":" gives access to all the elements between the first and the last element (included), in a column vector:
+
+\begin{lstlisting}
+>> v = [1 3 4 -2.5 8];
+>> v(:)
+ans = 
+1
+3
+4
+-2.5
+8
+\end{lstlisting}
+
+Accessing to all the elements between the second and fifth element of \mcode{v} is \mcode{v(2:5}:
+
+\begin{lstlisting}
+>> v = [1 3 4 -2.5 8];
+>> v(:)
+ans = 
+1
+3
+4
+-2.5
+8
+\end{lstlisting}
+To access to all the elements between the first and the last element (included), in a column vector:
+
+\begin{lstlisting}
+>> x = [1 3 4 -2.5 8];
+>> x(:)
+ans = 
+1
+3
+4
+-2.5
+8
 \end{lstlisting}
 
 
@@ -646,16 +713,16 @@ and =
 For that, \matlab uses the semi colon sign ";".
 The following lines are equivalent:
 \begin{lstlisting}
->> m =[1,0 ; 0,1];
-m = 
+>> M =[1,0 ; 0,1];
+M = 
 1 0
 0 1
 >> m =[1,0 ; 0 1];
-m = 
+M = 
 1 0
 0 1
 >> m =[ [1,0] ; [0 1]];
-m = 
+M = 
 1 0
 0 1
 \end{lstlisting}
