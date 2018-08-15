@@ -557,19 +557,18 @@ ans =
 8
 \end{lstlisting}
 
-Accessing to all the elements between the second and fifth element of \mcode{v} is \mcode{v(2:5}:
+Accessing to all the elements between the second and fifth element of \mcode{v} is \mcode{v(2:5)}:
 
 \begin{lstlisting}
->> v = [1 3 4 -2.5 8];
->> v(:)
+>> v = [1 3 4 -2.5 8 12];
+>> v(2:5)
 ans = 
-1
 3
 4
 -2.5
 8
 \end{lstlisting}
-To access to all the elements between the first and the last element (included), in a column vector:
+To access to \emph{all} the elements between the first and the last element (included), in a column vector, simply use the colon operator:
 
 \begin{lstlisting}
 >> x = [1 3 4 -2.5 8];
@@ -584,7 +583,7 @@ ans =
 
 
 
-
+\tipbox{The colon operator is useful to generate lists and extract sub-parts of vectors/matrices.}
 
 \subsection{Basic operations on vectors}
 \subsubsection{Addition/subtraction}
