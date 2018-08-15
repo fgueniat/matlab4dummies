@@ -1,0 +1,190 @@
+
+\documentclass[]{report}
+%
+\setcounter{secnumdepth}{5}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{xspace}
+\usepackage{graphics}
+\usepackage{graphicx,subfigure}
+\usepackage[utf8]{inputenc}
+\usepackage{ifthen}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{a4wide,amssymb,amsbsy,amsmath}
+\usepackage[many]{tcolorbox}
+\usepackage{tikz}
+	\usetikzlibrary{calc}
+	\usetikzlibrary{shapes,shadows,arrows,positioning}
+	\usetikzlibrary{decorations.pathreplacing,decorations.pathmorphing}
+\lstset{escapeinside={<@}{@>}}
+\tolerance=1000
+%% The lineno packages adds line numbers. Start line numbering with
+%% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
+%% for the whole article with \linenumbers after \end{frontmatter}.
+\begin{document}
+
+%% \usepackage{lineno}
+
+
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\thesubsection}{\alph{subsection})}
+\renewcommand{\thesubsubsection}{\roman{subsubsection}}
+\renewcommand{\theparagraph}{\arabic{paragraph}}
+
+\newcommand{\comments}[1]{{\scriptsize\color{gray} #1}} % pour les commentaires
+
+\DeclareRobustCommand{\matlab}{\texttt{MatLab}\xspace}
+\DeclareRobustCommand{\mcode}[1]{\texttt{#1}\xspace}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% classique tools
+\newcommand{\gras}[1]{\boldsymbol{#1}}
+\newcommand{\mypar}[1]{\left(#1\right)}
+\newcommand{\mya}[1]{\left\{#1\right\}}
+\newcommand{\norme}[1]{\left\Vert #1\right\Vert_2}
+\newcommand{\monabs}[1]{\left| #1\right|}
+
+
+%%%%%%%%%% notations communes
+\newcommand{\Ephaz}{\mathcal{D}}%espace des phases
+\newcommand{\Eobs}{\Omega}%espace des observables
+
+\newcommand{\Np}{n_p} % dim espace des phases
+\newcommand{\Nobs}{n_r} % dim espace des observables
+\newcommand{\Ns}{n_s} % dim sensors
+\newcommand{\Nsnap}{N} % nombre de snapshots
+
+%\newcommand{\flot}{\phi} % flot dynamique
+\newcommand{\fdyn}{\mathfrak{f}} % fonction dynamique
+
+%\newcommand{\velo}{\gras{u}} % champ de vitesse
+\newcommand{\obs}{\gras{u}} % observable
+\newcommand{\statei}{x} % comp de l'espace des phases
+\newcommand{\state}{\gras{\statei}} % state de l'espace des phases
+\newcommand{\freq}{\nu}
+%%%%%%%%%% DMD notations
+\newcommand{\Opev}{A} % Opérateur linéaire d'évolution
+
+\newcommand{\Om}{\mathcal{K}} % matrice de Kalman
+% observabilité notations
+\newcommand{\dmdo}{\sigma} % DMD observability
+\newcommand{\Pd}{\mathcal{S}} % Vecteur DMD observabilité = pertinence 
+\newcommand{\chronos}{\xi}
+
+% Define block styles
+\newcommand{\todo}[1]{{ \center \LARGE\color{red}  [[TODO #1 ]] \\ }}    
+\newcommand{\todoimage}[1]{\todo{ ** image #1 **}} 
+    
+\newtcolorbox[auto counter]{mytipbox}{
+freelance,
+colback=white,
+frame code={},
+interior titled code={
+  \fill[rounded corners=8pt,blue!50]
+    (title.south west) --
+    (title.south) -- 
+    ([yshift=20pt]title.south) --
+    ([yshift=20pt,xshift=4cm]title.south) --
+    ([xshift=4cm]title.south) --
+    (title.south east) {[sharp corners] --
+    ([yshift=-6pt]title.south east) -- 
+    ([yshift=-6pt]title.south west) } -- cycle;
+  \draw[rounded corners=8pt,gray,line width=1pt]
+    (title.west|-frame.south west) --
+    (title.south west) --
+    (title.south) -- 
+    ([yshift=20pt]title.south) --
+    ([yshift=20pt,xshift=4cm]title.south) --
+    ([xshift=4cm]title.south) --
+    (title.south east) --
+    (title.east|-frame.south east) --
+    cycle;
+  \node at ([xshift=2cm,yshift=4pt,anchor=south]title.south) 
+    {\sffamily\Large ProTip~\thetcbcounter};  
+  },
+title={\mbox{}},
+top=12pt,
+fontupper=\sffamily\Large,
+oversize=0.5cm,
+before={\vskip24pt\par\noindent},
+after={\par\vskip12pt}
+}
+
+
+\newcommand{\tipbox}[1]{  { \begin{mytipbox} #1 \end{mytipbox} }  }   
+
+\newtcolorbox[auto counter]{mydefbox}{
+freelance,
+colback=white,
+frame code={},
+interior titled code={
+  \fill[rounded corners=8pt,green!30]
+    (title.south west) --
+    (title.south) -- 
+    ([yshift=20pt]title.south) --
+    ([yshift=20pt,xshift=4cm]title.south) --
+    ([xshift=4cm]title.south) --
+    (title.south east) {[sharp corners] --
+    ([yshift=-6pt]title.south east) -- 
+    ([yshift=-6pt]title.south west) } -- cycle;
+  \draw[rounded corners=8pt,gray,line width=1pt]
+    (title.west|-frame.south west) --
+    (title.south west) --
+    (title.south) -- 
+    ([yshift=20pt]title.south) --
+    ([yshift=20pt,xshift=4cm]title.south) --
+    ([xshift=4cm]title.south) --
+    (title.south east) --
+    (title.east|-frame.south east) --
+    cycle;
+  \node at ([xshift=2cm,yshift=4pt,anchor=south]title.south) 
+    {\sffamily\Large Definition~\thetcbcounter};  
+  },
+title={\mbox{}},
+top=12pt,
+fontupper=\sffamily\Large,
+oversize=0.5cm,
+before={\vskip24pt\par\noindent},
+after={\par\vskip12pt}
+}
+
+
+\newcommand{\defbox}[2]{  { \begin{mydefbox} {\color{green}#1:} #2 \end{mydefbox} }  }   
+
+
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+\lstset{language=Matlab,%
+    %basicstyle=\color{red},
+    breaklines=true,%
+    morekeywords={matlab2tikz},
+    keywordstyle=\color{blue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    identifierstyle=\color{black},%
+    stringstyle=\color{mylilas},
+    commentstyle=\color{mygreen},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    numberstyle={\tiny \color{black}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    emph=[1]{end},emphstyle=[1]\color{black}, %some words to emphasise
+    %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+
+
+
+	
+\title{Introduction to \matlab.}
+
+
+\author{Florimond Gu{\'e}niat}
+
+%\authorrunning{Short form of author list} % if too long for running head
+
+
+
+\maketitle
+

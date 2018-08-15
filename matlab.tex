@@ -1,0 +1,675 @@
+\input{preamble.tex}
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Quick tour \matlab}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Legal stuff}
+\matlab is a registered trademark of MathWorks, Inc.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{What is the use of \matlab ?}
+\matlab~(for MATrix LABoratory) aims at delivering quickly some \emph{relatively} inexpensive computations.
+It shines, as expected from the name, when it involves linear algebra, i.e., operations on matrices.
+
+The main advantage of \matlab compared to language like C/C++ or Fortran are:
+\begin{itemize}
+	\item No compilation
+	\item The prompt
+	\item Simplicity
+	\item portability
+	\item Built-in functions:
+		\begin{itemize}
+			\item integration
+			\item visualization
+			\item tool-box
+		\end{itemize}
+\end{itemize}
+
+The negative points are mostly:
+\begin{itemize}
+	\item sub performance
+	\item not open source
+	\item {\color{red} price}
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Equivalent of \matlab }
+
+Octave and SciLab are almost identical to \matlab. A \matlab script would work on these two others open-source and free softwares.
+
+Most of the tips can also be applied to python, especially when the packages scipy and numpy (for scientific and engineering computations) are used.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Philosophical idea of these teachings}
+The objective of these tutorial are to illustrate the ENG 4XXX courses as well at to help you to learn quickly how to numerically solve problems.
+It will hence give you the first concepts behind \matlab, coding and problem solving.
+The emphasis here is “learning by doing”. Therefore, try not to read these documents without a computer close-by.
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Hello World}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\matlab as a software}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Start \matlab}
+Click on the icon, duh!
+%%!!!!!!!!!!!!111
+\subsubsection{Organization of the window}
+
+You can find a few important sections:
+\begin{itemize}
+	\item the command windows \\
+		\comments{This is the prompt}
+	\item current folder \\
+		\comments{It lists the files}
+	\item the Workspace \\
+		\comments{It gives details on the objects present in memory}
+	\item the editor \\
+		\comments{this is where you can write a script}
+	\item the ribbon \\
+		\comments{It gives access to properties, functions, etc. Similar in spirit to Words and Excel.}
+\end{itemize}
+
+\todoimage{opening windows of matlab}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{How to print "hello world"}
+
+Click on the Command Window, and type "hello world".
+You will see:
+
+\begin{lstlisting}
+>> 'Hello World'
+ans =
+Hello World
+\end{lstlisting}
+
+\medskip
+
+\matlab~printed the 'Hello World', congratulations !
+
+You can see also that the 'Hello World has been assignated to a variable named ans.
+
+\defbox{ans}{Short for answer. The results of the command is always stored in the variable ans, if it is not assigned to an other variable. }
+
+
+Now, try without the quotes, and you will see:
+\begin{lstlisting}
+>> Hello World
+<@{\color{red}Undefined function or variable 'Hello'.}@>
+\end{lstlisting}
+plus some help.
+
+Hello World is understood by \matlab as a function/variable and then an option for this function.
+\matlab hence thinks that Hello is something that already exists, and it is not the case here. An error follow.
+
+The main reason behind that is that we want to print a string.
+
+\defbox{String}{Chain of character. It has to be between quotes: 'some text' or double quotes: "some text".}
+
+
+Try now to add a semi colon at the end of the line:
+\begin{lstlisting}
+>> 'Hello World';
+>>
+\end{lstlisting}
+
+Nothing is printed in the prompt.
+
+\defbox{Prompt}{The $>>$ sign. Once enter is hit, \matlab will interpret the line}
+
+One of the most important tip to remember: \matlab will always print the result of a line if it does not have a ";" at the end of the line.
+
+\tipbox{
+Do not forget  the ";" at the end of lines. 
+}
+
+
+
+
+
+
+\section{\matlab as a calculator}
+\subsection{Algebra}
+
+You can use \matlab as a calculator. 
+Click on the prompt: 
+
+\begin{lstlisting}
+>> 4+3
+ans =
+7
+>> 4*3
+ans =
+12
+\end{lstlisting}
+
+As expected, \matlab respects the BODMAS (Brackets, Order, Division/Multiplication, Addition/Subtraction). 
+Try a few operations !
+\begin{lstlisting}
+>> (4+3)*2
+ans =
+14
+>> 4+3*2
+ans =
+10
+\end{lstlisting}
+
+\subsection{Variables}
+ans can be used to store a result, but it will be overwritten every time a command is executed:
+
+\begin{lstlisting}
+>> 2+2
+ans =
+4
+>> ans+2
+ans =
+6
+>> ans+2
+ans =
+8
+\end{lstlisting}
+
+\subsection{Creation and re-assignement}
+
+Variable can be easily created and assigned with the sign "=". 
+
+
+\begin{lstlisting}
+>> x = 2+2
+x =
+4
+>> x+2
+ans =
+6
+>> x*5
+ans =
+10
+\end{lstlisting}
+
+\defbox{variable}{a name that is associated with an value. Values can be results, functions or complex objects. They are usually assigned with the sign =}
+
+%%!!!!!!!!!!!!111
+\subsubsection{Naming convention}
+A variable name can be anything, such as \mcode{goodnameforavariable} or  \mcode{GoodNameForAVariable}, or  \mcode{good\_name\_for\_a\_variable} .
+However:
+\begin{itemize}
+	\item it cannot start with \_
+	\item it cannot start with a number
+	\item a few names are protected
+\end{itemize}
+
+\tipbox{Try to use clever name for variables, it will help to understand the code.  }
+
+The choice of a name is important, for you a, \mcode{x} is good for an unknown, \mcode{s} if you expect its value to be a string, \mcode{v} if it is a vector... More complex names can be used, such as \mcode{x\_problem\_1}. Try to be consistent thorough the piece of code !
+
+A few tips:
+
+\begin{itemize}
+	\item Use different names for different results
+	\item Use a name that is meaningfull (e.g. \mcode{str\_name} if the variable is assigned with a chain of character that is a name)
+	\item Consequently, avoid unecessary use of index (e.g. \mcode{result\_1, result\_2} etc.)
+\end{itemize}
+
+\tipbox{You can use the following name convention: \mcode{UpperCamelCase} for functions, \mbox{\mcode{CAPITALIZED\_WITH\_UNDERSCORES}} for constants, and \mbox{\mcode{lowercase\_separated\_by\_underscores}} for other variables.}
+
+
+%%!!!!!!!!!!!!111
+\subsubsection{Reassignement}
+Updating a variable is handy: you might want to change the variable \mcode{year} from \mcode{2017} to \mcode{2018}.
+
+You can easily update a variable, by reassigning a new value to it. It hence uses the sign "=".
+For instance:
+\begin{lstlisting}
+>> x = 2+2
+x = 
+4
+>> x = x + 5
+x =
+9
+>> x = 0
+x =
+0
+\end{lstlisting}
+
+%%!!!!!!!!!!!!111
+\subsubsection{Exercices}
+\begin{enumerate}
+	\item Create the variables \mcode{x,y,z} assigned with $1$, $2$ and $3$.
+	\item Create the variable \mcode{sum\_xyz} that is the sum of \mcode{x,y} and \mcode{z}.
+	\item Propose a name for a variable that is assigned as a value \mcode{'Birmingham'}
+	\item Propose a name for a variable that is assigned as a value \mcode{'BCU'}
+	\item Try to assign to the variable \mcode{year} the value \mcode{2017}, and then to \mcode{2018}!
+	\item Try to assign to the variable \mcode{girlfriend\_name} the value \mcode{'Adilah'} (using the sign equal, pun totally intended), and to the variable \mcode{ex\_girlfriend\_name} the value \mcode{'Marie'}.
+Then, reassign to the variable \mcode{girlfriend\_name} the value \mcode{'Kiara'}, and to the variable \mcode{ex\_girlfriend\_name} the value \mcode{'Adilah'}.
+
+\end{enumerate}
+
+\subsection{Entering multiple commands per line}
+It is possible to enter multiple commands per line. 
+Use commas "," or semicolons ";" for that ; the commas will \emph{not} suppress the outputs.
+
+\tipbox{Try to avoid multiple commands per line, most of the time, it makes the code harder to read.}
+
+\begin{lstlisting}
+>> x = 2 ; y = 3 ; z = 4 ;
+>> x = 2 ; y = 3 , z = 4 ;
+y = 
+3
+>> x = 2 , y = 3 , z = 4 ,
+x = 
+2
+y = 
+3
+z = 
+5
+\end{lstlisting}
+
+
+
+\subsection{Basic arithmetic}
+
+
+Basic arithmetic operators are pretty classic:
+
+\begin{table}[h!]\caption{Arithmetic operators}
+\center
+\begin{tabular}{|l|c|c|}
+	\hline
+	operation & command & exemple \\
+	\hline
+	addition & + & 3+4 \\
+	soustraction & - & 3-4 \\
+ 	multiplication & * & 3*4 \\
+	division & / & 3/4 \\
+	power & \^{} & 2 \^{} 4 \\
+	\hline
+\end{tabular}
+\end{table}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{functions}
+%%!!!!!!!!!!!!111
+\subsubsection{How to find a function or a command ?}
+
+If you look for something, hit the help button.
+For instance, if you want to look for the sine function:
+
+\todoimage{help sine}
+
+
+\tipbox{Use the help! It is \emph{very} useful and you will mostly find any function/tool/infos that you need.}
+
+%%!!!!!!!!!!!!111
+\subsubsection{Using a function}
+Calling a function is relatively easy and intuitive. Let's take the sine function as an illustration. 
+
+\begin{lstlisting}
+>> sin(3.14)
+ans =
+0.0016
+\end{lstlisting}
+
+You ask \matlab to evaluate the function \mcode{sin} in $3.14\approx \pi$. 
+For that, you just put the argument in parenthesis.
+
+\tipbox{Trigonometric functions in \matlab are in radiant!}
+
+Typical functions are available with an explicit name,see Tab.~\ref{tab-func}. Similarly, many constants are implemented in \matlab.
+
+\begin{table}[h!]
+	\caption{A few function names in \matlab. Many others are already implemented in \matlab.}
+	\label{tab-func}
+\center
+\begin{tabular}{|l|c||l|c||l|c|}
+	\hline
+	Trigonometry & name & Stats & name & Misc. & name\\
+	\hline
+	sine & sin  &
+		mean & mean &
+			square root & sqrt \\
+			
+	cosine & cos &
+		maximum & max &
+			absolute value & abs \\
+
+	exponential & exp &
+		minimum & min &
+			round up & ceil \\		
+
+		
+	natural logarithm & log &
+		standard dev. & std &
+			conjugate & conj \\
+	
+	\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+	\caption{A few useful constant names in \matlab.}
+	\label{tab-func}
+\center
+\begin{tabular}{|l|c|}
+	\hline
+	$\pi$ & pi \\
+
+	\hline
+\end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Linear Algebra}
+
+Linear algebra is the fundations of \matlab, and what makes it popular.
+
+In particular, \matlab makes the manipulation of matrices and vectors very easy.
+This section will show how to do:
+\begin{itemize}
+	\item operations involving arrays, or vectors
+	\item operations involving matrices
+	\item operations involving both arrays and matrices
+\end{itemize}
+
+
+\section{Vectors}
+\subsection{Creation of a vector}
+\subsubsection{Line vector}
+Creating a vector is easy. You just put all the components between brackets.
+
+Let's create Cartesian vectors in dimension two. $e_x = (1,0)$ and $e_y = (0,1)$:
+
+
+\begin{lstlisting}
+>> ex = [1 0]
+ex =
+1 0
+>> ey = [0,1]
+ey =
+0 1
+\end{lstlisting}
+ 
+\tipbox{When creating a line vector, commas between components are unnecessary, but will help reading the code !}
+
+\subsubsection{Column vector}
+Creating a column vector is similar to creating a line vector, except that the element are separated with a semi-colon ";".
+
+
+\begin{lstlisting}
+>> ex = [1;0]
+ex =
+1
+0
+>> ey = [0;1]
+ey =
+0
+1
+\end{lstlisting}
+
+\subsubsection{Transpose operator}
+It is possible to change a column vector to a line vector, and reciprocaly, by using the transpose operator "'".
+\begin{lstlisting}
+>> ex = [1;0]
+ex =
+1
+0
+>> ex'
+ans =
+1 0
+>> ey = [0,1]
+ey =
+0 1
+>> ey'
+ans =
+0
+1
+\end{lstlisting}
+
+
+\subsection{Access to the element of a vector}
+Accessing the element of a vector is just calling the vector with specifying the desired element.
+
+\begin{lstlisting}
+>> x = [1 3 4 -2.5 8]
+x = 
+1 3 4 -2.5 8
+>> x(1)
+ans = 
+1
+>> x(3)
+ans = 
+4
+>> x(4)
+ans = 
+-2.5
+\end{lstlisting}
+
+
+
+
+The last element of a vector can be called using the argument \mcode{end}:
+You can also call the ith item from the end using \mcode{end-i}. 
+\begin{lstlisting}
+>> x = [1 3 4 -2.5 8]
+x = 
+1.000 3.000 4.000 -2.5 8.000
+>> x(end)
+ans = 
+8
+>> x(end-1)
+ans = 
+-2.5
+>> x(end-2)
+ans = 
+4
+\end{lstlisting}
+
+
+
+
+
+\subsection{Basic operations on vectors}
+\subsubsection{Addition/subtraction}
+It is easy to add or subtract a given value to \emph{all} the components of a vector, using the signs "+" and "-".
+
+\begin{lstlisting}
+>> x = [1 3]
+x = 
+1 3
+>> x + 4
+ans =
+5 7
+>> y = x - 2
+y =
+-1 1
+>> z = [5 10 -1 8] + 3
+z = 
+8 13 2 11
+\end{lstlisting}
+
+
+Vectors can be added, as long as their dimensions correspond:
+
+\begin{lstlisting}
+>> ex = [1 0]; ey = [0,1] ;
+>> ex + ey
+ans =
+1 1
+>> ex - ey
+ans =
+1 -1
+\end{lstlisting}
+
+Of course, if their dimensions do not correspond, \matlab will send back and error:
+
+\begin{lstlisting}
+>> x =[1,0] ; y = [1,0,0];
+>> x+y
+<@{\color{red}Matrix dimensions must agree.}@>
+\end{lstlisting}
+
+
+
+
+\tipbox{\matlab considers vectors as 1D matrices.}
+
+
+
+\subsubsection{Multiplication}
+It is easy to multiply or divide by a given value to \emph{all} the components of a vector, using the signs "*" and "/"
+
+\begin{lstlisting}
+>> x = [1 3]
+x = 
+1 3
+>> x * 4
+ans =
+4 12
+>> y = x / 2.
+y =
+0.5 1.5
+>> z = 3 * [5 10 -1 8]
+z = 
+15 30 -3 24
+\end{lstlisting}
+
+What is multiplication for vectors ?
+
+Two definitions can be proposed.
+
+\paragraph{dot product}
+The first definition is the dot product between two vectors.
+\defbox{dot product}{The dot product (or inner product) of two vectors is the sum of the multiplication of their components. If $u=(u_i),v=(v_i)$ are $n$-dimensional vectors, $<u,v>= \sum\limits_{i=1}^n u_i \times v_i $.}
+
+
+It can be done using the function \mcode{dot}.
+\begin{lstlisting}
+>> x =[1,0] ; y = [1,0];
+>> dot(x,y)
+ans = 
+1
+>> x(1) * y(1) + x(2) * y(2)
+ans =
+1
+>> a =[0,0.5,2] ; b = [2,0,4];
+>> dot(a,b)
+ans = 
+8
+>> a(1) * b(1) + a(2) * b(2) + a(3) * b(3)    
+and =
+8
+\end{lstlisting}
+
+
+\paragraph{Element-wise multiplication}
+Another definition could be the element wise multiplication.
+It means that each element of a vector is multiply by the corresponding element of the other vector.
+It is similar to the dot product \emph{except} for the sum.
+The operator for that is ".*" (it is read "dot product", which is pretty stupid when you think about it!).
+
+\begin{lstlisting}
+>> x =[1,0] ; y = [1,0];
+>> x.*y
+ans = 
+1 0
+>> [x(1) * y(1), x(2) * y(2)]
+ans =
+1 0
+>> a =[0,0.5,2] ; b = [2,0,4];
+>> a.*b
+ans = 
+0 0 8
+>> [a(1) * b(1), a(2) * b(2), a(3) * b(3)]
+and =
+0 0 8
+\end{lstlisting}
+
+
+\tipbox{In \matlab, using "." in front of an operator means that this operator will be applied element-wise (to each element of the vector/matrix).}
+
+
+\todo{exercices}
+
+\section{Matrices}
+\matlab sees vectors a line matrices. Building a matrix is the equivalent of stacking lines.
+For that, \matlab uses the semi colon sign ";".
+The following lines are equivalent:
+\begin{lstlisting}
+>> m =[1,0 ; 0,1];
+m = 
+1 0
+0 1
+>> m =[1,0 ; 0 1];
+m = 
+1 0
+0 1
+>> m =[ [1,0] ; [0 1]];
+m = 
+1 0
+0 1
+\end{lstlisting}
+
+
+
+
+\todo{exercices}
+Try to create the vector $x = (1,2,3,4)$.
+
+\bibliographystyle{ieeetr}
+\bibliography{biblio}
+
+\end{document}
+
+%%
+%% End of file `elsarticle-template-3a-num.tex'.
