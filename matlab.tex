@@ -85,7 +85,7 @@ Click on the icon, duh!
 You can find a few important sections:
 \begin{itemize}
 	\item the command windows \\
-		\comments{This is the prompt}
+		\comments{This is the command prompt}
 	\item current folder \\
 		\comments{It lists the files}
 	\item the Workspace \\
@@ -139,8 +139,11 @@ The main reason behind that is that we want to print a string.
 
 \defbox{String}{A string is a chain of characters. It is \emph{not} a number. 
 
-It has to be between quotes: 'some text' or double quotes: "some text".
-It should not be mixed with numbers.
+It has to be between quotes: 'some text' or double quotes: "some text". 
+For example, 'Lorem ipsum dolor sit amet' is a chain or characters.
+
+But it is not that easy. \mcode{s = '45'} is the chain of characters '4' and '5'. But \mcode{n = 45} is the number 45. \mcode{s} and \mcode{n} are different.  
+
 }
 
 
@@ -150,11 +153,12 @@ Try now to add a semi colon at the end of the line:
 >>
 \end{lstlisting}
 
-Nothing is printed in the prompt.
+Nothing is printed in the command prompt.
 
-\defbox{Prompt}{The prompt is the $>>$ sign. 
-
-Once enter is hit, \matlab will interpret the line, and send back any results.
+\defbox{Command prompt}{The command prompt is the $>>$ sign. 
+	
+Command Prompt is a command line interpreter. It is used to execute entered commands. 
+Once enter is hit, \matlab will interpret the command, and send back any results.
 }
 
 One of the most important tip to remember: \matlab will always print the result of a line if it does not have a ";" at the end of the line.
@@ -230,7 +234,7 @@ ans =
 10
 \end{lstlisting}
 
-\defbox{variable}{A variable is essentially a name that is associated with a value. 
+\defbox{Variable}{A variable is essentially a name that is associated with a value. 
 
 Values can be of several types:
 \begin{itemize}
@@ -335,8 +339,11 @@ It allows to:
 It is possible to enter multiple commands per line. 
 Use commas "," or semicolons ";" for that ; the commas will \emph{not} suppress the outputs.
 
-\tipbox{Try to avoid multiple commands per line, most of the time, it makes the code harder to read. 
-Nevertheless, it makes sense when assigning a few variables that are related.
+\tipbox{Try to avoid multiple commands per line.
+	
+Most of the time, it makes the code harder to read, especially if there is not a good reason to do so.
+
+Nevertheless, it can make sense write a few commands per line when assigning a variables that are related.
 }
 
 \begin{lstlisting}
@@ -462,15 +469,84 @@ Typical functions are available with somewhat explicit names, see Tab.~\ref{tab-
 \end{tabular}
 \end{table}
 
+
+
+
+
+\section{Let's solve a real problem}
+
+\paragraph*{Problem}
+Julie's car's odometer reading was 35201km when she last filled the fuel tank. 
+Yesterday she checked it again and it read 35403km. Checking the tank, the car used 11 liters of gas to do so.
+If her car's gas tank holds 35 liters, how long can she drive before running out of gas? 
+
+
+\paragraph*{Solution using \matlab as a calculator}
+
+How much has she driven ?
+\begin{lstlisting}
+>> 35403 - 35201
+ans =
+202
+\end{lstlisting}
+
+How much distance per liter of gas ?
+\begin{lstlisting}
+>> 202/11
+ans =
+18.3636
+\end{lstlisting}
+
+How much gas is left in the tank ?
+\begin{lstlisting}
+>> 35 - 11
+ans =
+24
+\end{lstlisting}
+
+Distance she can drive:
+\begin{lstlisting}
+>> 24 * 18.3636
+ans =
+440.7264
+\end{lstlisting}
+
+
+\paragraph*{Solution with variables}
+
+We can script the same code. It means that we would just have to replace the value in the first three lines to update the whole code. 
+
+
+\begin{lstlisting}
+>> odormeter_before = 35201 ;
+>> odormeter_after = 35403 ; 
+>> used_gas = 11 ;
+>> distance = odormeter_after - odormeter_before ;  
+>> distance_per_liter = distance/used_gas ;
+>> tank_capacity = 35;
+>> estimated_distance = (tank_capacity - used_gas) * distance_per_liter
+440.7264
+\end{lstlisting}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
+\section{What to remember}
 
+\matlab is basically a powerful calculator.
 
+\subsection{Key example}
+Let's summarize in a few examples everything we have seen.
 
-
-
-
-
+\begin{lstlisting}
+>> year = 2018;
+>> next_year = year + 1
+next_year = 
+2019
+>> angle = pi ;
+>> ( 2.*cos(angle) + 1.) ^2 
+ans = 
+9.0
+\end{lstlisting}
 
 
 
@@ -499,15 +575,137 @@ This section will show how to do:
 \end{itemize}
 
 
-\section{Vectors}
+
+
+
+
+\section{Basics with matrices and vectors}
+\subsection{Creation}
+Follow the procedure:
+\begin{itemize}
+	\item start with a bracket [
+	\item write each element of a column, separated with space or commas
+	\item separate rows with a semi-colon
+	\item end with the bracket ]
+\end{itemize}
+
+
+For creating a vector:
+
+\begin{lstlisting}
+>> v = [1,2,3]
+v =
+1 2 3
+>> w = [0;1]
+w =
+0
+1
+\end{lstlisting}
+\mcode{v} is a row vector and \mcode{w} is a column vector.
+
+For creating a matrix, the following lines are equivalent:
+\begin{lstlisting}
+>> M =[1,0 ; 0,1];
+M = 
+1 0
+0 1
+>> m =[1,0 ; 0 1];
+M = 
+1 0
+0 1
+>> m =[ [1,0] ; [0 1]];
+M = 
+1 0
+0 1
+\end{lstlisting}
+
+The last line shows that a matrix is virtually stacked vectors.
+
+\subsection{Manipulation}
+You can
+\begin{itemize}
+	\item add, subtract, multiply matrices if their sizes are compatible
+	\item access to the ith element of matrix \mcode{M} using \mcode{M(i)}
+	\item access to the (ith,jth) element of matrix \mcode{M} using \mcode{M(i,j)}
+\end{itemize}	
+
+
+
+To add a constant to a vector, a vector to another vector (it works identically for matrices) :
+\begin{lstlisting}
+>> v = [1 3];
+>> v + 4
+ans =
+5 7
+>> v*2.
+ans =
+2 6
+>> w = [2,8];
+>> v+w
+ans =
+3 11
+>> w/2.
+ans =
+1 4
+\end{lstlisting}
+
+To access to an element of a vector  (it works identically for matrices) :
+
+\begin{lstlisting}
+>> v = [1 3 4 -2.5 8] ;
+>> v(1)
+ans = 
+1
+>> v(3)
+ans = 
+4
+>> M = [[5,2];[9,-1]] ;
+>> M(1,1)
+ans =
+5
+>> M(2,1)
+ans =
+9
+\end{lstlisting}
+
+To delete \emph{remove} the ith element, use the operator "[]":
+
+\begin{lstlisting}
+>> v = [1 3 4 -2.5 8] ;
+>> v(1) = []
+v = 
+3 4 -2.5 8
+\end{lstlisting}
+It hence reduces the dimension of the vector. It works similarly for a matrix:
+\begin{lstlisting}
+>> A = [ [1 3 4] ; [-2.5 8 9]] ;
+>> A(:,1) = []
+A = 
+3 4
+8 9
+\end{lstlisting}
+The first column has been deleted.
+
+
+
+
+\section{More details on vectors}
 \subsection{Creation of a vector}
-\subsubsection{Line vector}
+\subsubsection{Row vector}
 Creating a vector \mcode{v} is easy. You just put all the components between brackets.
+\begin{lstlisting}
+>> v = [1,2,3]
+v =
+1 2 3
+\end{lstlisting}
+It is also possible to replace the commas with space:
 \begin{lstlisting}
 >> v = [1 2 3]
 v =
 1 2 3
 \end{lstlisting}
+
+It works fine but makes the code harder to read.
 
 Let's create Cartesian vectors in dimension two. $e_x = (1,0)$ and $e_y = (0,1)$:
 
@@ -521,10 +719,10 @@ ey =
 0 1
 \end{lstlisting}
  
-\tipbox{When creating a line vector, commas between components are unnecessary, but will help reading the code !}
+
 
 \subsubsection{Column vector}
-Creating a column vector is similar to creating a line vector, except that the element are separated with a semi-colon ";".
+Creating a column vector is similar to creating a row vector, except that the element are separated with a semi-colon ";".
 
 
 \begin{lstlisting}
@@ -540,7 +738,7 @@ w =
 \end{lstlisting}
 
 \subsubsection{Transpose operator}
-It is possible to change a column vector to a line vector, and reciprocaly, by using the transpose operator "'".
+It is possible to change a column vector to a row vector, and reciprocally, by using the transpose operator "'".
 \begin{lstlisting}
 >> ex = [1;0]
 ex =
@@ -703,7 +901,158 @@ Of course, if their dimensions do not correspond, \matlab will send back and err
 
 
 
-\tipbox{\matlab considers vectors as 1D matrices.}
+\tipbox{\matlab considers vectors as 1D matrices. 
+
+It is important when dealing with multiplication.
+
+If \mcode{v=[1,2,3]}: 
+\begin{itemize}
+	\item \mcode{v*v'} is $14$ \\
+		it is multiplying a $1\times 3$ matrix with a $3\times 1$ matrix.
+	\item \mcode{v'*v} is \mcode{[[1,2,3];[2,4,6];[3,6,9]]} \\
+		it is multiplying a $3\times 1$ matrix with a $1\times 3$ matrix.
+	\item \mcode{v*v} will not work \\
+		it is multiplying a $1\times 1$ matrix with a $1\times 3$ matrix; dimensions are not compatible.
+\end{itemize}
+
+}
+
+
+
+\subsubsection{Multiplication}
+\paragraph{Multiplication by a scalar}
+
+It is easy to multiply or divide by a given value to \emph{all} the components of a vector, using the signs "*" and "/"
+
+\begin{lstlisting}
+>> x = [1 3]
+x = 
+1 3
+>> x * 4
+ans =
+4 12
+>> y = x / 2.
+y =
+0.5 1.5
+>> z = 3 * [5 10 -1 8]
+z = 
+15 30 -3 24
+\end{lstlisting}
+
+
+
+\paragraph{dot product}
+It can be done using the function \mcode{dot}.
+\begin{lstlisting}
+>> x =[1,0] ; y = [1,0];
+>> dot(x,y)
+ans = 
+1
+>> x(1) * y(1) + x(2) * y(2)
+ans =
+1
+>> a =[0,0.5,2] ; b = [2,0,4];
+>> dot(a,b)
+ans = 
+8
+>> a(1) * b(1) + a(2) * b(2) + a(3) * b(3)    
+and =
+8
+\end{lstlisting}
+
+
+
+\paragraph{Element-wise multiplication}
+Element-wise multiplication means that each element of a vector is multiply by the corresponding element of the other vector.
+It is similar to the dot product \emph{except} for the sum.
+The operator for that is ".*" (it is read "dot product", which is pretty stupid when you think about it!).
+
+\begin{lstlisting}
+>> x =[1,0] ; y = [1,0];
+>> x.*y
+ans = 
+1 0
+>> [x(1) * y(1), x(2) * y(2)]
+ans =
+1 0
+>> a =[0,0.5,2] ; b = [2,0,4];
+>> a.*b
+ans = 
+0 0 8
+>> [a(1) * b(1), a(2) * b(2), a(3) * b(3)]
+and =
+0 0 8
+\end{lstlisting}
+
+
+\tipbox{In \matlab, using "." in front of an operator means that this operator will be applied element-wise (to each element of the vector/matrix).
+
+	For instance, \mcode{v.\^{}2} means that \emph{all} the elements of \mcode{v} will be squared. If \mcode{v} is $[2,4,3]$, then   \mcode{v.\^{}2}  is $[2^2,4^2,3^2]$, or \mcode{[4,16,9]}.
+
+}
+
+
+\todo{exercices}
+
+\section{Matrices}
+\matlab sees vectors a line matrices. Building a matrix is the equivalent of stacking lines.
+For that, \matlab uses the semi colon sign ";".
+The following lines are equivalent:
+\begin{lstlisting}
+>> M =[1,0 ; 0,1];
+M = 
+1 0
+0 1
+>> m =[1,0 ; 0 1];
+M = 
+1 0
+0 1
+>> m =[ [1,0] ; [0 1]];
+M = 
+1 0
+0 1
+\end{lstlisting}
+
+The last line shows that a matrix is virtually stacked vectors.
+
+
+\subsection{Addition/subtraction}
+It is easy to add or subtract a given value to \emph{all} the components of a matrix, using the signs "+" and "-".
+
+\begin{lstlisting}
+>> M = [[1 3];[2,4];
+>> M + 4
+ans =
+5 7
+6 8
+>> A = M - 2
+A =
+3 5
+4 6
+\end{lstlisting}
+
+
+Matrices can be added, as long as their dimensions correspond:
+
+\begin{lstlisting}
+>> M = [[1 0];[2,3]; A = [[2,-1];[1,1]];
+>> M + A
+ans =
+3 -1
+3  4
+>> M - A
+ans =
+1 1
+1 2
+\end{lstlisting}
+
+Of course, if their dimensions do not correspond, \matlab will send back and error:
+
+\begin{lstlisting}
+>> M =[[1,0];[1,0];[1,0] ; A = [[2,-1];[1,1]];
+>> x+y
+<@{\color{red}Matrix dimensions must agree.}@>
+\end{lstlisting}
 
 
 
@@ -777,36 +1126,85 @@ and =
 \end{lstlisting}
 
 
-\tipbox{In \matlab, using "." in front of an operator means that this operator will be applied element-wise (to each element of the vector/matrix).}
-
-
-\todo{exercices}
-
-\section{Matrices}
-\matlab sees vectors a line matrices. Building a matrix is the equivalent of stacking lines.
-For that, \matlab uses the semi colon sign ";".
-The following lines are equivalent:
-\begin{lstlisting}
->> M =[1,0 ; 0,1];
-M = 
-1 0
-0 1
->> m =[1,0 ; 0 1];
-M = 
-1 0
-0 1
->> m =[ [1,0] ; [0 1]];
-M = 
-1 0
-0 1
-\end{lstlisting}
-
-The last line shows that a matrix is virtually stacked vectors.
-
-
 
 \todo{exercises}
 Try to create the vector $x = (1,2,3,4)$.
+
+
+
+\subsubsection{Accessing and deleting elements}
+
+\paragraph{Accessing elements}
+It works in a similar way as for vectors, except that the dimensions are separated with a comma.
+Let's work with \mcode{M}:
+\begin{lstlisting}
+>> M = [ [1,2,3]; [4,5,6]; [7,8,9]]
+M = 
+1 2 3
+4 5 6
+7 8 9
+\end{lstlisting}
+
+To extract the third column of \mcode{M}:
+
+\begin{lstlisting}
+>> c = M(:,3)
+c = 
+3
+6
+9
+\end{lstlisting}
+
+
+To extract the second row of \mcode{M}:
+
+\begin{lstlisting}
+>> l = M(2,:)
+l = 
+4 5 6
+\end{lstlisting}
+
+To extract the first \emph{and} the second row of \mcode{M}:
+\begin{lstlisting}
+>> A = M([1,2],:)
+A = 
+1 2 3
+4 5 6
+\end{lstlisting}
+
+Following this notation, we can exchange the first rows of \mcode{M}:
+\begin{lstlisting}
+>> A = M([2,1],:)
+A = 
+4 5 6
+1 2 3
+\end{lstlisting}
+
+
+
+\tipbox{
+	Using lists (for instance \mcode{indices = [1,3,4]}) as arguments of matrix is a very powerful methods for altering a matrix or for creating a new one.
+\begin{itemize}
+	\item \mcode{M(indices,:)} will select the rows of \mcode{M} in the order of the elements of \mcode{indices}. \\
+		They can be copied, if there is repetition in \mcode{indices}, as \mcode{indices = [1,2,2]}
+		They can be rearranged, if the elements in \mcode{indices} are not ranked, as \mcode{indices = [3,1,2]}
+	\item \mcode{M(:,indices)} will select the rows of \mcode{M} in the order of the elements of indices
+	\item \mcode{M(indices\_row,indices\_col)} will extract a sub-matrix of \mcode{M}
+
+\end{itemize}
+
+
+}
+
+
+
+
+
+
+In \matlab, using "[]" reinitialize and empty a variable. It is named the \emph{empty vector operator}.
+	
+	When used on a part of a vector or a matrix, it simply deletes this part.
+
 
 
 
@@ -887,6 +1285,23 @@ ans =
 \end{tabular}
 \end{table}
 
+\begin{table}[h!]
+	\caption{A few functions that are useful.}
+	\label{tab-useful_func_algebra}
+\center
+\begin{tabular}{|l|c|l|}
+	\hline
+	name & description & illustration\\
+	\hline
+	\mcode{size(M)} & number of elements in M & \mcode{size([1,2,3])} \\
+	\mcode{shape(M)} & number of elements in each direction of M & \mcode{shape([2,3,5];[1,2,3]])} \\
+	\hline
+\end{tabular}
+\end{table}
+
+
+
+\section{Linear Algebra}
 
 \section{What to remember}
 \subsection{Creating a matrix}
@@ -905,6 +1320,31 @@ You can
 	\item access to the ith element of matrix \mcode{M} using \mcode{M(i)}
 	\item access to the (ith,jth) element of matrix \mcode{M} using \mcode{M(i,j)}
 \end{itemize}	
+
+\subsection{Key example}
+Let's summarize in a few examples everything we have seen.
+
+\begin{lstlisting}
+>> M = [[1,2];[3,4]]
+M = 
+1 2 
+3 4
+
+\end{lstlisting}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \bibliographystyle{ieeetr}
 \bibliography{biblio}
