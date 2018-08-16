@@ -1833,8 +1833,14 @@ while nFactorial < 1e100
 end
 Each loop requires the end keyword.
 
-It is a good idea to indent the loops for readability, especially when they are nested (that is, when one loop contains another loop):
+\tipbox{
+Indent the loops for readability!
 
+	For each loops, indent by using tab or a few spaces.
+
+	Without indentation, it is really hard to see when loops start and end, and hence to understand the code.
+	
+}
 A = zeros(5,100);
 for m = 1:5
     for n = 1:100
