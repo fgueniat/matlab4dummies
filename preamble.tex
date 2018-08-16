@@ -100,47 +100,6 @@
     at (frame.west) {Pro Tip};
   }
 }
-
-
-
-   %
-   %
-   %\newtcolorbox[auto counter]{mytipbox}{
-   %freelance,
-   %colback=white,
-   %frame code={},
-   %interior titled code={
-   %  \fill[rounded corners=8pt,blue!50]
-   %    (title.south west) --
-   %    (title.south) -- 
-   %    ([yshift=20pt]title.south) --
-   %    ([yshift=20pt,xshift=4cm]title.south) --
-   %    ([xshift=4cm]title.south) --
-   %    (title.south east) {[sharp corners] --
-   %    ([yshift=-6pt]title.south east) -- 
-   %    ([yshift=-6pt]title.south west) } -- cycle;
-   %  \draw[rounded corners=8pt,gray,line width=1pt]
-   %    (title.west|-frame.south west) --
-   %    (title.south west) --
-   %    (title.south) -- 
-   %    ([yshift=20pt]title.south) --
-   %    ([yshift=20pt,xshift=4cm]title.south) --
-   %    ([xshift=4cm]title.south) --
-   %    (title.south east) --
-   %    (title.east|-frame.south east) --
-   %    cycle;
-   %  \node at ([xshift=2cm,yshift=4pt,anchor=south]title.south) 
-   %    {\sffamily\Large ProTip~\thetcbcounter};  
-   %  },
-   %title={\mbox{}},
-   %top=12pt,
-   %fontupper=\sffamily,
-   %oversize=0.5cm,
-   %before={\vskip24pt\par\noindent},
-   %after={\par\vskip12pt}
-   %}
-   %
-   %
 \newcommand{\tipbox}[1]{  { \begin{mytipbox} #1 \end{mytipbox} }  }   
 
 
@@ -163,51 +122,26 @@
     at (frame.west) {Definition};
   }
 }
-
-
-
-    %\newtcolorbox[auto counter]{mydefbox}{
-    %freelance,
-    %colback = red,
-    %frame code={},
-    %interior titled code={
-    %  \fill[rounded corners=8pt,green!30]
-    %    (title.south west) --
-    %    (title.south) -- 
-    %    ([yshift=20pt]title.south) --
-    %    ([yshift=20pt,xshift=4cm]title.south) --
-    %    ([xshift=4cm]title.south) --
-    %    (title.south east) {[sharp corners] --
-    %    ([yshift=-6pt]title.south east) -- 
-    %    ([yshift=-6pt]title.south west) } -- cycle;
-    %  \draw[rounded corners=8pt,gray,line width=1pt]
-    %    (title.west|-frame.south west) --
-    %    (title.south west) --
-    %    (title.south) -- 
-    %    ([yshift=20pt]title.south) --
-    %    ([yshift=20pt,xshift=4cm]title.south) --
-    %    ([xshift=4cm]title.south) --
-    %    (title.south east) --
-    %    (title.east|-frame.south east) --
-    %    cycle;
-    %  \node at ([xshift=2cm,yshift=4pt,anchor=south]title.south) 
-    %    {\sffamily\Large Definition~\thetcbcounter};  
-    %  },
-    %title={\mbox{}},
-    %top=12pt,
-    %fontupper=\sffamily,
-    %oversize=0.5cm,
-    %before={\vskip24pt\par\noindent},
-    %after={\par\vskip12pt}
-    %}
-    %
-    %
-    %
-    %
-
-
-
 \newcommand{\defbox}[2]{  { \begin{mydefbox} {\color{green!55!black}\textsc{#1}:} #2 \end{mydefbox} }  }   
+\newtcolorbox{myhelpbox}{%
+  enhanced,
+  boxsep=3pt,
+  arc=1.25ex,
+  colback=orange!5!white,
+  colframe=orange!75!black,
+  boxrule=3pt,
+  leftrule=18pt,
+  overlay unbroken and first ={%
+    \node[rotate=90,
+          minimum width=1cm,
+          anchor=south,
+          font=\Large\sffamily\bfseries,
+          yshift=-18pt,
+          white]
+    at (frame.west) {Help};
+  }
+}
+\newcommand{\helpbox}[1]{  { \begin{myhelpbox} {Go and look for {\color{orange!55!black}\textsc{#1}} in the help for details} \end{myhelpbox} }  }   
 
 
 \definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue

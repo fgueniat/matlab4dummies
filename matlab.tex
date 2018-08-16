@@ -414,6 +414,8 @@ ans =
 0.0016
 \end{lstlisting}
 
+\helpbox{sin}
+
 You ask \matlab to evaluate the function \mcode{sin} in $3.14\approx \pi$. 
 For that, you just put the argument in parenthesis.
 
@@ -561,12 +563,12 @@ ans =
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Basic Linear Algebra}
+\chapter{Fundamentals on Matrices and Vectors}
 
 Linear algebra is the fundations of \matlab, and what makes it popular.
+\matlab is \emph{designed} to work with matrices.
 
 In particular, \matlab makes the manipulation of matrices and vectors very easy.
-
 This section will show how to do:
 \begin{itemize}
 	\item operations involving vectors
@@ -576,10 +578,22 @@ This section will show how to do:
 
 
 
-
-
-
 \section{Basics with matrices and vectors}
+
+
+\defbox{Matrix}{
+The most basic variable in \matlab is the matrix.
+
+It is a two-dimensional, rectangularly shaped table.
+It means it has dimensions, for instance $n\times m$, meaning that it is a table of $n$ rows and $m$ columns.
+This table will store mostly numbers, but can store other types of data.
+
+Even a number, like $8.1$, is store in \matlab under a matrix form, as a $1\times 1$ matrix.
+A vector is a matrix where one of the dimension is $1$.
+
+}
+\helpbox{matrices and arrays}
+
 \subsection{Creation}
 Follow the procedure:
 \begin{itemize}
@@ -738,6 +752,7 @@ w =
 \end{lstlisting}
 
 \subsubsection{Transpose operator}
+
 It is possible to change a column vector to a row vector, and reciprocally, by using the transpose operator "'".
 \begin{lstlisting}
 >> ex = [1;0]
@@ -756,6 +771,12 @@ ans =
 1
 \end{lstlisting}
 
+\defbox{Transpose}{
+The transpose \mcode{M'} has the same elements as \mcode{M}, but the rows of \mcode{M'} are the columns of \mcode{M} and the columns of \mcode{M'} are the rows of \mcode{M}.
+As a consequence, if \mcode{M} is a $n\times m$ matrix, \mcode{M'} is an $m\times n$ matrix.
+
+With complex elements, \matlab actually send back the conjugate transpose.
+}
 
 \subsection{Access to the elements of a vector}
 
@@ -878,8 +899,21 @@ v =
 \end{lstlisting}
 
 
+\subsubsection{Adding elements (concatenation)}
 
 
+\defbox{concatenation}{
+
+Matrix concatenation is the process of joining one or more matrices to make a new matrix. 
+
+The brackets [] operator is also used as the concatenation operator. 
+
+It works in a similar fashion of the creation of a matrix:
+\begin{itemize}
+	\item \mcode{C = [A B]} horizontally concatenates matrices \mcode{A} and \mcode{B}. 
+	\item  \mcode{C = [A; B]} vertically concatenate matrices \mcode{A} and \mcode{B}.
+\end{itemize}
+}
 \subsection{Basic operations on vectors}
 \subsubsection{Addition/subtraction}
 It is easy to add or subtract a given value to \emph{all} the components of a vector, using the signs "+" and "-".
@@ -1336,7 +1370,24 @@ ans =
 0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.
 \end{lstlisting}
 
-\subsubsection{Other functions}
+\subsubsection{Knowing well your matrix}
+\begin{table}[h!]
+	\caption{A few functions that gives infos on a matrix.}
+	\label{tab-func_infos}
+\center
+\begin{tabular}{|l|c|l|}
+	\hline
+	name & description & illustration\\
+	\hline
+	\mcode{length} & largest dimension & \mcode{length([[6,9,8];[7,12,-1]])} \\
+	\mcode{size}	& gives the dimensions & \mcode{size([[6,9,8];[7,12,-1]])} \\
+	\mcode{ndims}	& gives the number of dimensions & \mcode{ndims([[6,9,8];[7,12,-1]])} \\
+	\mcode{numel} & number of elements & \mcode{numel([[6,9,8];[7,12,-1]])} \\
+	\hline
+\end{tabular}
+\end{table}
+
+\subsection{Generating a vector}
 
 \begin{table}[h!]
 	\caption{A few functions that generate vectors.}
@@ -1356,6 +1407,7 @@ ans =
 \end{table}
 
 
+\helpbox{colon}
 
 \subsection{Generating a matrix}
 \begin{table}[h!]
@@ -1455,7 +1507,18 @@ To plot the data, the main command in \matlab is \mcode{plot}:
 
 
 
+\defbox{Plot}{
+	The \mcode{plot} function allows to plot the graph of a function or to plot data.
+	
+	\begin{itemize}
+		\item \mcode{plot(y)} creates a line plot of the data in y.
+		\item \mcode{plot(x,y)} creates a line plot of the data in y versus the corresponding values in x.
+	\end{itemize}
+	\mcode{plot} plots solid lines. To see the data points, one must specify a marker symbol, for example, \mcode{plot(x,y,'o')}.
 
+
+}
+\helpbox{plot}
 
 \tipbox{
 When only one data is provided, \matlab assumes that the abscisse are the indexes of the elements of the data. 
@@ -1471,10 +1534,31 @@ When trying to understand some results, never hesitate to plot some data \mcode{
 
 
 
+\tipbox{
+The command \mcode{figure} can be used for opening a new \emph{empty} figure window.
 
+\matlab draw any new plot in the last active figure window, erasing the old figure. 
+Creating a new window \emph{before plotting} ensures that your previous plot will not be lost:\\
+\mcode{figure ; plot(x,y)}
+
+}
 \section{A beautiful plot}
+\subsection{What a figure should be}
 
-\paragraph{axis}
+	A good figure has {\color{red} \large always}:
+	\begin{itemize}
+		\item labels on the x-axis and y-axis
+		\item different colors or patterns for different curves\\ If possible, these differences should persist when printing the figure in black and white.
+	\end{itemize}
+	If the figure is in a report :
+	\begin{itemize}
+		\item instead of a title, the figure can be explained in the text under the figure.
+		\item instead of a legend, the difference between curves can be explained in the text under the figure.
+	\end{itemize}
+
+
+
+\subsection{axis}
 It is \emph{really important} to always have labels for the axis.
 
 \begin{lstlisting}
@@ -1579,7 +1663,7 @@ Arguments are generally passed as a string
 	\begin{enumerate}
 		\item open the quotes: \mcode{'}
 		\item add the color, e.g. k: \mcode{'k}
-		\item add the style of the line, e.g. --: \mcode{'k--}
+		\item add the style of the line, e.g. \mcode{--}: \mcode{'k--}
 		\item add the style of the markers, e.g. x: \mcode{'k--x}
 		\item end the quotes: \mcode{'k--x'}
 	\end{enumerate}
@@ -1587,26 +1671,22 @@ Arguments are generally passed as a string
 	\mcode{plot(x,y,'k--x')}
 }
 
-\tipbox{A good plot has {\color{red} \large always}:
-	\begin{itemize}
-		\item labels on the x-axis and y-axis
-		\item different colors or patterns for different curves\\ If possible, these differences should persist when printing the figure in black and white.
-	\end{itemize}
-	If the figure is in a report :
-	\begin{itemize}
-		\item instead of a title, the figure can be explained in the text under the figure.
-		\item instead of a legend, the difference between curves can be explained in the text under the figure.
-	\end{itemize}
-
-}
-
 \subsection{Title}
 
 
+Adding the title is simple.
+In the same spirit of the labels, just pass your title to the function \mcode{title}.
+
+\begin{lstlisting}
+>> x = [1 2 3 4 5 6 7 8 9 10];
+>> y = [1 4 9 16 25 36 64 81 100];
+>> plot(x,y)
+>> xlabel('data along x')
+>> ylabel('data along y')
+>> title ('example of a title')
+\end{lstlisting}
 
 
-The command \mcode{figure} is used here for opening a new figure.
-If not, \matlab will draw any new plot in the previous figure, erasing the old figure.
 
 
 
@@ -1628,6 +1708,20 @@ In particular there is two interesting properties:
 \section{Multiple plots}
 
 Multiple (x, y) pairs arguments create multiple graphs with a single call to plot.
+\subsection{legends}
+
+Adding the legend is simple.
+In the same spirit of the title, just pass your legends, one after the other, to the function \mcode{legend}.
+
+\begin{lstlisting}
+>> x = 0:0.1:2.*pi
+>> y_1 = cos(x); y_2 = cos(x+0.2); y_3 = cos(x+0.4);
+>> plot(x,y_1,'-',x,y_2,':',x,y_3,'--')
+>> xlabel('x')
+>> ylabel('f(x)')
+>> title ('several cos')
+>> legend('cos(x)','cos(x+0.2)','cos(x+0.4)')
+\end{lstlisting}
 
 
 \bibliographystyle{ieeetr}
