@@ -16,14 +16,22 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Quick tour \matlab}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Legal stuff}
-\matlab is a registered trademark of MathWorks, Inc.
+
+
+The objective of these tutorial are to illustrate the ENG 4XXX courses as well at to help you to learn quickly how to numerically solve problems.
+It will hence give you the first concepts behind \matlab, coding and problem solving.
+The emphasis here is “learning by doing”. Therefore, try not to read these documents without a computer close-by.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{What is the use of \matlab ?}
+\section*{Legal stuff}
+\matlab is a registered trademark of MathWorks, Inc.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{About \matlab}
+\subsection{What is the use of \matlab ?}
 \matlab~(for MATrix LABoratory) aims at delivering quickly some \emph{relatively} inexpensive computations.
 It shines, as expected from the name, when it involves linear algebra, i.e., operations on matrices.
 
@@ -51,19 +59,11 @@ The negative points are mostly:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Equivalent of \matlab }
+\subsection{Equivalent of \matlab }
 
 Octave and SciLab are almost identical to \matlab. A \matlab script would work on these two others open-source and free softwares.
 
 Most of the tips can also be applied to python, especially when the packages scipy and numpy (for scientific and engineering computations) are used.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Philosophical idea of these teachings}
-The objective of these tutorial are to illustrate the ENG 4XXX courses as well at to help you to learn quickly how to numerically solve problems.
-It will hence give you the first concepts behind \matlab, coding and problem solving.
-The emphasis here is “learning by doing”. Therefore, try not to read these documents without a computer close-by.
 
 
 
@@ -217,7 +217,18 @@ ans =
 8
 \end{lstlisting}
 
-\subsection{Creation and re-assignement}
+\defbox{Variable}{A variable is essentially a name that is associated with a value. 
+
+Values can be of several types:
+\begin{itemize}
+\item results, such as string, numbers or matrices: \mcode{x = 3.}
+\item functions, for instance \mcode{sin} is a built-in function
+\item complex objects, for instance, a plot
+\end{itemize}
+They are usually assigned with the sign "="
+}
+
+\subsubsection{Creation and re-assignement}
 
 Variable can be easily created and assigned with the sign "=". 
 
@@ -233,17 +244,6 @@ ans =
 ans =
 10
 \end{lstlisting}
-
-\defbox{Variable}{A variable is essentially a name that is associated with a value. 
-
-Values can be of several types:
-\begin{itemize}
-\item results, such as string, numbers or matrices: \mcode{x = 3.}
-\item functions, for instance \mcode{sin} is a built-in function
-\item complex objects, for instance, a plot
-\end{itemize}
-They are usually assigned with the sign "="
-}
 
 %%!!!!!!!!!!!!111
 \subsubsection{Naming convention}
@@ -308,20 +308,6 @@ x =
 x =
 0
 \end{lstlisting}
-
-
-%%!!!!!!!!!!!!111
-\subsubsection{Exercices}
-\begin{enumerate}
-	\item Create the variables \mcode{x,y,z} assigned with $1$, $2$ and $3$.
-	\item Create the variable \mcode{sum\_xyz} that is the sum of \mcode{x,y} and \mcode{z}.
-	\item Propose a name for a variable that is assigned as a value \mcode{'Birmingham'}
-	\item Propose a name for a variable that is assigned as a value \mcode{'BCU'}
-	\item Try to assign to the variable \mcode{year} the value \mcode{2017}, and then to \mcode{2018}!
-	\item Try to assign to the variable \mcode{girlfriend\_name} the value \mcode{'Adilah'} (using the sign equal, pun totally intended), and to the variable \mcode{ex\_girlfriend\_name} the value \mcode{'Marie'}.
-Then, reassign to the variable \mcode{girlfriend\_name} the value \mcode{'Kiara'}, and to the variable \mcode{ex\_girlfriend\_name} the value \mcode{'Adilah'}.
-
-\end{enumerate}
 
 
 \subsection{Workspace}
@@ -478,6 +464,7 @@ Typical functions are available with somewhat explicit names, see Tab.~\ref{tab-
 \section{Let's solve a real problem}
 
 \paragraph*{Problem}
+\label{problem-julie}
 Julie's car's odometer reading was 35201km when she last filled the fuel tank. 
 Yesterday she checked it again and it read 35403km. Checking the tank, the car used 11 liters of gas to do so.
 If her car's gas tank holds 35 liters, how long can she drive before running out of gas? 
@@ -554,6 +541,21 @@ ans =
 
 
 
+
+
+%%!!!!!!!!!!!!111
+\section{Exercices}
+\subsection{On Variables}
+\begin{enumerate}
+	\item Create the variables \mcode{x,y,z} assigned with $1$, $2$ and $3$.
+	\item Create the variable \mcode{sum\_xyz} that is the sum of \mcode{x,y} and \mcode{z}.
+	\item Propose a name for a variable that is assigned as a value \mcode{'Birmingham'}
+	\item Propose a name for a variable that is assigned as a value \mcode{'BCU'}
+	\item Try to assign to the variable \mcode{year} the value \mcode{2017}, and then to \mcode{2018}!
+	\item Try to assign to the variable \mcode{girlfriend\_name} the value \mcode{'Adilah'} (using the sign equal, pun totally intended), and to the variable \mcode{ex\_girlfriend\_name} the value \mcode{'Marie'}.
+Then, reassign to the variable \mcode{girlfriend\_name} the value \mcode{'Kiara'}, and to the variable \mcode{ex\_girlfriend\_name} the value \mcode{'Adilah'}.
+
+\end{enumerate}
 
 
 
@@ -902,6 +904,25 @@ v =
 \subsubsection{Adding elements (concatenation)}
 
 
+For creating a matrix, we have seen that one can write:
+\begin{lstlisting}
+>> M =[ [1,0] ; [0 1]];
+M = 
+1 0
+0 1
+\end{lstlisting}
+
+It means that vectors can be used to construct a matrix:
+\begin{lstlisting}
+>> v_1 = [1,0] ; v_2 = [0 1]];
+>> M = [v1;v2]
+M = 
+1 0
+0 1
+\end{lstlisting}
+
+This operation is called concatenation.
+
 \defbox{concatenation}{
 
 Matrix concatenation is the process of joining one or more matrices to make a new matrix. 
@@ -914,6 +935,17 @@ It works in a similar fashion of the creation of a matrix:
 	\item  \mcode{C = [A; B]} vertically concatenate matrices \mcode{A} and \mcode{B}.
 \end{itemize}
 }
+
+It can also be done to extend a vector:
+\begin{lstlisting}
+>> v_1 = [1,0] ; v_2 = [0 1];
+>> v = [v1,v2]
+v = 
+1 0 0 1
+\end{lstlisting}
+
+
+
 \subsection{Basic operations on vectors}
 \subsubsection{Addition/subtraction}
 It is easy to add or subtract a given value to \emph{all} the components of a vector, using the signs "+" and "-".
@@ -1722,6 +1754,113 @@ In the same spirit of the title, just pass your legends, one after the other, to
 >> title ('several cos')
 >> legend('cos(x)','cos(x+0.2)','cos(x+0.4)')
 \end{lstlisting}
+
+
+
+
+\chapter{Programming}
+
+
+\section{Script}
+
+Scripts are the simplest kind of program file because they have no input or output arguments. 
+
+They are useful for automating series of \matlab commands, such as computations that you have to perform repeatedly from the command line or series of commands you have to reference.
+
+When execution of the script completes, the variables remain in the \matlab workspace. 
+
+
+\subsection{Create a script}
+You can create a new script in the following ways:
+
+Highlight commands from the Command History, right-click, and select Create Script.
+
+Click the New Script  button on the Home tab.
+
+Use the edit function. For example, edit myFirstScript creates (if the file does not exist) and opens the file myFirstScript.m. If the name is not specified, \matlab opens a new file called \mcode{Untitled}.
+
+After you create a script, you can add code to the script and save it.
+
+\subsection{Save a script}
+Save your script and run the code using either of these methods:
+
+\begin{itemize}
+	\item Type the script name on the command line and press Enter. 
+	\item Click the Run  button on the Editor tab
+\end{itemize}
+
+\subsection{file}
+\subsection{comments}
+\subsection{execute the file}
+\section{Conditions}
+
+
+\section{Loops}
+With loop control statements, you can repeatedly execute a block of code. 
+There are two types of loops:
+\begin{itemize}
+	\item \mcode{for} statements loop a specific number of times, and keep track of each iteration with an incrementing index variable.
+	\item \mcode{while} statements loop as long as a condition remains true.
+\end{itemize}
+
+
+\defbox{Loop}{
+A loop will repeat instructions a certain number of times.
+
+It is really useful when something can be done almost exactly similarly from on time to the other.
+For instance, if one want to compute the distance that Julie (see Sec.~\ref{problem-julie}) can drive if the tank is 20 liters, 25 liters ? or maybe if it is 55 liters ?
+
+One can loop on the variable \mcode{tank\_capacity} and not have to rewrite the code several times or to execute it several times.
+}
+
+
+\subsection{Loops based on For}
+
+For example, preallocate a 10-element vector, and calculate five values:
+
+x = ones(1,10);
+for n = 2:6
+    x(n) = 2 * x(n - 1);
+end
+
+For example, find the first integer n for which factorial(n) is a 100-digit number:
+
+n = 1;
+nFactorial = 1;
+while nFactorial < 1e100
+    n = n + 1;
+    nFactorial = nFactorial * n;
+end
+Each loop requires the end keyword.
+
+It is a good idea to indent the loops for readability, especially when they are nested (that is, when one loop contains another loop):
+
+A = zeros(5,100);
+for m = 1:5
+    for n = 1:100
+        A(m, n) = 1/(m + n - 1);
+    end
+end
+You can programmatically exit a loop using a break statement, or skip to the next iteration of a loop using a continue statement. For example, count the number of lines in the help for the magic function (that is, all comment lines until a blank line):
+
+fid = fopen('magic.m','r');
+count = 0;
+while ~feof(fid)
+    line = fgetl(fid);
+    if isempty(line)
+       break
+    elseif ~strncmp(line,'%',1)
+       continue
+    end
+    count = count + 1;
+end
+fprintf('%d lines in MAGIC help\n',count);
+fclose(fid);
+
+
+
+
+
 
 
 \bibliographystyle{ieeetr}
