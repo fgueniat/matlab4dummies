@@ -668,7 +668,7 @@ ans =
 9
 \end{lstlisting}
 
-To delete \emph{remove} the ith element, use the operator "[]":
+To delete or \emph{remove} the ith element, use the operator "[]":
 
 \begin{lstlisting}
 >> v = [1 3 4 -2.5 8] ;
@@ -857,6 +857,28 @@ ans =
 	More details in Sec.~\ref{sssec-colon}.
 
 }
+
+\subsubsection{Deleting elements}
+
+
+
+
+In \matlab, using "[]" empty a variable. It is named the \emph{empty vector operator}.
+	
+When used on a part of a vector or a matrix, it simply \emph{deletes} this part.
+It is \emph{gone}.
+As a consequence, it reduces the dimensions of the matrix.
+
+
+\begin{lstlisting}
+>> v = [1 3 4 -2.5 8] ;
+>> v(1) = []
+v = 
+3 4 -2.5 8
+\end{lstlisting}
+
+
+
 
 \subsection{Basic operations on vectors}
 \subsubsection{Addition/subtraction}
@@ -1183,7 +1205,7 @@ A =
 
 
 \tipbox{
-	Using lists (for instance \mcode{indices = [1,3,4]}) as arguments of matrix is a very powerful methods for altering a matrix or for creating a new one.
+	Using lists (for instance \mcode{indices = [1,3,4]}) as arguments of matrices is a very powerful methods for altering a matrix or for creating a new one.
 \begin{itemize}
 	\item \mcode{M(indices,:)} will select the rows of \mcode{M} in the order of the elements of \mcode{indices}. \\
 		They can be copied, if there is repetition in \mcode{indices}, as \mcode{indices = [1,2,2]}
@@ -1197,19 +1219,88 @@ A =
 }
 
 
+\paragraph{Deleting elements}
 
 
 
 
-In \matlab, using "[]" reinitialize and empty a variable. It is named the \emph{empty vector operator}.
+In \matlab, using "[]" empty a variable. It is named the \emph{empty vector operator}.
 	
-	When used on a part of a vector or a matrix, it simply deletes this part.
+When used on a part of a vector or a matrix, it simply \emph{deletes} this part.
+It is \emph{gone}.
+As a consequence, it reduces the dimensions of the matrix.
 
 
 
+It hence reduces the dimension of the vector. It works similarly for a matrix:
+\begin{lstlisting}
+>> A = [ [1 3 4] ; [-2.5 8 9]] ;
+>> A(:,1) = []
+A = 
+3 4
+8 9
+\end{lstlisting}
+The first column has been deleted.
+
+
+It is possible to delete one element from a vector 
+
+\begin{lstlisting}
+>> v = [1 3 4 -2.5 8] ;
+>> v(1) = []
+v = 
+3 4 -2.5 8
+\end{lstlisting}
+
+But trying to do it for a matrix will lead to an error message.
+\begin{lstlisting}
+>> A = [ [1 3 4] ; [-2.5 8 9]] ;
+>> A(1,1) = []
+<@{\color{red} A null assignment can have only one non-colon index.}@>
+\end{lstlisting}
+
+You can remove a block, a column or a row from a matrix. 
+But you can not remove a single element, if not, there would be a "hole".
 
 
 \section{Useful built-in functions for vectors and matrices}
+\subsection{Dimensions of a matrix}
+The command \mcode{size} send back the dimensions of a matrix.
+\begin{lstlisting}
+>> A = [ [1 3 4] ; [-2.5 8 9]] ; v = [1 2 3 4];
+>> size(A)
+ans = 
+2 3
+>> size(A(:))
+ans =
+6 1
+>> size(A(1,:))
+ans =
+1 3
+>> size(v)
+ans = 
+1 4
+>> size(v')
+ans = 
+4 1
+\end{lstlisting}
+To reuse the size, you can store it in variables:
+\begin{lstlisting}
+>> A = [ [1 3 4] ; [-2.5 8 9]] ; 
+>> size_a = size(A);
+>> size_a(1)
+ans =
+3
+>> [n_x,n_y] = size(A);
+>> n_x
+ans = 
+3
+>> n_y
+ans = 
+2
+\end{lstlisting}
+
+
 \subsection{Generating a vector}
 
 \subsubsection{The colon operator}
@@ -1268,7 +1359,7 @@ ans =
 
 \subsection{Generating a matrix}
 \begin{table}[h!]
-	\caption{A few functions that generate vectors.}
+	\caption{A few functions that generate matrices.}
 	\label{tab-func}
 \center
 \begin{tabular}{|l|c|l|}
@@ -1316,7 +1407,7 @@ Follow the procedure:
 \subsection{Manipulating matrices}
 You can
 \begin{itemize}
-	\item add, subtract, multiply matrices if their sizes are compatible
+	\item add (with "+"), subtract (with "-"), multiply (with "*") matrices if their sizes are compatible
 	\item access to the ith element of matrix \mcode{M} using \mcode{M(i)}
 	\item access to the (ith,jth) element of matrix \mcode{M} using \mcode{M(i,j)}
 \end{itemize}	
@@ -1329,7 +1420,6 @@ Let's summarize in a few examples everything we have seen.
 M = 
 1 2 
 3 4
-
 \end{lstlisting}
 
 
@@ -1337,12 +1427,200 @@ M =
 
 
 
+\chapter{Plotting data}
+
+
+
+One of the usefulness of \matlab is being able to easily plot, manipulate and modify data.
+
+With only a few commands, you can have publication-ready figures.
+
+\section{Creating the first plot}
+
+First one needs data.
+
+\begin{lstlisting}
+>> x = [1 2 3 4 5 6 7 8 9 10];
+>> y = [1 4 9 16 25 36 64 81 100];
+\end{lstlisting}
+
+To plot the data, the main command in \matlab is \mcode{plot}:
+
+\begin{lstlisting}
+>> plot(x,y)
+\end{lstlisting}
+
+\todoimage{plot 1}
 
 
 
 
 
 
+\tipbox{
+When only one data is provided, \matlab assumes that the abscisse are the indexes of the elements of the data. 
+
+What will be plotted is hence the coordinates $(1,y(1)), (2,y(2), \hdots , (n, y(n))$.
+
+Compare \mcode{plot(x,y)} and \mcode{plot(y)}!
+
+When trying to understand some results, never hesitate to plot some data \mcode{y} by typing \mcode{plot(y)} in the command prompt. Quick and dirty, but useful.
+}
+
+
+
+
+
+
+\section{A beautiful plot}
+
+\paragraph{axis}
+It is \emph{really important} to always have labels for the axis.
+
+\begin{lstlisting}
+>> x = [1 2 3 4 5 6 7 8 9 10];
+>> y = [1 4 9 16 25 36 64 81 100];
+>> plot(x,y)
+>> xlabel('data along x')
+>> ylabel('data along y')
+\end{lstlisting}
+
+\mcode{xlabel} and \mcode{ylabel} are the \matlab functions that handle the labels.
+
+You can see that the argument for these functions are between quotes "'".
+A label is some text: it means that \matlab will need a string.
+
+
+\begin{lstlisting}
+>> x = 0:pi/10:2.*pi;
+>> y = cos(x);
+>> plot(x,y)
+>> str_xlabel = 'x';
+>> xlabel(str_xlabel)
+>> str_ylabel = 'cos(x)';
+>> ylabel(str_ylabel)
+\end{lstlisting}
+
+\paragraph{Colours and line styles}
+The default plot color in \matlab is blue, and the line default style is plain.
+
+
+
+To change the style, an extra argument has to be sent to \matlab.
+
+For instance, 
+\begin{itemize}
+	\item \mcode{plot(x,y,'r')} will change the color of the plot to red.
+	\item \mcode{plot(x,y,'--')} will change the line style of the plot to dashed.
+\end{itemize}
+Note that the argument is between quotes.
+Arguments are generally passed as a string
+
+
+\begin{table}[h!]
+	\caption{A few colours in \matlab.}
+	\label{tab-col}
+\center
+\begin{tabular}{|l|c|l|}
+	\hline
+	colours & code & illustration \\
+	\hline
+	black & k & \mcode{plot(x,y,'k')} \\
+	green & g & \mcode{plot(x,y,'g')} \\
+	red & r & \mcode{plot(x,y,'r')} \\
+	blue & b & \mcode{plot(x,y,'b')} \\
+	yellow & y & \mcode{plot(x,y,'y')} \\
+	\hline
+	\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+	\caption{A few line styles in \matlab.}
+	\label{tab-lines}
+\center
+\begin{tabular}{|l|c|l|}
+	\hline
+	style & code & illustration \\
+	\hline
+	solid & - & \mcode{plot(x,y,'-')} \\
+	dashed & -- & \mcode{plot(x,y,'--')} \\
+	dotted & : & \mcode{plot(x,y,':')} \\
+	dash-dot & -. & \mcode{plot(x,y,'-.')} \\
+	\hline
+	\hline
+\end{tabular}
+\end{table}
+
+
+\begin{table}[h!]
+	\caption{A few marker styles in \matlab.}
+	\label{tab-marker}
+\center
+\begin{tabular}{|l|c|l|}
+	\hline
+	marker & code & illustration \\
+	\hline
+	plus & + & \mcode{plot(x,y,'+')} \\
+	cross & x & \mcode{plot(x,y,'x')} \\
+	circle & o & \mcode{plot(x,y,'o')} \\
+	triangle up & \^{} & \mcode{plot(x,y,'\^{}')} \\
+	triangle down & v & \mcode{plot(x,y,'v')} \\
+	triangle left & \textless & \mcode{plot(x,y,'<')} \\
+	triangle right & \textgreater & \mcode{plot(x,y,'>')} \\
+	\hline
+	\hline
+\end{tabular}
+\end{table}
+
+
+\tipbox{
+	A good way of not messing with the style is to follow this order:
+	\begin{enumerate}
+		\item open the quotes: \mcode{'}
+		\item add the color, e.g. k: \mcode{'k}
+		\item add the style of the line, e.g. --: \mcode{'k--}
+		\item add the style of the markers, e.g. x: \mcode{'k--x}
+		\item end the quotes: \mcode{'k--x'}
+	\end{enumerate}
+}
+
+
+\tipbox{A good plot has {\color{red} \large always}:
+	\begin{itemize}
+		\item labels on the x-axis and y-axis
+		\item different colors or patterns for different curves\\ If possible, these differences should persist when printing the figure in black and white.
+	\end{itemize}
+	If the figure is in a report :
+	\begin{itemize}
+		\item instead of a title, the figure can be explained in the text under the figure.
+		\item instead of a legend, the difference between curves can be explained in the text under the figure.
+	\end{itemize}
+
+}
+
+\subsection{Title}
+
+
+
+
+The command \mcode{figure} is used here for opening a new figure.
+If not, \matlab will draw any new plot in the previous figure, erasing the old figure.
+
+
+
+\section{Edit a plot in the window}
+
+A way to edit the plot properties is to click on the arrow - Edit Plot - on the plot window.
+\todoimage{fig plot with arrow}
+
+Then, double clicking on the curve will open an extra window where you can play with the properties.
+
+In particular there is two interesting properties:
+\begin{enumerate}
+	\item \mcode{Line}, where you can edit the style of line (plain, dashed, etc.), the width of the line, and its color
+	\item \mcode{Marker}, where you can edit the type of markers (indication where each data is plotted, for instance with circles), the size of the markers, the color of the inside of the marker as well as the color of their edges
+\end{enumerate}
 
 
 
