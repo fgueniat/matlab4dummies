@@ -1,37 +1,122 @@
 
-\documentclass[9pt]{report}
+\documentclass[a4paper,9pt]{report}
 %
 \setcounter{secnumdepth}{5}
 
+\usepackage[utf8]{inputenc}
+
+
+%\usepackage[left=2cm,top=2cm,right=2cm,bottom=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
 \usepackage{listings}
-\usepackage{color}
 \usepackage{xspace}
+
+\usepackage{color}
+
 \usepackage{graphics}
 \usepackage{graphicx,subfigure}
-\usepackage[utf8]{inputenc}
-\usepackage{ifthen}
-\usepackage{algorithm}
-\usepackage{algorithmic}
-\usepackage{a4wide,amssymb,amsbsy,amsmath}
-\usepackage[many]{tcolorbox}
 \usepackage{tikz}
 	\usetikzlibrary{calc}
 	\usetikzlibrary{shapes,shadows,arrows,positioning}
 	\usetikzlibrary{decorations.pathreplacing,decorations.pathmorphing}
-\lstset{escapeinside={<@}{@>}}
+
+
+\usepackage{ifthen}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{a4wide,amssymb,amsbsy,amsmath}
+
+\usepackage[many]{tcolorbox}
 \tolerance=1000
 %% The lineno packages adds line numbers. Start line numbering with
 %% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
 %% for the whole article with \linenumbers after \end{frontmatter}.
-\begin{document}
 
-%% \usepackage{lineno}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% page layout
+
+\setlength{\headheight}{15pt}
+\footskip=50pt
+
+
+
+  \lhead{\nouppercase{\rightmark} (\nouppercase{\leftmark})}
+  \chead{}
+  \rhead{}
+  \cfoot{}
+  \rfoot{\thepage}
+  \renewcommand{\headrulewidth}{0.8pt}
+  %\renewcommand{\footrulewidth}{0.4pt}
+	\renewcommand{\headrule}{\hbox to\headwidth{%
+  \color{blue!65!black}\leaders\hrule height \headrulewidth\hfill}}
+
+  \renewcommand{\chaptermark}[1]{
+		  \capmystring{\markboth{#1}{}}
+  	}
+\def\companylogo{\includegraphics[width=3.5cm]{./fig/logo/bcu.jpg}}
+\fancypagestyle{companypagestyle}
+{
+    \fancyhf{}
+	\fancyhead[R]{\slshape\nouppercase{\rightmark}}
+	\fancyhead[L]{\slshape\nouppercase{\leftmark}}
+    \fancyfoot[L]
+    {
+        \parbox[b]{\dimexpr\linewidth-2.5cm\relax}
+        {
+            Page \thepage\ of \pageref{LastPage}\hfill ENG 4xxx\\
+            {\color{blue!65!black}\rule{\dimexpr\linewidth\relax}{0.4pt}}\\
+            www.bcu.ac.uk
+        }
+    }
+    \fancyfoot[R]
+    {
+        \parbox[b]{2cm}{\companylogo}%
+    }
+}
+
+\pagestyle{companypagestyle}
 
 
 \renewcommand{\thesection}{\Roman{section}}
 \renewcommand{\thesubsection}{{\color{gray}\thesection~}\alph{subsection})}
 \renewcommand{\thesubsubsection}{{\color{gray}\thesubsection~}\roman{subsubsection}}
 \renewcommand{\theparagraph}{{\color{gray}\thesubsubsection~}\arabic{paragraph}}
+
+
+\begin{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% matlab style
+
+\lstset{escapeinside={<@}{@>}}
+
+
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+\lstset{language=Matlab,%
+    %basicstyle=\color{red},
+    breaklines=true,%
+    morekeywords={matlab2tikz},
+    keywordstyle=\color{blue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    identifierstyle=\color{black},%
+    stringstyle=\color{mylilas},
+    commentstyle=\color{mygreen},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    numberstyle={\tiny \color{black}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    emph=[1]{end},emphstyle=[1]\color{black}, %some words to emphasise
+    %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+
 
 \newcommand{\comments}[1]{{\scriptsize\color{gray} #1}} % pour les commentaires
 
@@ -48,40 +133,16 @@
 \newcommand{\monabs}[1]{\left| #1\right|}
 
 
-%%%%%%%%%% notations communes
-\newcommand{\Ephaz}{\mathcal{D}}%espace des phases
-\newcommand{\Eobs}{\Omega}%espace des observables
-
-\newcommand{\Np}{n_p} % dim espace des phases
-\newcommand{\Nobs}{n_r} % dim espace des observables
-\newcommand{\Ns}{n_s} % dim sensors
-\newcommand{\Nsnap}{N} % nombre de snapshots
-
-%\newcommand{\flot}{\phi} % flot dynamique
-\newcommand{\fdyn}{\mathfrak{f}} % fonction dynamique
-
-%\newcommand{\velo}{\gras{u}} % champ de vitesse
-\newcommand{\obs}{\gras{u}} % observable
-\newcommand{\statei}{x} % comp de l'espace des phases
-\newcommand{\state}{\gras{\statei}} % state de l'espace des phases
-\newcommand{\freq}{\nu}
-%%%%%%%%%% DMD notations
-\newcommand{\Opev}{A} % Opérateur linéaire d'évolution
-
-\newcommand{\Om}{\mathcal{K}} % matrice de Kalman
-% observabilité notations
-\newcommand{\dmdo}{\sigma} % DMD observability
-\newcommand{\Pd}{\mathcal{S}} % Vecteur DMD observabilité = pertinence 
-\newcommand{\chronos}{\xi}
-
-% Define block styles
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% TODO
 \newcommand{\todo}[1]{{ \center \LARGE\color{red}  [[TODO #1 ]] \\ }}    
 \newcommand{\todoimage}[1]{\todo{ ** image #1 **}} 
    
 
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Boxes
 \newtcolorbox{mytipbox}{%
   enhanced,
   boxsep=3pt,
@@ -144,28 +205,9 @@
 \newcommand{\helpbox}[1]{  { \begin{myhelpbox} {Go and look for {\color{orange!55!black}\textsc{#1}} in the help for details} \end{myhelpbox} }  }   
 
 
-\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
-\definecolor{mylilas}{RGB}{170,55,241}
-\lstset{language=Matlab,%
-    %basicstyle=\color{red},
-    breaklines=true,%
-    morekeywords={matlab2tikz},
-    keywordstyle=\color{blue},%
-    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
-    identifierstyle=\color{black},%
-    stringstyle=\color{mylilas},
-    commentstyle=\color{mygreen},%
-    showstringspaces=false,%without this there will be a symbol in the places where there is a space
-    numbers=left,%
-    numberstyle={\tiny \color{black}},% size of the numbers
-    numbersep=9pt, % this defines how far the numbers are from the text
-    emph=[1]{end},emphstyle=[1]\color{black}, %some words to emphasise
-    %emph=[2]{word1,word2}, emphstyle=[2]{style},    
-}
 
 
 
-	
 \title{Introduction to \matlab.}
 
 
