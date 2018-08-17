@@ -59,7 +59,9 @@
   \renewcommand{\chaptermark}[1]{
 		  \capmystring{\markboth{#1}{}}
   	}
+
 \def\companylogo{\includegraphics[width=3.5cm]{./fig/logo/bcu.jpg}}
+\newcommand{\univlogo}[1]{\includegraphics[width=#1cm]{./fig/logo/bcu.jpg}}
 \fancypagestyle{companypagestyle}
 {
     \fancyhf{}
@@ -76,7 +78,7 @@
     }
     \fancyfoot[R]
     {
-        \parbox[b]{2cm}{\companylogo}%
+		\parbox[b]{2cm}{\univlogo{3.5}}%
     }
 }
 
@@ -208,14 +210,37 @@
 
 
 
-\title{Introduction to \matlab.}
+%\title{Introduction to \matlab.}
 
 
-\author{Florimond Gu{\'e}niat}
+%\author{Florimond Gu{\'e}niat}
 
 %\authorrunning{Short form of author list} % if too long for running head
 
 
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
 
-\maketitle
+\begin{titlepage} % Suppresses displaying the page number on the title page and the subsequent page counts as page 1
+	
+	\raggedleft % Right align the title page
+	
+	{\color{blue!65!black}\rule{2pt}{\textheight}} % Vertical line
+	\hspace{0.05\textwidth} % Whitespace between the vertical line and title page text
+	\parbox[b]{0.75\textwidth}{ % Paragraph box for holding the title page text, adjust the width to move the title page left or right on the page
+		
+		{\large Modeling Mathematics ENG4xxx }\\[4\baselineskip] % class
+		{\Huge\bfseries Notes on \matlab}\\[2\baselineskip] % Title
+		{\large\textit{example-driven}}\\[4\baselineskip] % Subtitle or further description
+		{\Large\textsc{Florimond Gueniat}} % Author name, lower case for consistent small caps
+		
+		\vspace{0.5\textheight} % Whitespace between the title block and the publisher
+		
+		{\noindent \univlogo{7}}\\[\baselineskip] % Publisher and logo
+	}
+
+\end{titlepage}
+
+%\maketitle
 
