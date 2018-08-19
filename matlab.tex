@@ -2,186 +2,183 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Quick tour \matlab}
-
-
-The objective of these tutorial are to illustrate the ENG 4XXX courses as well at to help you to learn quickly how to numerically solve problems.
-It will hence give you the first concepts behind \matlab, coding and problem solving.
-The emphasis here is “learning by doing”. Therefore, try not to read these documents without a computer close-by.
+	The objective of these tutorial are to illustrate the ENG 4XXX courses as well at to help you to learn quickly how to numerically solve problems.
+	It will hence give you the first concepts behind \matlab, coding and problem solving.
+	The emphasis here is “learning by doing”. Therefore, try not to read these documents without a computer close-by.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Legal stuff}
 \matlab is a registered trademark of MathWorks, Inc.
 
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{About \matlab}
-\subsection{What is the use of \matlab ?}
-\matlab~(for MATrix LABoratory) aims at delivering quickly some \emph{relatively} inexpensive computations.
-It shines, as expected from the name, when it involves linear algebra, i.e., operations on matrices.
+	%%
+	% subsection
+	%%
+	\subsection{What is the use of \matlab ?}
+		\matlab~(for MATrix LABoratory) aims at delivering quickly some \emph{relatively} inexpensive computations.
+		It shines, as expected from the name, when it involves linear algebra, i.e., operations on matrices.
 
-The main advantage of \matlab compared to language like C/C++ or Fortran are:
-\begin{itemize}
-	\item No compilation
-	\item The prompt
-	\item Simplicity
-	\item portability
-	\item Built-in functions:
+		The main advantage of \matlab compared to language like C/C++ or Fortran are:
 		\begin{itemize}
-			\item integration
-			\item visualization
-			\item tool-box
+			\item No compilation
+			\item The prompt
+			\item Simplicity
+			\item portability
+			\item Built-in functions:
+				\begin{itemize}
+					\item integration
+					\item visualization
+					\item tool-box
+				\end{itemize}
 		\end{itemize}
-\end{itemize}
 
-The negative points are mostly:
-\begin{itemize}
-	\item sub performance
-	\item not open source
-	\item {\color{red} price}
-\end{itemize}
+		The negative points are mostly:
+		\begin{itemize}
+			\item sub performance
+			\item not open source
+			\item {\color{red} price}
+		\end{itemize}
 
+	%%
+	% subsection
+	%%
+	\subsection{Equivalent of \matlab }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Equivalent of \matlab }
+		Octave and SciLab are almost identical to \matlab. A \matlab script would work on these two others open-source and free softwares.
 
-Octave and SciLab are almost identical to \matlab. A \matlab script would work on these two others open-source and free softwares.
-
-Most of the tips can also be applied to python, especially when the packages scipy and numpy (for scientific and engineering computations) are used.
-
-
-
-
+		Most of the tips can also be applied to python, especially when the packages scipy and numpy (for scientific and engineering computations) are used.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Hello World}
+	Let's print in the console the "hello world".
+	%%
+	% subsection
+	%%
+	\subsection{Starting with \matlab}
+		\subsubsection{Launch \matlab}
+		Click on the icon, duh!
+		
+		\subsubsection{Organization of the typical \matlab window}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{\matlab as a software}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Start \matlab}
-Click on the icon, duh!
-%%!!!!!!!!!!!!111
-\subsubsection{Organization of the window}
+		You can find a few important sections:
+		\begin{itemize}
+			\item the command windows \\
+				\comments{This is the command prompt}
+			\item current folder \\
+				\comments{It lists the files}
+			\item the Workspace \\
+				\comments{It gives details on the objects present in memory}
+			\item the editor \\
+				\comments{this is where you can write a script}
+			\item the ribbon \\
+				\comments{It gives access to properties, functions, etc. Similar in spirit to Words and Excel.}
+		\end{itemize}
 
-You can find a few important sections:
-\begin{itemize}
-	\item the command windows \\
-		\comments{This is the command prompt}
-	\item current folder \\
-		\comments{It lists the files}
-	\item the Workspace \\
-		\comments{It gives details on the objects present in memory}
-	\item the editor \\
-		\comments{this is where you can write a script}
-	\item the ribbon \\
-		\comments{It gives access to properties, functions, etc. Similar in spirit to Words and Excel.}
-\end{itemize}
+		\todoimage{opening windows of matlab}
 
-\todoimage{opening windows of matlab}
+	%%
+	% subsection
+	%%
+	\subsection{How to print "hello world"}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{How to print "hello world"}
-
-Click on the Command Window, and type "hello world".
-You will see:
-
+		Click on the Command Window, and type "hello world".
+		You will see:
 \begin{lstlisting}
 >> 'Hello World'
 ans =
 Hello World
 \end{lstlisting}
 
-\medskip
+		\medskip
 
-\matlab~printed the 'Hello World', congratulations !
+		\matlab~printed the 'Hello World', congratulations !
 
-You can see also that the 'Hello World has been assignated to a variable named ans.
+		You can see also that the 'Hello World has been assigned to a variable named \mcode{ans}.
 
-\defbox{ans}{\mcode{ans} is short for answer. 
+		\defbox{Variable}{A variable is essentially a name that is associated with a value. 
 
-	The results of the command is always stored in the variable ans, except if it is assigned to a given variable. Consequently, the command \mcode{ 1+1}  will affect the variable \mcode{ans}, but \mcode{x=1+1} will not, and \mcode{2} will be assign to \mcode{x}. 
+		Values can be of several types:
+		\begin{itemize}
+		\item results, such as string, numbers or matrices: \mcode{x = 3.}
+		\item functions, for instance \mcode{sin} is a built-in function
+		\item complex objects, for instance, a plot
+		\end{itemize}
+		They are usually assigned with the sign "="
+		}
 
-	\mcode{ans} can be re-used in the prompt: \mcode{x = ans+1}. 
-However, a good practice is to assign the result to a user-defined variable.
-}
+		\tipbox{\mcode{ans} is short for answer. 
+
+			The results of the command is always stored in the variable \mcode{ans}, except if it is assigned to a given variable. Consequently, the command \mcode{ 1+1}  will affect the variable \mcode{ans}, but \mcode{x=1+1} will not, and \mcode{2} will be assign to \mcode{x}. 
+
+			\mcode{ans} can be re-used in the prompt: \mcode{x = ans+1}!
+		However, a good practice is to assign the result to a user-defined variable.
+		}
 
 
-Now, try without the quotes, and you will see:
+		Now, try without the quotes, and you will see:
 \begin{lstlisting}
 >> Hello World
 <@{\color{red}Undefined function or variable 'Hello'.}@>
 \end{lstlisting}
-plus some help.
+		plus some help.
 
-Hello World is understood by \matlab as a function/variable and then an option for this function.
-\matlab hence thinks that Hello is something that already exists, and it is not the case here. An error follow.
+		Hello World is understood by \matlab as a function/variable and then an option for this function.
+		\matlab hence thinks that Hello is something that already exists, and it is not the case here. An error follow.
 
-The main reason behind that is that we want to print a string.
+		The main reason behind that is that we want to print a string.
 
-\defbox{String}{A string is a chain of characters. It is \emph{not} a number. 
+		\defbox{String}{A string is a chain of characters. It is \emph{not} a number. 
 
-It has to be between quotes: 'some text' or double quotes: "some text". 
-For example, 'Lorem ipsum dolor sit amet' is a chain or characters.
+		It has to be between quotes: 'some text' or double quotes: "some text". 
+		For example, 'Lorem ipsum dolor sit amet' is a chain or characters.
 
-But it is not that easy. \mcode{s = '45'} is the chain of characters '4' and '5'. But \mcode{n = 45} is the number 45. \mcode{s} and \mcode{n} are different.  
+		But it is not that easy. \mcode{s = '45'} is the chain of characters '4' and '5'. But \mcode{n = 45} is the number 45. \mcode{s} and \mcode{n} are different.  
 
-}
+		}
 
 
-Try now to add a semi colon at the end of the line:
+		Try now to add a semi colon at the end of the line:
 \begin{lstlisting}
 >> 'Hello World';
 >>
 \end{lstlisting}
+		Nothing is printed in the command prompt.
 
-Nothing is printed in the command prompt.
+		\tipbox{
+		Do not forget the semi-colon ";" at the end of lines !
 
-\defbox{Command prompt}{The command prompt is the $>>$ sign. 
-	
-Command Prompt is a command line interpreter. It is used to execute entered commands. 
-Once enter is hit, \matlab will interpret the command, and send back any results.
-}
-
-One of the most important tip to remember: \matlab will always print the result of a line if it does not have a ";" at the end of the line.
-
-\tipbox{
-Do not forget  the ";" at the end of lines !
-
-It is not a big deal when dealing with small matrices and small vectors.
-But when an image is being manipulated, it means that \matlab is manipulated a matrix with dimension around $1000\times1000$.
-Forgetting the ";" sign means that \matlab will show around a \emph{million} numbers every line of your script!
-}
+		It is not a big deal when dealing with small matrices and small vectors.
+		But when an image is being manipulated, it means that \matlab is manipulated a matrix with dimension around $1000\times1000$.
+		Forgetting the ";" sign means that \matlab will show around a \emph{million} numbers every line of your script!
+		}
+		\defbox{Command prompt}{The command prompt is the $>>$ sign. 
+		Command Prompt is a command line interpreter. It is used to execute entered commands. 
+		Once enter is hit, \matlab will interpret the command, and send back any results.
+		}
+		One of the most important tip to remember: \matlab will always print the result of a line if it does not have a ";" at the end of the line.
 
 
-
-
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\matlab as a calculator}
-\subsection{Algebra}
-
-You can use \matlab as a calculator. 
-Click on the prompt: 
-
+	You can use \matlab as a calculator. 
+	%%
+	% subsection
+	%%
+	\subsection{Algebra}
+		Click on the prompt: 
 \begin{lstlisting}
 >> 4+3
 ans =
@@ -190,9 +187,19 @@ ans =
 ans =
 12
 \end{lstlisting}
+		As expected, \matlab respects the BODMAS (Brackets, Order, Division/Multiplication, Addition/Subtraction). 
 
-As expected, \matlab respects the BODMAS (Brackets, Order, Division/Multiplication, Addition/Subtraction). 
-Try a few operations !
+		\defbox{BODMAS}{It stands for Brackets, Order, Division/Multiplication, Addition/Subtraction.
+			\begin{enumerate}
+				\item You should start with resolving inside of the brackets: \\ $3\times (4+2) \times 4^2 + 1 = 3\times 6 \times 4^2 +1$
+				\item You should then resolve orders (powers, roots) : \\ $ 3 \times 6\times 4^2 +1 = 3\times 6 \times 16 +1  $.
+				\item You should then resolve division/multiplication : \\
+					$3\times 6 \times 16 +1 = 288 $
+				\item Then finish with addition/substraction: \\
+					$288+1 = 289$
+			\end{enumerate}
+		}
+		Try a few different operations !
 \begin{lstlisting}
 >> (4+3)*2
 ans =
@@ -202,9 +209,12 @@ ans =
 10
 \end{lstlisting}
 
-\subsection{Variables}
-ans can be used to store a result, but it will be overwritten every time a command is executed:
-
+	%%
+	% subsection
+	%%
+	\subsection{Details on variables}
+		\subsubsection{\mcode{ans}}
+			As seen before, \mcode{ans} can be used to store a result, but it will be overwritten every time a command is executed:
 \begin{lstlisting}
 >> 2+2
 ans =
@@ -217,22 +227,8 @@ ans =
 8
 \end{lstlisting}
 
-\defbox{Variable}{A variable is essentially a name that is associated with a value. 
-
-Values can be of several types:
-\begin{itemize}
-\item results, such as string, numbers or matrices: \mcode{x = 3.}
-\item functions, for instance \mcode{sin} is a built-in function
-\item complex objects, for instance, a plot
-\end{itemize}
-They are usually assigned with the sign "="
-}
-
-\subsubsection{Creation and re-assignement}
-
-Variable can be easily created and assigned with the sign "=". 
-
-
+		\subsubsection{Creation and re-assignement}
+			Variable can be easily created and assigned with the sign "=". 
 \begin{lstlisting}
 >> x = 2+2
 x =
@@ -245,58 +241,53 @@ ans =
 10
 \end{lstlisting}
 
-%%!!!!!!!!!!!!111
-\subsubsection{Naming convention}
-A variable name can be anything, such as \mcode{goodnameforavariable} or  \mcode{GoodNameForAVariable}, or  \mcode{good\_name\_for\_a\_variable} .
-However:
-\begin{itemize}
-	\item it cannot start with \_
-	\item it cannot start with a number
-	\item a few names are protected
-\end{itemize}
+		\subsubsection{Naming convention}
+			A variable name can be anything, such as \mcode{goodnameforavariable} or  \mcode{GoodNameForAVariable}, or  \mcode{good\_name\_for\_a\_variable}.
+			However:
+			\begin{itemize}
+				\item it cannot start with \_
+				\item it cannot start with a number
+				\item a few names are protected
+			\end{itemize}
 
-\tipbox{Try to use clever name for variables, it will help to understand the code.
+			\tipbox{Try to use clever name for variables, it will help to understand the code.
 
-	If all the results are named \mcode{result\_1,result\_2,result\_3}, it is hard to know what they should contain.
+				If all the results are named \mcode{result\_1,result\_2,result\_3}, it is hard to know what they should contain.
 
-	On the contrary, if you have the variable \mcode{name\_city}, you expect it to be a string and having a proper name.
+				On the contrary, if you have the variable \mcode{name\_city}, you expect it to be a string and having a proper name.
 
-	In a similar way, if you have the variable \mcode{motor\_freq}, you expect it to be a number.
+				In a similar way, if you have the variable \mcode{motor\_freq}, you expect it to be a number.
 
+				Also, if you have the variable \mcode{price\_pond}, the variable \mcode{price\_dollar} and the variable \mcode{rate\_dollar2pound}, the line \mcode{price\_pound = rate\_dollar2pond * price\_dollar} is pretty explicit.
+				If the variables where instead named \mcode{x,y,z}, then the line \mcode{x = y*z} is much more cryptic.
+			}
+			The choice of a name is important, for you a, \mcode{x} is good for an unknown, \mcode{s} if you expect its value to be a string, \mcode{v} if it is a vector... 
+			More complex names can be used, such as \mcode{x\_problem\_1}. 
+			
+			Try to be consistent thorough the piece of code !
 
-	Also, if you have the variable \mcode{price\_pond}, the variable \mcode{price\_dollar} and the variable \mcode{rate\_dollar2pound}, the line \mcode{price\_pound = rate\_dollar2pond * price\_dollar} is pretty explicit.
-	If the variables where instead named \mcode{x,y,z}, then the line \mcode{x = y*z} is much more cryptic.
-}
+			A few tips:
+			\begin{itemize}
+				\item Use different names for different results
+				\item Use a name that is meaningfull (e.g. \mcode{str\_name} if the variable is assigned with a chain of character that is a name)
+				\item Consequently, avoid unecessary use of index (e.g. \mcode{result\_1, result\_2} etc.)
+			\end{itemize}
+			\tipbox{
+				Many naming convention exist.
+				
+				However, you can use the following name convention: \\
+				\begin{itemize}
+					\item \mcode{UpperCamelCase} for functions: \mcode{MyFunction}
+					\item \mbox{\mcode{CAPITALIZED\_WITH\_UNDERSCORES}} for constants \mcode{Pi=3.14}
+					\item \mbox{\mcode{lowercase\_separated\_by\_underscores}} for other variables \mcode{name\_of\_univ = 'BCU'}.
+				\end{itemize}
+					}
 
+		\subsubsection{Reassignement}
+			Updating a variable is handy: you might want to change the variable \mcode{year} from \mcode{2017} to \mcode{2018}.
 
-The choice of a name is important, for you a, \mcode{x} is good for an unknown, \mcode{s} if you expect its value to be a string, \mcode{v} if it is a vector... More complex names can be used, such as \mcode{x\_problem\_1}. Try to be consistent thorough the piece of code !
-
-A few tips:
-
-\begin{itemize}
-	\item Use different names for different results
-	\item Use a name that is meaningfull (e.g. \mcode{str\_name} if the variable is assigned with a chain of character that is a name)
-	\item Consequently, avoid unecessary use of index (e.g. \mcode{result\_1, result\_2} etc.)
-\end{itemize}
-
-\tipbox{
-	Many naming convention exist.
-	
-	However, you can use the following name convention: \\
-	\begin{itemize}
-		\item \mcode{UpperCamelCase} for functions: \mcode{MyFunction}
-		\item \mbox{\mcode{CAPITALIZED\_WITH\_UNDERSCORES}} for constants \mcode{Pi=3.14}
-		\item \mbox{\mcode{lowercase\_separated\_by\_underscores}} for other variables \mcode{name\_of\_univ = 'BCU'}.
-	\end{itemize}
-		}
-
-
-%%!!!!!!!!!!!!111
-\subsubsection{Reassignement}
-Updating a variable is handy: you might want to change the variable \mcode{year} from \mcode{2017} to \mcode{2018}.
-
-You can easily update a variable, by reassigning a new value to it. It hence uses the sign "=".
-For instance:
+			You can easily update a variable, by reassigning a new value to it. It hence uses the sign "=".
+			For instance:
 \begin{lstlisting}
 >> x = 2+2
 x = 
@@ -309,29 +300,33 @@ x =
 0
 \end{lstlisting}
 
+	%%
+	% subsection
+	%%
+	\subsection{Workspace}
+		When you have created a variable, it is available in the \emph{workspace}.
+		It is the area (usually) on the right.
+		It allows to:
+		\begin{itemize}
+			\item show what variables are currently known to \matlab
+			\item know what is present in the memory
+			\item indicate what there is in the variables
+			\item eventually modify the content of a variable
+		\end{itemize}
 
-\subsection{Workspace}
-When you have created a variable, it is available in the \emph{workspace}.
-It is the area (usually) on the right.
-It allows to:
-\begin{itemize}
-	\item show what variables are currently known to \matlab
-	\item know what is present in the memory
-	\item indicate what there is in the variables
-	\item eventually modify the content of a variable
-\end{itemize}
+	%%
+	% subsection
+	%%
+	\subsection{Entering multiple commands per line}
+		It is possible to enter multiple commands per line. 
+		Use commas "," or semicolons ";" for that ; the commas will \emph{not} suppress the outputs.
 
-\subsection{Entering multiple commands per line}
-It is possible to enter multiple commands per line. 
-Use commas "," or semicolons ";" for that ; the commas will \emph{not} suppress the outputs.
+		\tipbox{Try to avoid multiple commands per line.
+			
+		Most of the time, it makes the code harder to read, especially if there is not a good reason to do so.
 
-\tipbox{Try to avoid multiple commands per line.
-	
-Most of the time, it makes the code harder to read, especially if there is not a good reason to do so.
-
-Nevertheless, it can make sense write a few commands per line when assigning a variables that are related.
-}
-
+		Nevertheless, it can make sense write a few commands per line when assigning a variables that are related.
+		}
 \begin{lstlisting}
 >> x = 2 ; y = 3 ; z = 4 ;
 >> x = 2 ; y = 3 , z = 4 ;
@@ -346,166 +341,146 @@ z =
 5
 \end{lstlisting}
 
+	%%
+	% subsection
+	%%
+	\subsection{Basic arithmetic}
+		Basic arithmetic operators are pretty classic, and be found in Tab.~\ref{tab-basic_arithmetic}:
+		\begin{table}[h!]\caption{Arithmetic operators}
+			\label{tab-basic_arithmetic}
+			\center
+			\begin{tabular}{|l|c|c|}
+				\hline
+				operation & command & exemple \\
+				\hline
+				addition & + & 3+4 \\
+				soustraction & - & 3-4 \\
+				multiplication & * & 3*4 \\
+				division & / & 3/4 \\
+				power & \^{} & 2 \^{} 4 \\
+				\hline
+			\end{tabular}
+		\end{table}
 
+	%%
+	% subsection
+	%%
+	\subsection{Built-in functions}
+		One of the strengths of \matlab is that many functions are already available.
+		One can think of common functions like sine or exponential, but \matlab also provides more complex functions like \mcode{imread}, that will import pictures, or \mcode{svd}, that will do some modal decomposition of a table of data.
 
-\subsection{Basic arithmetic}
-
-
-Basic arithmetic operators are pretty classic:
-
-\begin{table}[h!]\caption{Arithmetic operators}
-\center
-\begin{tabular}{|l|c|c|}
-	\hline
-	operation & command & exemple \\
-	\hline
-	addition & + & 3+4 \\
-	soustraction & - & 3-4 \\
- 	multiplication & * & 3*4 \\
-	division & / & 3/4 \\
-	power & \^{} & 2 \^{} 4 \\
-	\hline
-\end{tabular}
-\end{table}
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{functions}
-%%!!!!!!!!!!!!111
-\subsubsection{How to find a function or a command ?}
-
-If you look for something, hit the help button.
-For instance, if you want to look for the sine function:
-
-\todoimage{help sine}
-
-
-\tipbox{Use the help! It is \emph{very} useful and you will mostly find any function/tool/infos that you need.
-
-Usually, the help contains a few examples. Do not hesitate to read them carefully, and to try them.
-They will help understanding how to use the functions and properties of \matlab.
-
-There is also a "See Also" section that can be useful when looking for a particular topic.
-}
-
-%%!!!!!!!!!!!!111
-\subsubsection{Using a function}
-Calling a function is relatively easy and intuitive. Let's take the sine function as an illustration. 
-
+		\subsubsection{How to find a function or a command ?}
+			If you look for something, hit the help button.
+			For instance, if you want to look for the sine function:
+			\todoimage{help sine}
+			\tipbox{Use the help! It is \emph{very} useful and you will mostly find any function/tool/infos that you need.
+			
+			Usually, the help contains a few examples. Do not hesitate to read them carefully, and to try them.
+			They will help understanding how to use the functions and properties of \matlab.
+			
+			There is also a "See Also" section that can be useful when looking for a particular topic.
+	}
+	
+		\subsubsection{Using a function}
+			Calling a function is relatively easy and intuitive. Let's take the sine function as an illustration. 
 \begin{lstlisting}
 >> sin(3.14)
 ans =
 0.0016
 \end{lstlisting}
 
-\helpbox{sin}
-
-You ask \matlab to evaluate the function \mcode{sin} in $3.14\approx \pi$. 
-For that, you just put the argument in parenthesis.
-
-\tipbox{
-	Trigonometric functions in \matlab are in radiant. \mcode{sin(360)} is hence different from $0$ but rather close to $0.96$.
-	
-	In a similar spirit, \mcode{log} in \matlab is the natural logarithm, and not the $\log$ in base 10.
-}
-
-Typical functions are available with somewhat explicit names, see Tab.~\ref{tab-funcs_matlab}. Similarly, many useful constants for the engineer are implemented in \matlab, see Tab.~\ref{tab-consts_matlab}.
-
-\begin{table}[h!]
-	\caption{A few function names in \matlab. Many others are already implemented in \matlab.}
-	\label{tab-funcs_matlab}
-\center
-\begin{tabular}{|l|c||l|c||l|c|}
-	\hline
-	Trigonometry & name & Stats & name & Misc. & name\\
-	\hline
-	sine & sin  &
-		mean & mean &
-			square root & sqrt \\
+			\helpbox{sin}
+			You ask \matlab to evaluate the function \mcode{sin} in $3.14\approx \pi$. 
+			For that, you just put the argument in parenthesis.
+			\tipbox{
+			Trigonometric functions in \matlab are in radiant. \mcode{sin(360)} is hence different from $0$ but rather close to $0.96$.
 			
-	cosine & cos &
-		maximum & max &
-			absolute value & abs \\
+			In a similar spirit, \mcode{log} in \matlab is the natural logarithm, and not the $\log$ in base 10.
+			}
+			Typical functions are available with somewhat explicit names, see Tab.~\ref{tab-funcs_matlab}. 
+			Similarly, many useful constants for the engineer are implemented in \matlab, see Tab.~\ref{tab-consts_matlab}.
+			\begin{table}[h!]
+				\caption{A few function names in \matlab. Many others are already implemented in \matlab.}
+				\label{tab-funcs_matlab}
+				\center
+				\begin{tabular}{|l|c||l|c||l|c|}
+					\hline
+					Trigonometry & name & Stats & name & Misc. & name\\
+					\hline
+					sine & sin  &
+						mean & mean &
+						square root & sqrt \\
+				
+					cosine & cos &
+						maximum & max &
+						absolute value & abs \\
 
-	exponential & exp &
-		minimum & min &
-			round up & ceil \\		
-
+					exponential & exp &
+						minimum & min &
+					round up & ceil \\		
+			
+					natural logarithm & log &
+						standard dev. & std &
+						conjugate & conj \\
 		
-	natural logarithm & log &
-		standard dev. & std &
-			conjugate & conj \\
-	
-	\hline
-\end{tabular}
-\end{table}
+					\hline
+				\end{tabular}
+			\end{table}
 
-\begin{table}[h!]
-	\caption{A few useful constant names in \matlab.}
-	\label{tab-consts_matlab}
-\center
-\begin{tabular}{|l|c|}
-	\hline
-	$\pi\approx 3.14$ & \mcode{pi} \\
-	$i = \sqrt{-1} $ & \mcode{i} \\
-	$i = \sqrt{-1} $ & \mcode{j} \\
-	$\infty$ & \mcode{Inf }\\
-	Not a Number & \mcode{NaN} \\
-	\hline
-\end{tabular}
-\end{table}
+			\begin{table}[h!]
+				\caption{A few useful constant names in \matlab.}
+				\label{tab-consts_matlab}
+				\center
+				\begin{tabular}{|l|c|}
+					\hline
+					$\pi\approx 3.14$ & \mcode{pi} \\
+					$i = \sqrt{-1} $ & \mcode{i} \\
+					$i = \sqrt{-1} $ & \mcode{j} \\
+					$\infty$ & \mcode{Inf }\\
+					Not a Number & \mcode{NaN} \\
+					\hline
+				\end{tabular}
+			\end{table}
 
-
-
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Let's solve a real problem}
 
-\paragraph*{Problem}
-\label{problem-julie}
-Julie's car's odometer reading was 35201km when she last filled the fuel tank. 
-Yesterday she checked it again and it read 35403km. Checking the tank, the car used 11 liters of gas to do so.
-If her car's gas tank holds 35 liters, how long can she drive before running out of gas? 
+	\paragraph*{Problem}
+		\label{problem-julie}
+		Julie's car's odometer reading was 35201km when she last filled the fuel tank. 
+		Yesterday she checked it again and it read 35403km. Checking the tank, the car used 11 liters of gas to do so.
+		If her car's gas tank holds 35 liters, how long can she drive before running out of gas? 
 
-
-\paragraph*{Solution using \matlab as a calculator}
-
-How much has she driven ?
+	\paragraph*{Solution using \matlab as a calculator}
+		How much has she driven ?
 \begin{lstlisting}
 >> 35403 - 35201
 ans =
 202
 \end{lstlisting}
-
-How much distance per liter of gas ?
+		How much distance per liter of gas ?
 \begin{lstlisting}
 >> 202/11
 ans =
 18.3636
 \end{lstlisting}
-
-How much gas is left in the tank ?
+		How much gas is left in the tank ?
 \begin{lstlisting}
 >> 35 - 11
 ans =
 24
 \end{lstlisting}
-
-Distance she can drive:
+	Distance she can drive:
 \begin{lstlisting}
 >> 24 * 18.3636
 ans =
 440.7264
 \end{lstlisting}
 
-
-\paragraph*{Solution with variables}
-
-We can script the same code. It means that we would just have to replace the value in the first three lines to update the whole code. 
-
-
+	\paragraph*{Solution with variables}
+		We can script the same code. It means that we would just have to replace the value in the first three lines to update the whole code. 
 \begin{lstlisting}
 >> odormeter_before = 35201 ;
 >> odormeter_after = 35403 ; 
@@ -518,14 +493,18 @@ We can script the same code. It means that we would just have to replace the val
 \end{lstlisting}
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{What to remember}
+	\matlab is basically a powerful calculator.
 
-\matlab is basically a powerful calculator.
-
-\subsection{Key example}
-Let's summarize in a few examples everything we have seen.
-
+	%%
+	% subsection
+	%%
+	\subsection{Key example}
+		Let's summarize in a few examples everything we have seen.
 \begin{lstlisting}
 >> year = 2018;
 >> next_year = year + 1
@@ -538,76 +517,69 @@ ans =
 \end{lstlisting}
 
 
-
-
-
-
-
-%%!!!!!!!!!!!!111
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Exercices}
-\subsection{On Variables}
-\begin{enumerate}
-	\item Create the variables \mcode{x,y,z} assigned with $1$, $2$ and $3$.
-	\item Create the variable \mcode{sum\_xyz} that is the sum of \mcode{x,y} and \mcode{z}.
-	\item Propose a name for a variable that is assigned as a value \mcode{'Birmingham'}
-	\item Propose a name for a variable that is assigned as a value \mcode{'BCU'}
-	\item Try to assign to the variable \mcode{year} the value \mcode{2017}, and then to \mcode{2018}!
-	\item Try to assign to the variable \mcode{girlfriend\_name} the value \mcode{'Adilah'} (using the sign equal, pun totally intended), and to the variable \mcode{ex\_girlfriend\_name} the value \mcode{'Marie'}.
-Then, reassign to the variable \mcode{girlfriend\_name} the value \mcode{'Kiara'}, and to the variable \mcode{ex\_girlfriend\_name} the value \mcode{'Adilah'}.
-
-\end{enumerate}
-
-
-
-
+	%%
+	% subsection
+	%%
+	\subsection{On Variables}
+		\begin{enumerate}
+			\item Create the variables \mcode{x,y,z} assigned with $1$, $2$ and $3$.
+			\item Create the variable \mcode{sum\_xyz} that is the sum of \mcode{x,y} and \mcode{z}.
+			\item Propose a name for a variable that is assigned as a value \mcode{'Birmingham'}
+			\item Propose a name for a variable that is assigned as a value \mcode{'BCU'}
+			\item Try to assign to the variable \mcode{year} the value \mcode{2017}, and then to \mcode{2018}!
+			\item Try to assign to the variable \mcode{girlfriend\_name} the value \mcode{'Adilah'} (using the sign equal, pun totally intended), and to the variable \mcode{ex\_girlfriend\_name} the value \mcode{'Marie'}.
+			Then, reassign to the variable \mcode{girlfriend\_name} the value \mcode{'Kiara'}, and to the variable \mcode{ex\_girlfriend\_name} the value \mcode{'Adilah'}.
+		\end{enumerate}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Fundamentals on Matrices and Vectors}
+	Linear algebra is the fundations of \matlab, and what makes it popular.
+	\matlab is \emph{designed} to work with matrices.
 
-Linear algebra is the fundations of \matlab, and what makes it popular.
-\matlab is \emph{designed} to work with matrices.
-
-In particular, \matlab makes the manipulation of matrices and vectors very easy.
-This section will show how to do:
-\begin{itemize}
-	\item operations involving vectors
-	\item operations involving matrices
-	\item operations involving both arrays and matrices
-\end{itemize}
-
+	In particular, \matlab makes the manipulation of matrices and vectors very easy.
+	This section will show how to do:
+	\begin{itemize}
+		\item operations involving vectors
+		\item operations involving matrices
+		\item operations involving both arrays and matrices
+	\end{itemize}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Basics with matrices and vectors}
+	\defbox{Matrix}{
+		The most basic variable in \matlab is the matrix.
 
+		It is a two-dimensional, rectangularly shaped table.
+		It means it has dimensions, for instance $n\times m$, meaning that it is a table of $n$ rows and $m$ columns.
+		This table will store mostly numbers, but can store other types of data.
 
-\defbox{Matrix}{
-The most basic variable in \matlab is the matrix.
+		Even a number, like $8.1$, is store in \matlab under a matrix form, as a $1\times 1$ matrix.
+		A vector is a matrix where one of the dimension is $1$.
+	}
+	\helpbox{matrices and arrays}
 
-It is a two-dimensional, rectangularly shaped table.
-It means it has dimensions, for instance $n\times m$, meaning that it is a table of $n$ rows and $m$ columns.
-This table will store mostly numbers, but can store other types of data.
-
-Even a number, like $8.1$, is store in \matlab under a matrix form, as a $1\times 1$ matrix.
-A vector is a matrix where one of the dimension is $1$.
-
-}
-\helpbox{matrices and arrays}
-
-\subsection{Creation}
-Follow the procedure:
-\begin{itemize}
-	\item start with a bracket [
-	\item write each element of a column, separated with space or commas
-	\item separate rows with a semi-colon
-	\item end with the bracket ]
-\end{itemize}
-
-
-For creating a vector:
-
+	%%
+	% subsection
+	%%
+	\subsection{Creation}
+		Follow the procedure:
+		\begin{itemize}
+			\item start with a bracket [
+			\item write each element of a column, separated with space or commas
+			\item separate rows with a semi-colon
+			\item end with the bracket ]
+		\end{itemize}
+		For creating a vector:
 \begin{lstlisting}
 >> v = [1,2,3]
 v =
@@ -617,9 +589,8 @@ w =
 0
 1
 \end{lstlisting}
-\mcode{v} is a row vector and \mcode{w} is a column vector.
-
-For creating a matrix, the following lines are equivalent:
+		\mcode{v} is a row vector and \mcode{w} is a column vector.
+		For creating a matrix, the following lines are equivalent:
 \begin{lstlisting}
 >> M =[1,0 ; 0,1];
 M = 
@@ -634,20 +605,19 @@ M =
 1 0
 0 1
 \end{lstlisting}
+		The last line shows that a matrix is virtually stacked vectors.
 
-The last line shows that a matrix is virtually stacked vectors.
-
-\subsection{Manipulation}
-You can
-\begin{itemize}
-	\item add, subtract, multiply matrices if their sizes are compatible
-	\item access to the ith element of matrix \mcode{M} using \mcode{M(i)}
-	\item access to the (ith,jth) element of matrix \mcode{M} using \mcode{M(i,j)}
-\end{itemize}	
-
-
-
-To add a constant to a vector, a vector to another vector (it works identically for matrices) :
+	%%
+	% subsection
+	%%
+	\subsection{Manipulation}
+		You can
+		\begin{itemize}
+			\item add, subtract, multiply matrices if their sizes are compatible
+			\item access to the ith element of matrix \mcode{M} using \mcode{M(i)}
+			\item access to the (ith,jth) element of matrix \mcode{M} using \mcode{M(i,j)}
+		\end{itemize}	
+		To add a constant to a vector, a vector to another vector (it works identically for matrices) :
 \begin{lstlisting}
 >> v = [1 3];
 >> v + 4
@@ -664,9 +634,7 @@ ans =
 ans =
 1 4
 \end{lstlisting}
-
-To access to an element of a vector  (it works identically for matrices) :
-
+		To access to an element of a vector  (it works identically for matrices) :
 \begin{lstlisting}
 >> v = [1 3 4 -2.5 8] ;
 >> v(1)
@@ -683,16 +651,14 @@ ans =
 ans =
 9
 \end{lstlisting}
-
-To delete or \emph{remove} the ith element, use the operator "[]":
-
+		To delete or \emph{remove} the ith element, use the operator "[]"
 \begin{lstlisting}
 >> v = [1 3 4 -2.5 8] ;
 >> v(1) = []
 v = 
 3 4 -2.5 8
 \end{lstlisting}
-It hence reduces the dimension of the vector. It works similarly for a matrix:
+		It hence reduces the dimension of the vector. It works similarly for a matrix:
 \begin{lstlisting}
 >> A = [ [1 3 4] ; [-2.5 8 9]] ;
 >> A(:,1) = []
@@ -700,32 +666,34 @@ A =
 3 4
 8 9
 \end{lstlisting}
-The first column has been deleted.
+		The first column has been deleted.
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{More details on vectors}
-\subsection{Creation of a vector}
-\subsubsection{Row vector}
-Creating a vector \mcode{v} is easy. You just put all the components between brackets.
+	%%
+	% subsection
+	%%
+	\subsection{Creation of a vector}
+		\subsubsection{Row vector}
+			Creating a vector \mcode{v} is easy. You just put all the components between brackets.
 \begin{lstlisting}
 >> v = [1,2,3]
 v =
 1 2 3
 \end{lstlisting}
-It is also possible to replace the commas with space:
+			It is also possible to replace the commas with space:
 \begin{lstlisting}
 >> v = [1 2 3]
 v =
 1 2 3
 \end{lstlisting}
-
-It works fine but makes the code harder to read.
-
-Let's create Cartesian vectors in dimension two. $e_x = (1,0)$ and $e_y = (0,1)$:
-
-
+			It works fine but makes the code harder to read.
+			
+			Let's create Cartesian vectors in dimension two. $e_x = (1,0)$ and $e_y = (0,1)$:
 \begin{lstlisting}
 >> ex = [1 0]
 ex =
@@ -735,12 +703,8 @@ ey =
 0 1
 \end{lstlisting}
  
-
-
-\subsubsection{Column vector}
-Creating a column vector is similar to creating a row vector, except that the element are separated with a semi-colon ";".
-
-
+		\subsubsection{Column vector}
+			Creating a column vector is similar to creating a row vector, except that the element are separated with a semi-colon ";".
 \begin{lstlisting}
 >> v = [1;0;4]
 v =
@@ -753,9 +717,8 @@ w =
 1
 \end{lstlisting}
 
-\subsubsection{Transpose operator}
-
-It is possible to change a column vector to a row vector, and reciprocally, by using the transpose operator "'".
+		\subsubsection{Transpose operator}
+			It is possible to change a column vector to a row vector, and reciprocally, by using the transpose operator "'".
 \begin{lstlisting}
 >> ex = [1;0]
 ex =
@@ -772,23 +735,22 @@ ans =
 0
 1
 \end{lstlisting}
+			\defbox{Transpose}{
+				The transpose \mcode{M'} has the same elements as \mcode{M}, but the rows of \mcode{M'} are the columns of \mcode{M} and the columns of \mcode{M'} are the rows of \mcode{M}.
+				As a consequence, if \mcode{M} is a $n\times m$ matrix, \mcode{M'} is an $m\times n$ matrix.
 
-\defbox{Transpose}{
-The transpose \mcode{M'} has the same elements as \mcode{M}, but the rows of \mcode{M'} are the columns of \mcode{M} and the columns of \mcode{M'} are the rows of \mcode{M}.
-As a consequence, if \mcode{M} is a $n\times m$ matrix, \mcode{M'} is an $m\times n$ matrix.
+				With complex elements, \matlab actually send back the conjugate transpose.
+			}
 
-With complex elements, \matlab actually send back the conjugate transpose.
-}
+	%%
+	% subsection
+	%%
+	\subsection{Access to the elements of a vector}
+		\subsubsection{Access to one element}
+			The first element of a vector \mcode{v} is \mcode{v(1)}.
+			The second element is \mcode{v(2)}, and so forth.
 
-\subsection{Access to the elements of a vector}
-
-\subsubsection{Access to one element}
-
-The first element of a vector \mcode{v} is \mcode{v(1)}.
-The second element is \mcode{v(2)}, and so forth.
-
-Accessing the element of a vector is just calling the vector with specifying the desired element:
-
+			Accessing the element of a vector is just calling the vector with specifying the desired element:
 \begin{lstlisting}
 >> x = [1 3 4 -2.5 8]
 x = 
@@ -803,12 +765,8 @@ ans =
 ans = 
 -2.5
 \end{lstlisting}
-
-
-
-
-The last element of a vector can be called using the argument \mcode{end}:
-You can also call the ith item from the end using \mcode{end-i}. 
+			The last element of a vector can be called using the argument \mcode{end}:
+			You can also call the ith item from the end using \mcode{end-i}. 
 \begin{lstlisting}
 >> x = [1 3 4 -2.5 8]
 x = 
@@ -824,12 +782,17 @@ ans =
 4
 \end{lstlisting}
 
+			\defbox{\mcode{end}}{\mcode{end} is a very powerful operator in \matlab.
 
+				It moslty serves two purposes. 
+				\begin{itemize}
+					\item \mcode{end} gives access the last element of a matrix or vector. If \mcode{v=[1,4,2]}, \mcode{v(end)} send back 2.
+					\item That will be detailed later, but \mcode{end} also terminates statements that have a scope (for instance, \mcode{for, while, switch, try, if} and functions).
+				\end{itemize}
+			}
 
-\subsubsection{Access to several elements}
-
-The operator ":" gives access to all the elements between the first and the last element (included), in a column vector:
-
+		\subsubsection{Access to several elements}
+			The operator ":" gives access to all the elements between the first and the last element (included), in a column vector:
 \begin{lstlisting}
 >> v = [1 3 4 -2.5 8];
 >> v(:)
@@ -840,9 +803,7 @@ ans =
 -2.5
 8
 \end{lstlisting}
-
-Accessing to all the elements between the second and fifth element of \mcode{v} is \mcode{v(2:5)}:
-
+			Accessing to all the elements between the second and fifth element of \mcode{v} is \mcode{v(2:5)}:
 \begin{lstlisting}
 >> v = [1 3 4 -2.5 8 12];
 >> v(2:5)
@@ -852,8 +813,7 @@ ans =
 -2.5
 8
 \end{lstlisting}
-To access to \emph{all} the elements between the first and the last element (included), in a column vector, simply use the colon operator:
-
+			To access to \emph{all} the elements between the first and the last element (included), in a column vector, simply use the colon operator:
 \begin{lstlisting}
 >> x = [1 3 4 -2.5 8];
 >> x(:)
@@ -864,35 +824,24 @@ ans =
 -2.5
 8
 \end{lstlisting}
+			\defbox{:-colon operator}{The colon operator is pivotal in \matlab. 
+		
+				It is noticeably useful to 
+				\begin{itemize}
+					\item generate lists: \mcode{x= 1:20}
+					\item controlling loops (more details in Chap.~\ref{chap-code}): \mcode{for i=1:20}
+					\item transform a matrix in a column vector \mcode{M(:)}
+					\item extract sub-parts of vectors/matrices \mcode{M(2:4,1:2:8)}
+				\end{itemize}
+				It will be seen in more details in Sec.~\ref{sssec-colon}.
+			}
 
-
-
-\tipbox{The colon operator is pivotal in \matlab. 
-	
-	It is noticeably useful to 
-	\begin{itemize}
-		\item generate lists: \mcode{x= 1:20}
-		\item controlling loops (more in a following chapter): \mcode{for i=1:20}
-		\item transform a matrix in a column vector \mcode{M(:)}
-		\item extract sub-parts of vectors/matrices \mcode{M(2:4,1:2:8)}
-	\end{itemize}
-
-	More details in Sec.~\ref{sssec-colon}.
-
-}
-
-\subsubsection{Deleting elements}
-
-
-
-
-In \matlab, using "[]" empty a variable. It is named the \emph{empty vector operator}.
-	
-When used on a part of a vector or a matrix, it simply \emph{deletes} this part.
-It is \emph{gone}.
-As a consequence, it reduces the dimensions of the matrix.
-
-
+		\subsubsection{Deleting elements}
+			In \matlab, using "[]" empty a variable. It is named the \emph{empty vector operator}.
+				
+			When used on a part of a vector or a matrix, it simply \emph{deletes} this part.
+			It is \emph{gone}.
+			As a consequence, it reduces the dimensions of the matrix.
 \begin{lstlisting}
 >> v = [1 3 4 -2.5 8] ;
 >> v(1) = []
@@ -900,19 +849,15 @@ v =
 3 4 -2.5 8
 \end{lstlisting}
 
-
-\subsubsection{Adding elements (concatenation)}
-
-
-For creating a matrix, we have seen that one can write:
+		\subsubsection{Adding elements (concatenation)}
+			For creating a matrix, we have seen that one can write:
 \begin{lstlisting}
 >> M =[ [1,0] ; [0 1]];
 M = 
 1 0
 0 1
 \end{lstlisting}
-
-It means that vectors can be used to construct a matrix:
+			It means that vectors can be used to construct a matrix:
 \begin{lstlisting}
 >> v_1 = [1,0] ; v_2 = [0 1]];
 >> M = [v1;v2]
@@ -920,23 +865,19 @@ M =
 1 0
 0 1
 \end{lstlisting}
+			This operation is called concatenation.
+			\defbox{concatenation}{
+				Matrix concatenation is the process of joining one or more matrices to make a new matrix. 
 
-This operation is called concatenation.
+				The brackets [] operator is also used as the concatenation operator. 
 
-\defbox{concatenation}{
-
-Matrix concatenation is the process of joining one or more matrices to make a new matrix. 
-
-The brackets [] operator is also used as the concatenation operator. 
-
-It works in a similar fashion of the creation of a matrix:
-\begin{itemize}
-	\item \mcode{C = [A B]} horizontally concatenates matrices \mcode{A} and \mcode{B}. 
-	\item  \mcode{C = [A; B]} vertically concatenate matrices \mcode{A} and \mcode{B}.
-\end{itemize}
-}
-
-It can also be done to extend a vector:
+				It works in a similar fashion of the creation of a matrix:
+				\begin{itemize}
+					\item \mcode{C = [A B]} horizontally concatenates matrices \mcode{A} and \mcode{B}. 
+					\item  \mcode{C = [A; B]} vertically concatenate matrices \mcode{A} and \mcode{B}.
+				\end{itemize}
+			}
+			It can also be done to extend a vector:
 \begin{lstlisting}
 >> v_1 = [1,0] ; v_2 = [0 1];
 >> v = [v1,v2]
@@ -944,12 +885,12 @@ v =
 1 0 0 1
 \end{lstlisting}
 
-
-
-\subsection{Basic operations on vectors}
-\subsubsection{Addition/subtraction}
-It is easy to add or subtract a given value to \emph{all} the components of a vector, using the signs "+" and "-".
-
+	%%
+	% subsection
+	%%
+	\subsection{Basic operations on vectors}
+		\subsubsection{Addition/subtraction}
+			It is easy to add or subtract a given value to \emph{all} the components of a vector, using the signs "+" and "-".
 \begin{lstlisting}
 >> x = [1 3]
 x = 
@@ -964,10 +905,7 @@ y =
 z = 
 8 13 2 11
 \end{lstlisting}
-
-
-Vectors can be added, as long as their dimensions correspond:
-
+			Vectors can be added, as long as their dimensions correspond:
 \begin{lstlisting}
 >> ex = [1 0]; ey = [0,1] ;
 >> ex + ey
@@ -977,41 +915,30 @@ ans =
 ans =
 1 -1
 \end{lstlisting}
-
-Of course, if their dimensions do not correspond, \matlab will send back and error:
-
+			Of course, if their dimensions do not correspond, \matlab will send back and error:
 \begin{lstlisting}
 >> x =[1,0] ; y = [1,0,0];
 >> x+y
 <@{\color{red}Matrix dimensions must agree.}@>
 \end{lstlisting}
+			\tipbox{\matlab considers vectors as 1D matrices. 
 
+				It is important when dealing with multiplication.
 
+				If \mcode{v=[1,2,3]}: 
+				\begin{itemize}
+					\item \mcode{v*v'} is $14$ \\
+						it is multiplying a $1\times 3$ matrix with a $3\times 1$ matrix.
+					\item \mcode{v'*v} is \mcode{[[1,2,3];[2,4,6];[3,6,9]]} \\
+						it is multiplying a $3\times 1$ matrix with a $1\times 3$ matrix.
+					\item \mcode{v*v} will not work \\
+						it is multiplying a $1\times 1$ matrix with a $1\times 3$ matrix; dimensions are not compatible.
+				\end{itemize}
+			}
 
-
-\tipbox{\matlab considers vectors as 1D matrices. 
-
-It is important when dealing with multiplication.
-
-If \mcode{v=[1,2,3]}: 
-\begin{itemize}
-	\item \mcode{v*v'} is $14$ \\
-		it is multiplying a $1\times 3$ matrix with a $3\times 1$ matrix.
-	\item \mcode{v'*v} is \mcode{[[1,2,3];[2,4,6];[3,6,9]]} \\
-		it is multiplying a $3\times 1$ matrix with a $1\times 3$ matrix.
-	\item \mcode{v*v} will not work \\
-		it is multiplying a $1\times 1$ matrix with a $1\times 3$ matrix; dimensions are not compatible.
-\end{itemize}
-
-}
-
-
-
-\subsubsection{Multiplication}
-\paragraph{Multiplication by a scalar}
-
-It is easy to multiply or divide by a given value to \emph{all} the components of a vector, using the signs "*" and "/"
-
+		\subsubsection{Multiplication}
+			\paragraph{Multiplication by a scalar}
+				It is easy to multiply or divide by a given value to \emph{all} the components of a vector, using the signs "*" and "/"
 \begin{lstlisting}
 >> x = [1 3]
 x = 
@@ -1027,10 +954,8 @@ z =
 15 30 -3 24
 \end{lstlisting}
 
-
-
-\paragraph{dot product}
-It can be done using the function \mcode{dot}.
+			\paragraph{dot product}
+				It can be done using the function \mcode{dot}.
 \begin{lstlisting}
 >> x =[1,0] ; y = [1,0];
 >> dot(x,y)
@@ -1048,13 +973,10 @@ and =
 8
 \end{lstlisting}
 
-
-
-\paragraph{Element-wise multiplication}
-Element-wise multiplication means that each element of a vector is multiply by the corresponding element of the other vector.
-It is similar to the dot product \emph{except} for the sum.
-The operator for that is ".*" (it is read "dot product", which is pretty stupid when you think about it!).
-
+			\paragraph{Element-wise multiplication}
+				Element-wise multiplication means that each element of a vector is multiply by the corresponding element of the other vector.
+				It is similar to the dot product \emph{except} for the sum.
+				The operator for that is ".*" (it is read "dot product", which is pretty stupid when you think about it!).
 \begin{lstlisting}
 >> x =[1,0] ; y = [1,0];
 >> x.*y
@@ -1071,21 +993,23 @@ ans =
 and =
 0 0 8
 \end{lstlisting}
+				\tipbox{In \matlab, using "." in front of an operator means that this operator will be applied element-wise (to each element of the vector/matrix).
 
-
-\tipbox{In \matlab, using "." in front of an operator means that this operator will be applied element-wise (to each element of the vector/matrix).
-
-	For instance, \mcode{v.\^{}2} means that \emph{all} the elements of \mcode{v} will be squared. If \mcode{v} is $[2,4,3]$, then   \mcode{v.\^{}2}  is $[2^2,4^2,3^2]$, or \mcode{[4,16,9]}.
-
-}
+					For instance, \mcode{v.\^{}2} means that \emph{all} the elements of \mcode{v} will be squared. If \mcode{v} is $[2,4,3]$, then   \mcode{v.\^{}2}  is $[2^2,4^2,3^2]$, or \mcode{[4,16,9]}.
+			}
 
 
 \todo{exercices}
 
-\section{Matrices}
-\matlab sees vectors a line matrices. Building a matrix is the equivalent of stacking lines.
-For that, \matlab uses the semi colon sign ";".
-The following lines are equivalent:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{More details on matrices}
+	\matlab sees vectors a line matrices. Building a matrix is the equivalent of stacking lines.
+	For that, \matlab uses the semi-colon sign ";".
+	The following lines are equivalent:
 \begin{lstlisting}
 >> M =[1,0 ; 0,1];
 M = 
@@ -1096,17 +1020,17 @@ M =
 1 0
 0 1
 >> m =[ [1,0] ; [0 1]];
-M = 
+M =
 1 0
 0 1
 \end{lstlisting}
+	The last line shows that a matrix is virtually stacked vectors.
 
-The last line shows that a matrix is virtually stacked vectors.
-
-
-\subsection{Addition/subtraction}
-It is easy to add or subtract a given value to \emph{all} the components of a matrix, using the signs "+" and "-".
-
+	%%
+	% subsection
+	%%
+	\subsection{Addition/subtraction}
+		It is easy to add or subtract a given value to \emph{all} the components of a matrix, using the signs "+" and "-".
 \begin{lstlisting}
 >> M = [[1 3];[2,4];
 >> M + 4
@@ -1118,10 +1042,7 @@ A =
 3 5
 4 6
 \end{lstlisting}
-
-
-Matrices can be added, as long as their dimensions correspond:
-
+		Matrices can be added, as long as their dimensions correspond:
 \begin{lstlisting}
 >> M = [[1 0];[2,3]; A = [[2,-1];[1,1]];
 >> M + A
@@ -1133,20 +1054,15 @@ ans =
 1 1
 1 2
 \end{lstlisting}
-
-Of course, if their dimensions do not correspond, \matlab will send back and error:
-
+		Of course, if their dimensions do not correspond, \matlab will send back and error:
 \begin{lstlisting}
 >> M =[[1,0];[1,0];[1,0] ; A = [[2,-1];[1,1]];
 >> x+y
 <@{\color{red}Matrix dimensions must agree.}@>
 \end{lstlisting}
 
-
-
-\subsubsection{Multiplication}
-It is easy to multiply or divide by a given value to \emph{all} the components of a vector, using the signs "*" and "/"
-
+	\subsection{Multiplication}
+		It is easy to multiply or divide by a given value to \emph{all} the components of a vector, using the signs "*" and "/"
 \begin{lstlisting}
 >> x = [1 3]
 x = 
@@ -1161,17 +1077,12 @@ y =
 z = 
 15 30 -3 24
 \end{lstlisting}
-
-What is multiplication for vectors ?
-
-Two definitions can be proposed.
-
-\paragraph{dot product}
-The first definition is the dot product between two vectors.
-\defbox{dot product}{The dot product (or inner product) of two vectors is the sum of the multiplication of their components. If $u=(u_i),v=(v_i)$ are $n$-dimensional vectors, $<u,v>= \sum\limits_{i=1}^n u_i \times v_i $.}
-
-
-It can be done using the function \mcode{dot}.
+		How \matlab deals with multiplication for vectors ?
+		Two options can be proposed.
+		\subsubsection{dot product}
+			The first option is the dot product between two vectors.
+			\defbox{dot product}{The dot product (or inner product) of two vectors is the sum of the multiplication of their components. If $u=(u_i),v=(v_i)$ are $n$-dimensional vectors, $<u,v>= \sum\limits_{i=1}^n u_i \times v_i $.}
+			It can be done using the function \mcode{dot}.
 \begin{lstlisting}
 >> x =[1,0] ; y = [1,0];
 >> dot(x,y)
@@ -1188,14 +1099,13 @@ ans =
 and =
 8
 \end{lstlisting}
+			\helpbox{dot}
 
-
-\paragraph{Element-wise multiplication}
-Another definition could be the element wise multiplication.
-It means that each element of a vector is multiply by the corresponding element of the other vector.
-It is similar to the dot product \emph{except} for the sum.
-The operator for that is ".*" (it is read "dot product", which is pretty stupid when you think about it!).
-
+		\subsubsection{Element-wise multiplication}
+			Another option could be the element wise multiplication.
+			It means that each element of a vector is multiply by the corresponding element of the other vector.
+			It is somehow similar to the dot product \emph{except} for the sum.
+			The operator for element-wise multiplication is ".*" (it is read "dot product", which is pretty stupid when you think about it!).
 \begin{lstlisting}
 >> x =[1,0] ; y = [1,0];
 >> x.*y
@@ -1213,18 +1123,13 @@ and =
 0 0 8
 \end{lstlisting}
 
-
-
 \todo{exercises}
 Try to create the vector $x = (1,2,3,4)$.
 
-
-
-\subsubsection{Accessing and deleting elements}
-
-\paragraph{Accessing elements}
-It works in a similar way as for vectors, except that the dimensions are separated with a comma.
-Let's work with \mcode{M}:
+		\subsubsection{Accessing and deleting elements}
+			\paragraph{Accessing elements}
+				It works in a similar way as for vectors, except that the dimensions are separated with a comma.
+				Let's work with \mcode{M}:
 \begin{lstlisting}
 >> M = [ [1,2,3]; [4,5,6]; [7,8,9]]
 M = 
@@ -1232,9 +1137,7 @@ M =
 4 5 6
 7 8 9
 \end{lstlisting}
-
-To extract the third column of \mcode{M}:
-
+				To extract the third column of \mcode{M}:
 \begin{lstlisting}
 >> c = M(:,3)
 c = 
@@ -1242,63 +1145,45 @@ c =
 6
 9
 \end{lstlisting}
-
-
-To extract the second row of \mcode{M}:
-
+				To extract the second row of \mcode{M}:
 \begin{lstlisting}
 >> l = M(2,:)
 l = 
 4 5 6
 \end{lstlisting}
-
-To extract the first \emph{and} the second row of \mcode{M}:
+				To extract the first \emph{and} the second row of \mcode{M}:
 \begin{lstlisting}
 >> A = M([1,2],:)
 A = 
 1 2 3
 4 5 6
 \end{lstlisting}
-
-Following this notation, we can exchange the first rows of \mcode{M}:
+				Following this notation, we can exchange the first rows of \mcode{M}:
 \begin{lstlisting}
 >> A = M([2,1],:)
 A = 
 4 5 6
 1 2 3
 \end{lstlisting}
+				\tipbox{
+					Using lists (for instance \mcode{indices = [1,3,4]}) as arguments of matrices is a very powerful methods for altering a matrix or for creating a new one.
+					\begin{itemize}
+						\item \mcode{M(indices,:)} will select the rows of \mcode{M} in the order of the elements of \mcode{indices}. \\
+							They can be copied, if there is repetition in \mcode{indices}, as \mcode{indices = [1,2,2]}
+							They can be rearranged, if the elements in \mcode{indices} are not ranked, as \mcode{indices = [3,1,2]}
+						\item \mcode{M(:,indices)} will select the rows of \mcode{M} in the order of the elements of indices
+						\item \mcode{M(indices\_row,indices\_col)} will extract a sub-matrix of \mcode{M}
+					\end{itemize}
+				}
 
+			\paragraph{Deleting elements}
+				In \matlab, using "[]" empty a variable. It is named the \emph{empty vector operator}.
+					
+				When used on a part of a vector or a matrix, it simply \emph{deletes} this part.
+				It is \emph{gone}.
+				As a consequence, it reduces the dimensions of the matrix.
 
-
-\tipbox{
-	Using lists (for instance \mcode{indices = [1,3,4]}) as arguments of matrices is a very powerful methods for altering a matrix or for creating a new one.
-\begin{itemize}
-	\item \mcode{M(indices,:)} will select the rows of \mcode{M} in the order of the elements of \mcode{indices}. \\
-		They can be copied, if there is repetition in \mcode{indices}, as \mcode{indices = [1,2,2]}
-		They can be rearranged, if the elements in \mcode{indices} are not ranked, as \mcode{indices = [3,1,2]}
-	\item \mcode{M(:,indices)} will select the rows of \mcode{M} in the order of the elements of indices
-	\item \mcode{M(indices\_row,indices\_col)} will extract a sub-matrix of \mcode{M}
-
-\end{itemize}
-
-
-}
-
-
-\paragraph{Deleting elements}
-
-
-
-
-In \matlab, using "[]" empty a variable. It is named the \emph{empty vector operator}.
-	
-When used on a part of a vector or a matrix, it simply \emph{deletes} this part.
-It is \emph{gone}.
-As a consequence, it reduces the dimensions of the matrix.
-
-
-
-It hence reduces the dimension of the vector. It works similarly for a matrix:
+				It hence reduces the dimension of the vector. It works similarly for a matrix:
 \begin{lstlisting}
 >> A = [ [1 3 4] ; [-2.5 8 9]] ;
 >> A(:,1) = []
@@ -1306,32 +1191,34 @@ A =
 3 4
 8 9
 \end{lstlisting}
-The first column has been deleted.
+				The first column has been deleted.
 
-
-It is possible to delete one element from a vector 
-
+				It is possible to delete one element from a vector 
 \begin{lstlisting}
 >> v = [1 3 4 -2.5 8] ;
 >> v(1) = []
 v = 
 3 4 -2.5 8
 \end{lstlisting}
-
-But trying to do it for a matrix will lead to an error message.
+				But trying to do it for a matrix will lead to an error message.
 \begin{lstlisting}
 >> A = [ [1 3 4] ; [-2.5 8 9]] ;
 >> A(1,1) = []
 <@{\color{red} A null assignment can have only one non-colon index.}@>
 \end{lstlisting}
+				You can remove a block, a column or a row from a matrix. 
+				But you can not remove a single element, if not, there would be a "hole".
 
-You can remove a block, a column or a row from a matrix. 
-But you can not remove a single element, if not, there would be a "hole".
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Useful built-in functions for vectors and matrices}
-\subsection{Dimensions of a matrix}
-The command \mcode{size} send back the dimensions of a matrix.
+	%%
+	% subsection
+	%%
+	\subsection{Dimensions of a matrix}
+		The command \mcode{size} send back the dimensions of a matrix.
 \begin{lstlisting}
 >> A = [ [1 3 4] ; [-2.5 8 9]] ; v = [1 2 3 4];
 >> size(A)
@@ -1350,7 +1237,7 @@ ans =
 ans = 
 4 1
 \end{lstlisting}
-To reuse the size, you can store it in variables:
+		To reuse the size, you can store it in variables:
 \begin{lstlisting}
 >> A = [ [1 3 4] ; [-2.5 8 9]] ; 
 >> size_a = size(A);
@@ -1366,24 +1253,23 @@ ans =
 2
 \end{lstlisting}
 
+	%%
+	% subsection
+	%%
+	\subsection{Generating a vector}
+		\subsubsection{The colon operator}\label{sssec-colon}
+			One of the most powerful operator in \matlab is the colon operator ":".
+			It allows in particular to generate lists.
 
-\subsection{Generating a vector}
-
-\subsubsection{The colon operator}
-\label{sssec-colon}
-One of the most powerful operator in \matlab is the colon operator ":".
-It allows in particular to generate lists.
-
-We have seen already that \mcode{v(2:5)} gives the elements of \mcode{v} between the 2nd and 5th position.
-What it does is actually ask \matlab to send back elements of \mcode{v} in position $2,3,4,5$.
-These positions are \emph{generated} by the command \mcode{2:5}.
+			We have seen already that \mcode{v(2:5)} gives the elements of \mcode{v} between the 2nd and 5th position.
+			What it does is actually ask \matlab to send back elements of \mcode{v} in position $2,3,4,5$.
+			These positions are \emph{generated} by the command \mcode{2:5}.
 \begin{lstlisting}
 >> 2:5
 ans = 
 2 3 4 5
 \end{lstlisting}
-
-The command \mcode{a:b} hence generates a vector, starting in a, each element being incremented by 1, until it would be greater than b.
+			The command \mcode{a:b} hence generates a vector, starting in a, each element being incremented by 1, until it would be greater than b.
 \begin{lstlisting}
 >> 4:8
 ans = 
@@ -1392,113 +1278,136 @@ ans =
 ans = 
 4.5 5.5 6.5 7.5
 \end{lstlisting}
-In the second example, the last item is $7.5$. $8.5$ would be larger than $8$ and is hence omitted.
+			In the second example, the last item is $7.5$. $8.5$ would be larger than $8$ and is hence omitted.
 
-It is possible to force the increment. 
-The command \mcode{a:da:b} generates a vector, starting in a, each element being incremented by da, until it would be greater than b.
+			It is possible to force the increment. 
+			The command \mcode{a:da:b} generates a vector, starting in a, each element being incremented by da, until it would be greater than b.
 \begin{lstlisting}
 >> 0:.1:1
 ans = 
 0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.
 \end{lstlisting}
 
-\subsubsection{Knowing well your matrix}
-\begin{table}[h!]
-	\caption{A few functions that gives infos on a matrix.}
-	\label{tab-func_infos}
-\center
-\begin{tabular}{|l|c|l|}
-	\hline
-	name & description & illustration\\
-	\hline
-	\mcode{length} & largest dimension & \mcode{length([[6,9,8];[7,12,-1]])} \\
-	\mcode{size}	& gives the dimensions & \mcode{size([[6,9,8];[7,12,-1]])} \\
-	\mcode{ndims}	& gives the number of dimensions & \mcode{ndims([[6,9,8];[7,12,-1]])} \\
-	\mcode{numel} & number of elements & \mcode{numel([[6,9,8];[7,12,-1]])} \\
-	\hline
-\end{tabular}
-\end{table}
+		\subsubsection{Knowing well your matrix}
+			\matlab is mainly good at manipulation matrices. It means that knowing the properties a the matrix-at-hand is fundamental.
 
-\subsection{Generating a vector}
+			\matlab hence provides many ad hoc functions to know and control the properties of matrices, see Tab.~\ref{tab-mat_infos}.
 
-\begin{table}[h!]
-	\caption{A few functions that generate vectors.}
-	\label{tab-func}
-\center
-\begin{tabular}{|l|c|l|}
-	\hline
-	name & description & illustration\\
-	\hline
-	colon operator : & see Sec~\ref{sssec-colon} & 0:10:.5 \\
-	\mcode{linspace(a,b,n)} & linearly spaced n-dimensional vector & \mcode{linspace(0,1,11)} \\
-							& between a and b & \\
-	\mcode{diag(A)} & diagonal of matrix (A)  & \mcode{diag([[1,2];[3,4]])} \\
-							& between a and b & \\	
-	\hline
-\end{tabular}
-\end{table}
+			\begin{table}[h!]
+				\caption{A few functions that gives infos on a matrix.}
+				\label{tab-mat_infos}
+				\center
+				\begin{tabular}{|l|c|l|}
+					\hline
+					name & description & illustration\\
+					\hline
+					\mcode{length} & largest dimension & \mcode{length([[6,9,8];[7,12,-1]])} \\
+					\mcode{size}	& gives the dimensions & \mcode{size([[6,9,8];[7,12,-1]])} \\
+					\mcode{ndims}	& gives the number of dimensions & \mcode{ndims([[6,9,8];[7,12,-1]])} \\
+					\mcode{numel} & number of elements & \mcode{numel([[6,9,8];[7,12,-1]])} \\
+					\hline
+				\end{tabular}
+			\end{table}
 
+	%%
+	% subsection
+	%%
+	\subsection{Generating a vector}
 
-\helpbox{colon}
-
-\subsection{Generating a matrix}
-\begin{table}[h!]
-	\caption{A few functions that generate matrices.}
-	\label{tab-func}
-\center
-\begin{tabular}{|l|c|l|}
-	\hline
-	name & description & illustration\\
-	\hline
-	\mcode{zeros(m,n)} & $m,n$-dimensional matrix filled with $0$ & \mcode{zeros(2,4)} \\
-	\mcode{ones(m,n)} & $m,n$-dimensional matrix filled with $1$ & \mcode{ones(2,4)} \\
-	\mcode{rand(m,n)} & $m,n$-dimensional matrix filled with  & \mcode{rand(2,4)} \\
-					 & random numbers taken between $0$ and $1$ &  \\
-	\mcode{eye(n)} & n-dimensional identify matrix & \mcode{eye(10)} \\
-	\mcode{diag(v)} & matrix filled with 0 with \mcode{v} as diagonal & \mcode{diag([1,2,3])} \\
-	\hline
-\end{tabular}
-\end{table}
-
-\begin{table}[h!]
-	\caption{A few functions that are useful.}
-	\label{tab-useful_func_algebra}
-\center
-\begin{tabular}{|l|c|l|}
-	\hline
-	name & description & illustration\\
-	\hline
-	\mcode{size(M)} & number of elements in M & \mcode{size([1,2,3])} \\
-	\mcode{shape(M)} & number of elements in each direction of M & \mcode{shape([2,3,5];[1,2,3]])} \\
-	\hline
-\end{tabular}
-\end{table}
+		\begin{table}[h!]
+			\caption{A few functions that generate vectors.}
+			\label{tab-func}
+			\center
+			\begin{tabular}{|l|c|l|}
+				\hline
+				name & description & illustration\\
+				\hline
+				colon operator : & see Sec~\ref{sssec-colon} & 0:10:.5 \\
+				\mcode{linspace(a,b,n)} & linearly spaced n-dimensional vector & \mcode{linspace(0,1,11)} \\
+										& between a and b & \\
+				\mcode{diag(A)} & diagonal of matrix (A)  & \mcode{diag([[1,2];[3,4]])} \\
+										& between a and b & \\	
+				\hline
+			\end{tabular}
+		\end{table}
 
 
 
-\section{Linear Algebra}
+	%%
+	% subsection
+	%%
+	\subsection{Generating a matrix}
+		\begin{table}[h!]
+			\caption{A few functions that generate matrices.}
+			\label{tab-func}
+			\center
+			\begin{tabular}{|l|c|l|}
+				\hline
+				name & description & illustration\\
+				\hline
+				\mcode{zeros(m,n)} & $m,n$-dimensional matrix filled with $0$ & \mcode{zeros(2,4)} \\
+				\mcode{ones(m,n)} & $m,n$-dimensional matrix filled with $1$ & \mcode{ones(2,4)} \\
+				\mcode{rand(m,n)} & $m,n$-dimensional matrix filled with  & \mcode{rand(2,4)} \\
+								 & random numbers taken between $0$ and $1$ &  \\
+				\mcode{eye(n)} & n-dimensional identify matrix & \mcode{eye(10)} \\
+				\mcode{diag(v)} & matrix filled with 0 with \mcode{v} as diagonal & \mcode{diag([1,2,3])} \\
+				\hline
+			\end{tabular}
+		\end{table}
 
+		\begin{table}[h!]
+			\caption{A few functions that are useful.}
+			\label{tab-useful_func_algebra}
+			\center
+			\begin{tabular}{|l|c|l|}
+				\hline
+				name & description & illustration\\
+				\hline
+				\mcode{size(M)} & number of elements in M & \mcode{size([1,2,3])} \\
+				\mcode{shape(M)} & number of elements in each direction of M & \mcode{shape([2,3,5];[1,2,3]])} \\
+				\hline
+			\end{tabular}
+		\end{table}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Arithmetic in \matlab}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{What to remember}
-\subsection{Creating a matrix}
-Follow the procedure:
-\begin{itemize}
-	\item start with a bracket [
-	\item write each element of a column, separated with space or commas
-	\item separate rows with a semi-colon
-	\item end with the bracket ]
-\end{itemize}
+	%%
+	% subsection
+	%%
+	\subsection{Creating a matrix}
+		Follow the procedure:
+		\begin{itemize}
+			\item start with a bracket [
+			\item write each element of a column, separated with space or commas
+			\item separate rows with a semi-colon
+			\item end with the bracket ]
+		\end{itemize}
 
-\subsection{Manipulating matrices}
-You can
-\begin{itemize}
-	\item add (with "+"), subtract (with "-"), multiply (with "*") matrices if their sizes are compatible
-	\item access to the ith element of matrix \mcode{M} using \mcode{M(i)}
-	\item access to the (ith,jth) element of matrix \mcode{M} using \mcode{M(i,j)}
-\end{itemize}	
+	%%
+	% subsection
+	%%
+	\subsection{Manipulating matrices}
+		You can
+		\begin{itemize}
+			\item add (with "+"), subtract (with "-"), multiply (with "*") matrices if their sizes are compatible
+			\item access to the ith element of matrix \mcode{M} using \mcode{M(i)}
+			\item access to the (ith,jth) element of matrix \mcode{M} using \mcode{M(i,j)}
+		\end{itemize}	
 
-\subsection{Key example}
-Let's summarize in a few examples everything we have seen.
-
+	%%
+	% subsection
+	%%
+	\subsection{Key example}
+		Let's summarize in a few examples everything we have seen.
 \begin{lstlisting}
 >> M = [[1,2];[3,4]]
 M = 
@@ -1511,88 +1420,81 @@ M =
 
 
 
+
+
 \chapter{Plotting data}
-
-
-
 One of the usefulness of \matlab is being able to easily plot, manipulate and modify data.
 
 With only a few commands, you can have publication-ready figures.
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Creating the first plot}
-
-First one needs data.
-
+	First one needs data.
 \begin{lstlisting}
 >> x = [1 2 3 4 5 6 7 8 9 10];
 >> y = [1 4 9 16 25 36 64 81 100];
 \end{lstlisting}
-
-To plot the data, the main command in \matlab is \mcode{plot}:
-
+	To plot the data, the main command in \matlab is \mcode{plot}:
 \begin{lstlisting}
 >> plot(x,y)
 \end{lstlisting}
 
 \todoimage{plot 1}
 
+	\defbox{Plot}{
+		The \mcode{plot} function allows to plot the graph of a function or to plot data.
+		
+		\begin{itemize}
+			\item \mcode{plot(y)} creates a line plot of the data in y.
+			\item \mcode{plot(x,y)} creates a line plot of the data in y versus the corresponding values in x.
+		\end{itemize}
+		\mcode{plot} plots solid lines. To see the data points, one must specify a marker symbol, for example, \mcode{plot(x,y,'o')}.
+	}
+	\helpbox{plot}
+	\tipbox{When only one data is provided, \matlab assumes that the abscisse are the indexes of the elements of the data. 
+
+		What will be plotted is hence the coordinates $(1,y(1)), (2,y(2), \hdots , (n, y(n))$.
+
+		Compare \mcode{plot(x,y)} and \mcode{plot(y)}!
+
+		When trying to understand some results, never hesitate to plot some data \mcode{y} by typing \mcode{plot(y)} in the command prompt. Quick and dirty, but useful.
+	}
+	\tipbox{
+		The command \mcode{figure} can be used for opening a new \emph{empty} figure window.
+
+		\matlab draw any new plot in the last active figure window, erasing the old figure. 
+		Creating a new window \emph{before plotting} ensures that your previous plot will not be lost:\\
+		\mcode{figure ; plot(x,y)}
+	}
 
 
-
-\defbox{Plot}{
-	The \mcode{plot} function allows to plot the graph of a function or to plot data.
-	
-	\begin{itemize}
-		\item \mcode{plot(y)} creates a line plot of the data in y.
-		\item \mcode{plot(x,y)} creates a line plot of the data in y versus the corresponding values in x.
-	\end{itemize}
-	\mcode{plot} plots solid lines. To see the data points, one must specify a marker symbol, for example, \mcode{plot(x,y,'o')}.
-
-
-}
-\helpbox{plot}
-
-\tipbox{
-When only one data is provided, \matlab assumes that the abscisse are the indexes of the elements of the data. 
-
-What will be plotted is hence the coordinates $(1,y(1)), (2,y(2), \hdots , (n, y(n))$.
-
-Compare \mcode{plot(x,y)} and \mcode{plot(y)}!
-
-When trying to understand some results, never hesitate to plot some data \mcode{y} by typing \mcode{plot(y)} in the command prompt. Quick and dirty, but useful.
-}
-
-
-
-
-
-\tipbox{
-The command \mcode{figure} can be used for opening a new \emph{empty} figure window.
-
-\matlab draw any new plot in the last active figure window, erasing the old figure. 
-Creating a new window \emph{before plotting} ensures that your previous plot will not be lost:\\
-\mcode{figure ; plot(x,y)}
-
-}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{A beautiful plot}
-\subsection{What a figure should be}
+	%%
+	% subsection
+	%%
+	\subsection{What a figure should be}
+		A good figure has {\color{red} \large always}:
+		\begin{itemize}
+			\item labels on the x-axis and y-axis
+			\item different colors or patterns for different curves\\ If possible, these differences should persist when printing the figure in black and white.
+		\end{itemize}
+		If the figure is in a report :
+		\begin{itemize}
+			\item instead of a title, the figure can be explained in the text under the figure.
+			\item instead of a legend, the difference between curves can be explained in the text under the figure.
+		\end{itemize}
 
-	A good figure has {\color{red} \large always}:
-	\begin{itemize}
-		\item labels on the x-axis and y-axis
-		\item different colors or patterns for different curves\\ If possible, these differences should persist when printing the figure in black and white.
-	\end{itemize}
-	If the figure is in a report :
-	\begin{itemize}
-		\item instead of a title, the figure can be explained in the text under the figure.
-		\item instead of a legend, the difference between curves can be explained in the text under the figure.
-	\end{itemize}
-
-
-
-\subsection{axis}
-It is \emph{really important} to always have labels for the axis.
-
+	%%
+	% subsection
+	%%
+	\subsection{axis}
+		It is \emph{really important} to always have labels for the axis.
 \begin{lstlisting}
 >> x = [1 2 3 4 5 6 7 8 9 10];
 >> y = [1 4 9 16 25 36 64 81 100];
@@ -1600,13 +1502,10 @@ It is \emph{really important} to always have labels for the axis.
 >> xlabel('data along x')
 >> ylabel('data along y')
 \end{lstlisting}
+		\mcode{xlabel} and \mcode{ylabel} are the \matlab functions that handle the labels.
 
-\mcode{xlabel} and \mcode{ylabel} are the \matlab functions that handle the labels.
-
-You can see that the argument for these functions are between quotes "'".
-A label is some text: it means that \matlab will need a string.
-
-
+		You can see that the argument for these functions are between quotes "'".
+		A label is some text: it means that \matlab will need a string.
 \begin{lstlisting}
 >> x = 0:pi/10:2.*pi;
 >> y = cos(x);
@@ -1617,98 +1516,90 @@ A label is some text: it means that \matlab will need a string.
 >> ylabel(str_ylabel)
 \end{lstlisting}
 
-\paragraph{Colours and line styles}
-The default plot color in \matlab is blue, and the line default style is plain.
+		\subsubsection{Colours and line styles}
+			The default plot color in \matlab is blue, and the line default style is plain.
+			To change the style, an extra argument has to be sent to \matlab.
+			
+			For instance, 
+			\begin{itemize}
+				\item \mcode{plot(x,y,'r')} will change the color of the plot to red.
+				\item \mcode{plot(x,y,'--')} will change the line style of the plot to dashed.
+			\end{itemize}
+			Note that the argument is between quotes.
+			Arguments are generally passed as a string
+			\begin{table}[h!]
+				\caption{A few colours in \matlab.}
+				\label{tab-col}
+				\center
+				\begin{tabular}{|l|c|l|}
+					\hline
+					colours & code & illustration \\
+					\hline
+					black & k & \mcode{plot(x,y,'k')} \\
+					green & g & \mcode{plot(x,y,'g')} \\
+					red & r & \mcode{plot(x,y,'r')} \\
+					blue & b & \mcode{plot(x,y,'b')} \\
+					yellow & y & \mcode{plot(x,y,'y')} \\
+					\hline
+					\hline
+				\end{tabular}
+			\end{table}
 
+			\begin{table}[h!]
+				\caption{A few line styles in \matlab.}
+				\label{tab-lines}
+				\center
+				\begin{tabular}{|l|c|l|}
+					\hline
+					style & code & illustration \\
+					\hline
+					solid & - & \mcode{plot(x,y,'-')} \\
+					dashed & -- & \mcode{plot(x,y,'--')} \\
+					dotted & : & \mcode{plot(x,y,':')} \\
+					dash-dot & -. & \mcode{plot(x,y,'-.')} \\
+					\hline
+					\hline
+				\end{tabular}
+			\end{table}
 
+			\begin{table}[h!]
+				\caption{A few marker styles in \matlab.}
+				\label{tab-marker}
+				\center
+				\begin{tabular}{|l|c|l|}
+					\hline
+					marker & code & illustration \\
+					\hline
+					plus & + & \mcode{plot(x,y,'+')} \\
+					cross & x & \mcode{plot(x,y,'x')} \\
+					circle & o & \mcode{plot(x,y,'o')} \\
+					triangle up & \^{} & \mcode{plot(x,y,'\^{}')} \\
+					triangle down & v & \mcode{plot(x,y,'v')} \\
+					triangle left & \textless & \mcode{plot(x,y,'<')} \\
+					triangle right & \textgreater & \mcode{plot(x,y,'>')} \\
+					\hline
+					\hline
+				\end{tabular}
+			\end{table}
+			\tipbox{
+				A good way of not messing with the style is to follow this order:
+				\begin{enumerate}
+					\item open the quotes: \mcode{'}
+					\item add the color, e.g. k: \mcode{'k}
+					\item add the style of the line, e.g. \mcode{--}: \mcode{'k--}
+					\item add the style of the markers, e.g. x: \mcode{'k--x}
+					\item end the quotes: \mcode{'k--x'}
+				\end{enumerate}
+				you can now plot with the options:\\
+				\mcode{plot(x,y,'k--x')}
+			}
 
-To change the style, an extra argument has to be sent to \matlab.
-
-For instance, 
-\begin{itemize}
-	\item \mcode{plot(x,y,'r')} will change the color of the plot to red.
-	\item \mcode{plot(x,y,'--')} will change the line style of the plot to dashed.
-\end{itemize}
-Note that the argument is between quotes.
-Arguments are generally passed as a string
-
-
-\begin{table}[h!]
-	\caption{A few colours in \matlab.}
-	\label{tab-col}
-\center
-\begin{tabular}{|l|c|l|}
-	\hline
-	colours & code & illustration \\
-	\hline
-	black & k & \mcode{plot(x,y,'k')} \\
-	green & g & \mcode{plot(x,y,'g')} \\
-	red & r & \mcode{plot(x,y,'r')} \\
-	blue & b & \mcode{plot(x,y,'b')} \\
-	yellow & y & \mcode{plot(x,y,'y')} \\
-	\hline
-	\hline
-\end{tabular}
-\end{table}
-
-\begin{table}[h!]
-	\caption{A few line styles in \matlab.}
-	\label{tab-lines}
-\center
-\begin{tabular}{|l|c|l|}
-	\hline
-	style & code & illustration \\
-	\hline
-	solid & - & \mcode{plot(x,y,'-')} \\
-	dashed & -- & \mcode{plot(x,y,'--')} \\
-	dotted & : & \mcode{plot(x,y,':')} \\
-	dash-dot & -. & \mcode{plot(x,y,'-.')} \\
-	\hline
-	\hline
-\end{tabular}
-\end{table}
-
-
-\begin{table}[h!]
-	\caption{A few marker styles in \matlab.}
-	\label{tab-marker}
-\center
-\begin{tabular}{|l|c|l|}
-	\hline
-	marker & code & illustration \\
-	\hline
-	plus & + & \mcode{plot(x,y,'+')} \\
-	cross & x & \mcode{plot(x,y,'x')} \\
-	circle & o & \mcode{plot(x,y,'o')} \\
-	triangle up & \^{} & \mcode{plot(x,y,'\^{}')} \\
-	triangle down & v & \mcode{plot(x,y,'v')} \\
-	triangle left & \textless & \mcode{plot(x,y,'<')} \\
-	triangle right & \textgreater & \mcode{plot(x,y,'>')} \\
-	\hline
-	\hline
-\end{tabular}
-\end{table}
-
-
-\tipbox{
-	A good way of not messing with the style is to follow this order:
-	\begin{enumerate}
-		\item open the quotes: \mcode{'}
-		\item add the color, e.g. k: \mcode{'k}
-		\item add the style of the line, e.g. \mcode{--}: \mcode{'k--}
-		\item add the style of the markers, e.g. x: \mcode{'k--x}
-		\item end the quotes: \mcode{'k--x'}
-	\end{enumerate}
-	you can now plot with the options:\\
-	\mcode{plot(x,y,'k--x')}
-}
-
-\subsection{Title}
-
-
-Adding the title is simple.
-In the same spirit of the labels, just pass your title to the function \mcode{title}.
-
+	%%
+	% subsection
+	%%
+	\subsection{Title}
+		Adding the title is simple.
+		In the same spirit of the labels, just pass your title to the function \mcode{title}.
 \begin{lstlisting}
 >> x = [1 2 3 4 5 6 7 8 9 10];
 >> y = [1 4 9 16 25 36 64 81 100];
@@ -1719,135 +1610,235 @@ In the same spirit of the labels, just pass your title to the function \mcode{ti
 \end{lstlisting}
 
 
-
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Edit a plot in the window}
+	A way to edit the plot properties is to click on the arrow - Edit Plot - on the plot window.
 
-A way to edit the plot properties is to click on the arrow - Edit Plot - on the plot window.
-\todoimage{fig plot with arrow}
+	\todoimage{fig plot with arrow}
 
-Then, double clicking on the curve will open an extra window where you can play with the properties.
+	Then, double clicking on the curve will open an extra window where you can play with the properties.
 
-In particular there is two interesting properties:
-\begin{enumerate}
-	\item \mcode{Line}, where you can edit the style of line (plain, dashed, etc.), the width of the line, and its color
-	\item \mcode{Marker}, where you can edit the type of markers (indication where each data is plotted, for instance with circles), the size of the markers, the color of the inside of the marker as well as the color of their edges
-\end{enumerate}
+	In particular there is two interesting properties:
+	\begin{enumerate}
+		\item \mcode{Line}, where you can edit the style of line (plain, dashed, etc.), the width of the line, and its color
+		\item \mcode{Marker}, where you can edit the type of markers (indication where each data is plotted, for instance with circles), the size of the markers, the color of the inside of the marker as well as the color of their edges
+	\end{enumerate}
 
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Multiple plots}
-
-Multiple (x, y) pairs arguments create multiple graphs with a single call to plot.
-\subsection{legends}
-
-Adding the legend is simple.
-In the same spirit of the title, just pass your legends, one after the other, to the function \mcode{legend}.
-
+	%%
+	% subsection
+	%%
+	\subsection{Multiple plot in one figure}
+		\subsubsection{In one call}
+			One call to the function \mcode{plot} is enough to plot multiple graphs on the same figure.
+			For that, couple of arguments need to be provided to the \mcode{plot} function.
 \begin{lstlisting}
 >> x = 0:0.1:2.*pi
 >> y_1 = cos(x); y_2 = cos(x+0.2); y_3 = cos(x+0.4);
->> plot(x,y_1,'-',x,y_2,':',x,y_3,'--')
+>> plot(x,y_1,x,y_2,x,y_3)
 >> xlabel('x')
 >> ylabel('f(x)')
 >> title ('several cos')
+\end{lstlisting}
+			To add some control on the plot, the style can be provided just after the data:
+\begin{lstlisting}
+>> plot(x,y_1,'-',x,y_2,':',x,y_3,'--')
+>> legend('cos(x)','cos(x+0.2)','cos(x+0.4)')
+\end{lstlisting}
+
+		\subsubsection{In multiple call}
+			When calling \mcode{plot}, the active figure gets erased before \matlab draw the new plot.
+			
+			But calling \mcode{hold on} (and later on \mcode{hold off}) \matlab knows that it should not erase the figure.
+\begin{lstlisting}
+>> x = 0:0.1:2.*pi
+>> y_1 = cos(x); y_2 = cos(x+0.2); y_3 = cos(x+0.4);
+>> plot(x,y_1)
+>> hold on
+>> plot(x,y_2)
+>> plot(x,y_3)
+>> hold off
+\end{lstlisting}
+			\mcode{hold off} tell \matlab that the figure is no longer protected.
+
+	%%
+	% subsection
+	%%
+	\subsection{figure and multiple plots}
+
+		\todo{this section}
+
+	%%
+	% subsection
+	%%
+	\subsection{legends}
+		Adding the legend is simple.
+		In the same spirit of the title, just pass your legends, one after the other, to the function \mcode{legend}:
+\begin{lstlisting}
+>> plot(x,y_1,'-',x,y_2,':',x,y_3,'--')
 >> legend('cos(x)','cos(x+0.2)','cos(x+0.4)')
 \end{lstlisting}
 
 
 
 
+
+
+
+
 \chapter{Programming}
+\label{chap-code}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Script}
+	Scripts are the simplest kind of program file because they have no input or output arguments. 
 
-Scripts are the simplest kind of program file because they have no input or output arguments. 
+	They are useful for automating series of \matlab commands, such as computations that you have to perform repeatedly from the command line or series of commands you have to reference.
 
-They are useful for automating series of \matlab commands, such as computations that you have to perform repeatedly from the command line or series of commands you have to reference.
+	When execution of the script completes, the variables remain in the \matlab workspace. 
 
-When execution of the script completes, the variables remain in the \matlab workspace. 
+	%%
+	% subsection
+	%%
+	\subsection{Create a script}
+		You can create a new script in the following ways:
+		\subsubsection{Through \matlab interface}
+			\todo{Work here}
+
+			Highlight commands from the Command History, right-click, and select "Create Script".
+			Click the New Script  button on the Home tab.
+
+			Use the edit function. For example, edit myFirstScript creates (if the file does not exist) and opens the file myFirstScript.m. If the name is not specified, \matlab opens a new file called \mcode{Untitled}.
+
+			After you create a script, you can add code to the script and save it.
+
+		\subsubsection{Create a text file}
+			Just create a text file (file with the ".txt" extension) in windows, and change the extension to ".m".
+
+		Et voilà.
 
 
-\subsection{Create a script}
-You can create a new script in the following ways:
 
-Highlight commands from the Command History, right-click, and select Create Script.
+	%%
+	% subsection
+	%%
+	\subsection{Save a script}
+		Save your script and run the code using either of these methods:
+		\begin{itemize}
+			\item Type the script name on the command line and press Enter. 
+			\item Click the Run  button on the Editor tab.
+			\item Click on the save icon.
+		\end{itemize}
 
-Click the New Script  button on the Home tab.
+	%%
+	% subsection
+	%%
+	\subsection{file}
+	\subsection{comments}
+	\subsection{execute the file}
 
-Use the edit function. For example, edit myFirstScript creates (if the file does not exist) and opens the file myFirstScript.m. If the name is not specified, \matlab opens a new file called \mcode{Untitled}.
-
-After you create a script, you can add code to the script and save it.
-
-\subsection{Save a script}
-Save your script and run the code using either of these methods:
-
-\begin{itemize}
-	\item Type the script name on the command line and press Enter. 
-	\item Click the Run  button on the Editor tab
-\end{itemize}
-
-\subsection{file}
-\subsection{comments}
-\subsection{execute the file}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conditions}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Loops}
-With loop control statements, you can repeatedly execute a block of code. 
-There are two types of loops:
-\begin{itemize}
-	\item \mcode{for} statements loop a specific number of times, and keep track of each iteration with an incrementing index variable.
-	\item \mcode{while} statements loop as long as a condition remains true.
-\end{itemize}
+	With loop control statements, you can repeatedly execute a block of code. 
+	There are two types of loops:
+	\begin{itemize}
+		\item \mcode{for} statements loop a specific number of times, and keep track of each iteration with an incrementing index variable.
+		\item \mcode{while} statements loop as long as a condition remains true.
+	\end{itemize}
+	\defbox{Loop}{
+		A loop will repeat instructions a certain number of times.
+
+		It is really useful when something can be done almost exactly similarly from on time to the other.
+		For instance, if one want to compute the distance that Julie (see Sec.~\ref{problem-julie}) can drive if the tank is 20 liters, 25 liters ? or maybe if it is 55 liters ?
+
+		One can loop on the variable \mcode{tank\_capacity} and not have to rewrite the code several times or to execute it several times.
+	}
 
 
-\defbox{Loop}{
-A loop will repeat instructions a certain number of times.
+	%%
+	% subsection
+	%%
+	\subsection{Loops based on For}
+		\subsubsection{Basics}
+			\mcode{for} loops are based on a finite number of iterations.
 
-It is really useful when something can be done almost exactly similarly from on time to the other.
-For instance, if one want to compute the distance that Julie (see Sec.~\ref{problem-julie}) can drive if the tank is 20 liters, 25 liters ? or maybe if it is 55 liters ?
-
-One can loop on the variable \mcode{tank\_capacity} and not have to rewrite the code several times or to execute it several times.
-}
-
-
-\subsection{Loops based on For}
-
-For example, preallocate a 10-element vector, and calculate five values:
-
-x = ones(1,10);
-for n = 2:6
-    x(n) = 2 * x(n - 1);
+			Executing this script:
+\begin{lstlisting}
+for i=1:5,
+  i
 end
+\end{lstlisting}
+			will lead in print i at every step of the loop. 
+			\mcode{i} will hence be 1 then 2 etc. up to 5.
+			\defbox{for}{
+				For making a \mcode{for} loop, you need:
+				\begin{itemize}
+					\item a list \mcode{my\_array}
+					\item a variable \mcode{var\_i}
+					\item some code \mcode{do stuff}
+				\end{itemize}
+				and to write:
+				\begin{enumerate}
+					\item \mcode{for var\_i=my\_array,} 
+					\item \mcode{do stuff}
+					\item \mcode{end}
+				\end{enumerate}
 
-For example, find the first integer n for which factorial(n) is a 100-digit number:
+					First, \mcode{var\_i} will, one after the other, every value that exists in \mcode{my\_array}.
+					If \mcode{my\_array=[1,2,3]}, then \mcode{var\_i} will be 1, then 2, then 3.
+					One \mcode{var\_i} has been assignated to a new value, \matlab will execute the code \mcode{do stuff}.
+					If \mcode{do stuff} is $i^2$, then \matlab will print $1$, then $4$, and finally $9$.
+					\mcode{end} says to \matlab that the part \mcode{do stuff} is finished and that he can loop.
 
-n = 1;
-nFactorial = 1;
-while nFactorial < 1e100
-    n = n + 1;
-    nFactorial = nFactorial * n;
+					\mcode{do stuff} can be very complex instructions, and \mcode{my\_array} can be a very long list, for instance \mcode{1:10000}.
+			}
+			A useful example is construction of vectors.
+			Let's for instance construct the Fibonacci sequence up to 100:
+\begin{lstlisting}
+fibo = ones(100);
+for i=3:100,
+  fibo(i) = fibo(i-2) + fibo(i-1);
 end
-Each loop requires the end keyword.
-
-\tipbox{
-Indent the loops for readability!
-
-	For each loops, indent by using tab or a few spaces.
-
-	Without indentation, it is really hard to see when loops start and end, and hence to understand the code.
-	
-}
-A = zeros(5,100);
-for m = 1:5
-    for n = 1:100
-        A(m, n) = 1/(m + n - 1);
-    end
+\end{lstlisting}
+			It is possible to nest loops, i.e., to have a loop in a loop. 
+			Let's construct a Vandermonde matrix.
+\begin{lstlisting}
+v = 1:4;
+M = ones(4,4);
+for i=1:4,
+  for j=1:4,
+    M(i,j) = v(i)^j;
+  end
 end
-You can programmatically exit a loop using a break statement, or skip to the next iteration of a loop using a continue statement. For example, count the number of lines in the help for the magic function (that is, all comment lines until a blank line):
+\end{lstlisting}
+			\tipbox{
+			Indent the loops for readability!
+
+				For each loops, indent by using tab or a few spaces.
+
+				Without indentation, it is really hard to see when loops start and end.
+			}
+
+
+
+			You can programmatically exit a loop using a break statement, or skip to the next iteration of a loop using a \mcode{continue} statement. 
+
+			For example, count the number of lines in the help for the magic function (that is, all comment lines until a blank line):
 
 fid = fopen('magic.m','r');
 count = 0;
