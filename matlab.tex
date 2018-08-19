@@ -68,7 +68,7 @@
 	\subsection{Starting with \matlab}
 		\subsubsection{Launch \matlab}
 		Click on the icon, duh!
-		
+		\todoimage{icon matlab}	
 		\subsubsection{Organization of the typical \matlab window}
 
 		You can find a few important sections:
@@ -94,6 +94,8 @@
 
 		Click on the Command Window, and type "hello world".
 		You will see:
+		\todoimage{hello world}
+		In the following, instead of print screen, we will show the results and the commands as:
 \begin{lstlisting}
 >> 'Hello World'
 ans =
@@ -147,7 +149,12 @@ Hello World
 
 		}
 
+		\tipbox{How to put a quote in a string ? For instance,
+			
+			Having \mcode{s ='nah, can't do'} is not obvious, as \matlab will interprete the quote in "can't" as the end of the string.
 
+			To solve the issue, double it ! \mcode{s = 'nah, can''t do} will work perfectly.
+		}
 		Try now to add a semi colon at the end of the line:
 \begin{lstlisting}
 >> 'Hello World';
@@ -313,7 +320,8 @@ x =
 			\item indicate what there is in the variables
 			\item eventually modify the content of a variable
 		\end{itemize}
-
+		\todoimage{workspace}
+	
 	%%
 	% subsection
 	%%
@@ -1490,6 +1498,7 @@ With only a few commands, you can have publication-ready figures.
 			\item instead of a legend, the difference between curves can be explained in the text under the figure.
 		\end{itemize}
 
+		\todoimage{beautiful plots. two images?}
 	%%
 	% subsection
 	%%
@@ -1608,7 +1617,7 @@ With only a few commands, you can have publication-ready figures.
 >> ylabel('data along y')
 >> title ('example of a title')
 \end{lstlisting}
-
+		\todoimage{same picture with a title}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
@@ -1650,6 +1659,7 @@ With only a few commands, you can have publication-ready figures.
 >> plot(x,y_1,'-',x,y_2,':',x,y_3,'--')
 >> legend('cos(x)','cos(x+0.2)','cos(x+0.4)')
 \end{lstlisting}
+			\todoimage{plot}
 
 		\subsubsection{In multiple call}
 			When calling \mcode{plot}, the active figure gets erased before \matlab draw the new plot.
@@ -1670,6 +1680,7 @@ With only a few commands, you can have publication-ready figures.
 	% subsection
 	%%
 	\subsection{figure and multiple plots}
+			\todoimage{plot}
 
 		\todo{this section}
 
@@ -1704,27 +1715,46 @@ With only a few commands, you can have publication-ready figures.
 
 	When execution of the script completes, the variables remain in the \matlab workspace. 
 
+
+	\defbox{Script}{A script is basically a text file, with the ".m" extension, for instance, \mcode{my\_script.m}.
+	
+		This file contains series of instructions that \matlab can and/or will execute.
+
+		A script does not take inputs (they hence have to be provided). It does not provide outputs, though the variables will be stored in the workspace.
+	}
+	\todoimage{tikz illustration of a script?}
+
 	%%
 	% subsection
 	%%
 	\subsection{Create a script}
-		You can create a new script in the following ways:
+		You can create a new script in the many ways.
+		
+		\subsubsection{Creating a script with the prompt}
+			The \mcode{edit} command allows either to create a script, or to edit an existing script.
+			To create a blank script, named "untitled.m", type:
+\begin{lstlisting}
+>> edit
+\end{lstlisting}
+			\matlab will then create and open the script.
+			The script is created in the current folder that \matlab is using. 
+			To change the folder, you can use the "current directory" windows on the left.
+		
+			To create a script named "my\_scipt.m", type:
+\begin{lstlisting}
+>> edit my_script
+\end{lstlisting}
+			Note that specifying the extension is unecessary.
+			Also, when the script "my\_script.m" exists already, typing \mcode{edit my\_script} will open the preexisting script.		
 		\subsubsection{Through \matlab interface}
-			\todo{Work here}
-
-			Highlight commands from the Command History, right-click, and select "Create Script".
-			Click the New Script  button on the Home tab.
-
-			Use the edit function. For example, edit myFirstScript creates (if the file does not exist) and opens the file myFirstScript.m. If the name is not specified, \matlab opens a new file called \mcode{Untitled}.
-
-			After you create a script, you can add code to the script and save it.
+			Another way is through the IDE.
+			Click on the "EDITOR" tab, then on "+ New", and select script.
+			You can then save it with the desired name.
 
 		\subsubsection{Create a text file}
 			Just create a text file (file with the ".txt" extension) in windows, and change the extension to ".m".
 
 		Et voilà.
-
-
 
 	%%
 	% subsection
@@ -1733,17 +1763,67 @@ With only a few commands, you can have publication-ready figures.
 		Save your script and run the code using either of these methods:
 		\begin{itemize}
 			\item Type the script name on the command line and press Enter. 
-			\item Click the Run  button on the Editor tab.
+			\item Click the Run button on the Editor tab.
 			\item Click on the save icon.
 		\end{itemize}
 
 	%%
 	% subsection
 	%%
-	\subsection{file}
-	\subsection{comments}
-	\subsection{execute the file}
+	\subsection{Comments}
+		On of the most important thing is to always try write as much comments as possible in a code.
 
+		\defbox{Comment}{
+			A comment is a part of the file that will \emph{not} be executed by \matlab.
+			It allows to give explanations on the script. 
+			When you will come later, or if someone else is reading the code, it gives invaluable informations on what the code is actually doing.
+
+			Any line starting with the percentage symbol "\%" will be ignored.
+			Any part between "\%\{"  and "\%\}" will be ignored as well.
+			}
+			\tipbox{
+				A good piece of code needs:
+				\begin{itemize}
+					\item well-named variables
+					\item indentation
+					\item comments
+				\end{itemize}
+			}
+
+	\subsection{execute the script}
+		There is several way for running a script, from the editor, from the prompt and thanks to convenient shortcuts.
+		\subsubsection{From the editor}
+			\paragraph{Run button}
+				The easiest is to be in the editor and to click on the triangle button "\textgreater".
+				\todoimage{run button}
+				It will run the whole script (and will save it).
+		
+			\paragraph{Shortcut}
+				There is two extremely handy shortcuts, from the editor:
+				\begin{enumerate}
+					\item \mcode{F5} will run the whole script
+					\item \mcode{ctrl+enter} will run the active cell
+				\end{enumerate}
+				The last one is really convenient as well.
+				The active cell is highlighted in light yellow.
+
+			\subsubsection{From the prompt}
+			Another easy way is to type the name of the script:
+\begin{lstlisting}
+>> my_script
+\end{lstlisting}
+			Alternatively, the function \mcode{run} can be used:
+\begin{lstlisting}
+>> run my_script
+\end{lstlisting}
+
+	\subsection{reading the script}
+		\matlab has a set of colors for helping the reader to understand the code:
+		\begin{itemize}
+			\item green: comments
+			\item blue: functions (to be verified)
+			\item yellow background: section with focus
+		\end{itemize}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1768,8 +1848,8 @@ With only a few commands, you can have publication-ready figures.
 
 		One can loop on the variable \mcode{tank\_capacity} and not have to rewrite the code several times or to execute it several times.
 	}
-
-
+	\todoimage{tikz illustration of a loop}
+	
 	%%
 	% subsection
 	%%
@@ -1799,11 +1879,14 @@ end
 					\item \mcode{end}
 				\end{enumerate}
 
-					First, \mcode{var\_i} will, one after the other, every value that exists in \mcode{my\_array}.
-					If \mcode{my\_array=[1,2,3]}, then \mcode{var\_i} will be 1, then 2, then 3.
-					One \mcode{var\_i} has been assignated to a new value, \matlab will execute the code \mcode{do stuff}.
+					First, \mcode{var\_i} will, one after the other, be assigned to every value that exists in \mcode{my\_array}.
+					If \mcode{my\_array=[1,2,3]}, then \mcode{var\_i} will be 1, then 2, then 3.\\
+
+					Once \mcode{var\_i} has been assignated to a new value, \matlab will execute the code \mcode{do stuff}.
 					If \mcode{do stuff} is $i^2$, then \matlab will print $1$, then $4$, and finally $9$.
-					\mcode{end} says to \matlab that the part \mcode{do stuff} is finished and that he can loop.
+\\
+
+					\mcode{end} says to \matlab that the part \mcode{do stuff} is finished and that he can loop.\\
 
 					\mcode{do stuff} can be very complex instructions, and \mcode{my\_array} can be a very long list, for instance \mcode{1:10000}.
 			}
@@ -1837,26 +1920,6 @@ end
 
 
 			You can programmatically exit a loop using a break statement, or skip to the next iteration of a loop using a \mcode{continue} statement. 
-
-			For example, count the number of lines in the help for the magic function (that is, all comment lines until a blank line):
-
-fid = fopen('magic.m','r');
-count = 0;
-while ~feof(fid)
-    line = fgetl(fid);
-    if isempty(line)
-       break
-    elseif ~strncmp(line,'%',1)
-       continue
-    end
-    count = count + 1;
-end
-fprintf('%d lines in MAGIC help\n',count);
-fclose(fid);
-
-
-
-
 
 
 
