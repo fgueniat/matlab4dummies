@@ -31,20 +31,21 @@
 			\item No compilation
 			\item The prompt
 			\item Simplicity
-			\item portability
+			\item Portability
 			\item Built-in functions:
 				\begin{itemize}
-					\item integration
-					\item visualization
-					\item tool-box
+					\item Integration
+					\item Visualization
+					\item Tool-box
+					\item Data-Analysis
 				\end{itemize}
 		\end{itemize}
 
 		The negative points are mostly:
 		\begin{itemize}
-			\item sub performance
-			\item not open source
-			\item {\color{red} price}
+			\item Sub performance
+			\item Not open source
+			\item {\color{red} Price}
 		\end{itemize}
 
 	%%
@@ -68,7 +69,16 @@
 	\subsection{Starting with \matlab}
 		\subsubsection{Launch \matlab}
 		Click on the icon, duh!
-		\todoimage{icon matlab}	
+		\todoimage{icon matlab}
+		\begin{figure}
+			\center
+			\includegraphics[width=0.45\linewidth]{./fig/icon_matlab.PNG}
+			\caption{
+				The \matlab icon (in super big).
+			}
+			\label{fig-matlab_icon}
+		\end{figure}
+
 		\subsubsection{Organization of the typical \matlab window}
 
 		You can find a few important sections:
@@ -86,7 +96,14 @@
 		\end{itemize}
 
 		\todoimage{opening windows of matlab}
-
+		\begin{figure}
+			\center
+			\includegraphics[width=0.95\linewidth]{./fig/matlab.PNG}
+			\caption{
+				\matlab just after being opened.
+			}
+			\label{fig-matlab}
+		\end{figure}
 	%%
 	% subsection
 	%%
@@ -94,7 +111,14 @@
 
 		Click on the Command Window, and type "hello world".
 		You will see:
-		\todoimage{hello world}
+		\begin{figure}[h!]
+			\center
+			\includegraphics[width=0.85\linewidth]{./fig/hello_world.PNG}
+			\caption{
+				How to print 'hello world'.
+			}
+			\label{fig-hellow_world}
+		\end{figure}
 		In the following, instead of print screen, we will show the results and the commands as:
 \begin{lstlisting}
 >> 'Hello World'
@@ -320,8 +344,17 @@ x =
 			\item indicate what there is in the variables
 			\item eventually modify the content of a variable
 		\end{itemize}
-		\todoimage{workspace}
-	
+		\begin{figure}
+			\center
+			\begin{tikzpicture}
+				\node at (0,0) {\includegraphics[width=0.95\linewidth]{./fig/workspace_zoom.PNG}};
+				\draw[very thick,red,->] (2,0) -- (3.5,2.5);
+			\end{tikzpicture}
+			\caption{
+				The workspace in \matlab. You can see here the variables \mcode{ans, str\_1, str\_2} and \mcode{x} as well as their contents.
+			}
+			\label{fig-workspace}
+		\end{figure}	
 	%%
 	% subsection
 	%%
@@ -380,7 +413,28 @@ z =
 		\subsubsection{How to find a function or a command ?}
 			If you look for something, hit the help button.
 			For instance, if you want to look for the sine function:
-			\todoimage{help sine}
+
+		\begin{figure}
+			\center
+			\subfigure[]{
+				\begin{tikzpicture}
+					\node at (0,0) {
+						\includegraphics[width=0.95\linewidth]{./fig/help.PNG}
+					};
+					\draw[very thick, red, ->] (-1.45,1) -- ++(2,2) node[below, midway, rotate=45]{click here, duh};
+				\end{tikzpicture}
+			}
+
+			\subfigure[]{
+				\includegraphics[width=0.95\linewidth]{./fig/sine_help.PNG}
+			}
+			\caption{
+				Looking for sine in the help. a): where the help is. b): how to use it.
+			}
+			\label{fig-help}
+		\end{figure}	
+
+
 			\tipbox{Use the help! It is \emph{very} useful and you will mostly find any function/tool/infos that you need.
 			
 			Usually, the help contains a few examples. Do not hesitate to read them carefully, and to try them.
@@ -1443,15 +1497,22 @@ With only a few commands, you can have publication-ready figures.
 	First one needs data.
 \begin{lstlisting}
 >> x = [1 2 3 4 5 6 7 8 9 10];
->> y = [1 4 9 16 25 36 64 81 100];
+>> y = [1 4 9 16 25 36 49 64 81 100];
 \end{lstlisting}
 	To plot the data, the main command in \matlab is \mcode{plot}:
 \begin{lstlisting}
 >> plot(x,y)
 \end{lstlisting}
 
-\todoimage{plot 1}
-
+	\begin{figure}
+		\center
+		\includegraphics[width=0.95\linewidth]{./fig/plot_1.PNG}
+		\caption{
+			Plotting some data.
+			}
+		\label{fig-workspace}
+	\end{figure}	
+	
 	\defbox{Plot}{
 		The \mcode{plot} function allows to plot the graph of a function or to plot data.
 		
@@ -1497,8 +1558,14 @@ With only a few commands, you can have publication-ready figures.
 			\item instead of a title, the figure can be explained in the text under the figure.
 			\item instead of a legend, the difference between curves can be explained in the text under the figure.
 		\end{itemize}
-
-		\todoimage{beautiful plots. two images?}
+	\begin{figure}
+		\center
+		\fbox{\includegraphics[width=0.95\linewidth]{./fig/beautiful_plot.png}}
+		\caption{
+			Illustration from a (soon) published paper. Details are provided in the caption, so titles/legends are not necessary. Labels, on the contrary, are always necessary.
+			}
+		\label{fig-beautiful_plot}
+	\end{figure}	
 	%%
 	% subsection
 	%%
@@ -1506,7 +1573,7 @@ With only a few commands, you can have publication-ready figures.
 		It is \emph{really important} to always have labels for the axis.
 \begin{lstlisting}
 >> x = [1 2 3 4 5 6 7 8 9 10];
->> y = [1 4 9 16 25 36 64 81 100];
+>> y = [1 4 9 16 25 36 49 64 81 100];
 >> plot(x,y)
 >> xlabel('data along x')
 >> ylabel('data along y')
@@ -1516,7 +1583,7 @@ With only a few commands, you can have publication-ready figures.
 		You can see that the argument for these functions are between quotes "'".
 		A label is some text: it means that \matlab will need a string.
 \begin{lstlisting}
->> x = 0:pi/10:2.*pi;
+>> x = 0:pi/10:4.*pi;
 >> y = cos(x);
 >> plot(x,y)
 >> str_xlabel = 'x';
@@ -1524,7 +1591,17 @@ With only a few commands, you can have publication-ready figures.
 >> str_ylabel = 'cos(x)';
 >> ylabel(str_ylabel)
 \end{lstlisting}
-
+		\begin{figure}
+			\center
+			\subfigure[]{\includegraphics[height=0.43\linewidth]{./fig/plot_label.PNG}\label{subfig-label1}} 
+			\subfigure[]{\includegraphics[height=0.43\linewidth]{./fig/cosx.PNG}\label{subfig-label2}}
+			\caption{
+				Note the labels on these two plots.
+				a): plot of the function $f(x) = x^2$ between $1$ and $10$.
+				b): plot of $\cos$ between $0$ and $4\pi$.
+				}
+			\label{fig-labels}
+		\end{figure}	
 		\subsubsection{Colours and line styles}
 			The default plot color in \matlab is blue, and the line default style is plain.
 			To change the style, an extra argument has to be sent to \matlab.
@@ -1611,22 +1688,44 @@ With only a few commands, you can have publication-ready figures.
 		In the same spirit of the labels, just pass your title to the function \mcode{title}.
 \begin{lstlisting}
 >> x = [1 2 3 4 5 6 7 8 9 10];
->> y = [1 4 9 16 25 36 64 81 100];
+>> y = [1 4 9 16 25 36 49 64 81 100];
 >> plot(x,y)
 >> xlabel('data along x')
 >> ylabel('data along y')
 >> title ('example of a title')
 \end{lstlisting}
-		\todoimage{same picture with a title}
-
+		\begin{figure}
+			\center
+			\includegraphics[height=0.43\linewidth]{./fig/plot_title.PNG}
+			\caption{
+				Note the title.
+				}
+			\label{fig-title}
+		\end{figure}	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Edit a plot in the window}
 	A way to edit the plot properties is to click on the arrow - Edit Plot - on the plot window.
 
-	\todoimage{fig plot with arrow}
-
+	\begin{figure}[h!]
+		\center
+		\begin{tikzpicture}
+			\node at (0,0) { 
+				\includegraphics[width=0.9\linewidth]{./fig/plot_edit.PNG}
+			};
+			\draw[very thick,red,->] (-3.,.75) -- ++(-2,2) node[midway, below,rotate=-45]{click here};
+			\draw[very thick,red,->] (3.2,.45) -- ++(-1.5,0) node[midway, below]{then on the graph};
+			
+		\end{tikzpicture}
+		\caption{
+			Editing a plot from the window is relatively simple, though fastidious.
+			First click on the "arrow" to start the edit mode. 
+			Then, clicking on one of the plot objects, for instance, the curve, will allow to start editing it. 
+			Note the \mcode{Line} and \mcode{Marker} properties.
+			}
+		\label{fig-edit}
+		\end{figure}	
 	Then, double clicking on the curve will open an extra window where you can play with the properties.
 
 	In particular there is two interesting properties:
@@ -1647,8 +1746,8 @@ With only a few commands, you can have publication-ready figures.
 			One call to the function \mcode{plot} is enough to plot multiple graphs on the same figure.
 			For that, couple of arguments need to be provided to the \mcode{plot} function.
 \begin{lstlisting}
->> x = 0:0.1:2.*pi
->> y_1 = cos(x); y_2 = cos(x+0.2); y_3 = cos(x+0.4);
+>> x = 0:0.1:4.*pi
+>> y_1 = cos(x); y_2 = cos(x+0.8); y_3 = cos(x+1.6);
 >> plot(x,y_1,x,y_2,x,y_3)
 >> xlabel('x')
 >> ylabel('f(x)')
@@ -1657,10 +1756,20 @@ With only a few commands, you can have publication-ready figures.
 			To add some control on the plot, the style can be provided just after the data:
 \begin{lstlisting}
 >> plot(x,y_1,'-',x,y_2,':',x,y_3,'--')
->> legend('cos(x)','cos(x+0.2)','cos(x+0.4)')
+>> legend('cos(x)','cos(x+0.8)','cos(x+1.6)')
 \end{lstlisting}
-			\todoimage{plot}
 
+		\begin{figure}
+			\center
+			\subfigure[]{\includegraphics[height=0.43\linewidth]{./fig/multi_plot1.PNG}\label{subfig-multi1}} 
+			\subfigure[]{\includegraphics[height=0.43\linewidth]{./fig/multi_plot_style.PNG}\label{subfig-multi2}}
+			\caption{
+				Several graph on the same figure.
+				a): no style is provided. 
+				b): "stylish" curves.
+			}
+			\label{fig-multi}
+		\end{figure}	
 		\subsubsection{In multiple call}
 			When calling \mcode{plot}, the active figure gets erased before \matlab draw the new plot.
 			
@@ -1695,7 +1804,14 @@ With only a few commands, you can have publication-ready figures.
 >> legend('cos(x)','cos(x+0.2)','cos(x+0.4)')
 \end{lstlisting}
 
-
+		\begin{figure}
+			\center
+			\includegraphics[height=0.43\linewidth]{./fig/multi_plot_legend.PNG} 
+			\caption{
+				Same figure as before, with legends.
+			}
+			\label{fig-legend}
+		\end{figure}	
 
 
 
@@ -1796,6 +1912,20 @@ With only a few commands, you can have publication-ready figures.
 			\paragraph{Run button}
 				The easiest is to be in the editor and to click on the triangle button "\textgreater".
 				\todoimage{run button}
+				\begin{figure}
+					\center
+						\begin{tikzpicture}
+							\node at (0,0) {
+								\includegraphics[width=0.95\linewidth]{./fig/editor_run.PNG}
+							};
+							\draw[very thick, red, ->] (-4.25,1) -- ++(2,2) node[above, midway, rotate=45,fill=white]{Run button};
+						\end{tikzpicture}
+			\caption{
+				the run button in the editor.
+			}
+			\label{fig-run}
+		\end{figure}	
+
 				It will run the whole script (and will save it).
 		
 			\paragraph{Shortcut}
@@ -1824,17 +1954,18 @@ With only a few commands, you can have publication-ready figures.
 			\item blue: functions (to be verified)
 			\item yellow background: section with focus
 		\end{itemize}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Conditions}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Loops}
-	With loop control statements, you can repeatedly execute a block of code. 
+	With loop control statements, you can repeatedly execute a block of code.
+	It is really convenient, as sometimes, you want to do \emph{almost} the same thing many times:
+
+
+
+
 	There are two types of loops:
 	\begin{itemize}
 		\item \mcode{for} statements loop a specific number of times, and keep track of each iteration with an incrementing index variable.
@@ -1920,6 +2051,11 @@ end
 
 
 			You can programmatically exit a loop using a break statement, or skip to the next iteration of a loop using a \mcode{continue} statement. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conditions}
 
 
 
