@@ -4,14 +4,17 @@
 
 \chapter{Quick tour \matlab}
 	The objective of these tutorial are to illustrate the ENG 4XXX courses as well at to help you to learn quickly how to numerically solve problems.
-	It will hence give you the first concepts behind \matlab, coding and problem solving.
-	The emphasis here is “learning by doing”. Therefore, try not to read these documents without a computer close-by.
+	
+	It will hence provide to the reader the first concepts, not only behind \matlab, but as well on how to code and how to solve problems.
+	
+	The emphasis here is “learning by doing”. Therefore, the reader should not to read these documents without a computer close-by.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Legal stuff}
-\matlab is a registered trademark of MathWorks, Inc.
+\matlab is a registered trademark of MathWorks, Inc. 
+
 
 
 
@@ -23,29 +26,42 @@
 	% subsection
 	%%
 	\subsection{What is the use of \matlab ?}
-		\matlab~(for MATrix LABoratory) aims at delivering quickly some \emph{relatively} inexpensive computations.
-		It shines, as expected from the name, when it involves linear algebra, i.e., operations on matrices.
+		\matlab~(for MATrix LABoratory) aims at delivering quickly some results on a user-defined problem.
 
-		The main advantage of \matlab compared to language like C/C++ or Fortran are:
+		It shines, as expected from the name, when it involves linear algebra, i.e., operations on matrices.
+		\matlab makes the manipulaiton of matrices really easy, as it will hopefully been demonstrated through these notes.
+
+		\matlab has several main advantages compared to language like C/C++ or Fortran are:
 		\begin{itemize}
-			\item No compilation
-			\item The prompt
-			\item Simplicity
+			\item No compilation \\
+				\comments{a script can be executed directly.}
+			\item The prompt \\
+				\comments{results can be analyzed right away.}				
+			\item Simplicity \\
+				\comments{the learning curve is low}
 			\item Portability
-			\item Built-in functions:
+				\comments{a script will work on any \matlab, and on any platform: Linux, Mac or Windows.}
+			\item Built-in functions
 				\begin{itemize}
-					\item Integration
-					\item Visualization
-					\item Tool-box
-					\item Data-Analysis
+					\item Integration \\
+						\comments{solving equations is \emph{relatively} easy}
+					\item Visualization\\
+						\comments{plotting the results in one command}
+					\item Tool-box\\
+						\comments{many tools dedicated to problems already exist}
+					\item Data-Analysis \\
+						\comments{basic and advanced tools for data-analysis and machine learning are already implemented}
 				\end{itemize}
 		\end{itemize}
 
 		The negative points are mostly:
 		\begin{itemize}
-			\item Sub performance
-			\item Not open source
+			\item Sub performance \\
+				\comments{No compilation means less efficiency}
+			\item Not open source \\
+				\comments{The results can not easily be checked}
 			\item {\color{red} Price}
+				\comments{It can be up to $1800\pounds$}
 		\end{itemize}
 
 	%%
@@ -61,16 +77,25 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Hello World}
-	Let's print in the console the "hello world".
+\section{Hello, World!}
+	Let's print in the console the "Hello, World!".
+	\tipbox{
+		When starting to learn a programming language, trying to make a program that print "hello, World!" is usually a good idea.
+		
+		It will show the basics of: 
+		\begin{itemize}
+			\item installing the language/program
+			\item the syntax of the language
+			\item running the language/program
+		\end{itemize}
+	}
 	%%
 	% subsection
 	%%
 	\subsection{Starting with \matlab}
 		\subsubsection{Launch \matlab}
-		Click on the icon, duh!
-		\todoimage{icon matlab}
-		\begin{figure}
+		Click on the icon, duh! Fig.~\ref{fig-matlab_icon} represents the icon.
+		\begin{figure}[h!]
 			\center
 			\includegraphics[width=0.45\linewidth]{./fig/icon_matlab.PNG}
 			\caption{
@@ -80,8 +105,8 @@
 		\end{figure}
 
 		\subsubsection{Organization of the typical \matlab window}
-
-		You can find a few important sections:
+		When clicking on the icon, \matlab will start. 
+		The main window opens, see Fig.~\ref{fig-matlab}. It is separated in a few important sections:
 		\begin{itemize}
 			\item the command windows \\
 				\comments{This is the command prompt}
@@ -92,11 +117,10 @@
 			\item the editor \\
 				\comments{this is where you can write a script}
 			\item the ribbon \\
-				\comments{It gives access to properties, functions, etc. Similar in spirit to Words and Excel.}
+				\comments{It gives access to properties, functions, editor, etc. Similar in spirit to Words and Excel.}
 		\end{itemize}
 
-		\todoimage{opening windows of matlab}
-		\begin{figure}
+		\begin{figure}[h!]
 			\center
 			\includegraphics[width=0.95\linewidth]{./fig/matlab.PNG}
 			\caption{
@@ -119,6 +143,14 @@
 			}
 			\label{fig-hellow_world}
 		\end{figure}
+		
+
+		\matlab~printed the 'Hello World', congratulations !
+
+		One line was enough to get the desired output.
+		This shows that \matlab is very efficient at getting quickly some results. 
+		\medskip
+		
 		In the following, instead of print screen, we will show the results and the commands as:
 \begin{lstlisting}
 >> 'Hello World'
@@ -126,11 +158,8 @@ ans =
 Hello World
 \end{lstlisting}
 
-		\medskip
-
-		\matlab~printed the 'Hello World', congratulations !
-
-		You can see also that the 'Hello World has been assigned to a variable named \mcode{ans}.
+		
+		'Hello World' has been assigned to a variable named \mcode{ans}.
 
 		\defbox{Variable}{A variable is essentially a name that is associated with a value. 
 
@@ -145,14 +174,14 @@ Hello World
 
 		\tipbox{\mcode{ans} is short for answer. 
 
-			The results of the command is always stored in the variable \mcode{ans}, except if it is assigned to a given variable. Consequently, the command \mcode{ 1+1}  will affect the variable \mcode{ans}, but \mcode{x=1+1} will not, and \mcode{2} will be assign to \mcode{x}. 
+			With \matlab, the results of the command is always stored in the variable \mcode{ans}, except if it is assigned to a given variable. Consequently, the command \mcode{ 1+1}  will affect the variable \mcode{ans}, but \mcode{x=1+1} will not, and \mcode{2} will be assign to \mcode{x}. 
 
 			\mcode{ans} can be re-used in the prompt: \mcode{x = ans+1}!
 		However, a good practice is to assign the result to a user-defined variable.
 		}
 
 
-		Now, try without the quotes, and you will see:
+		Trying without the quotes leads to:
 \begin{lstlisting}
 >> Hello World
 <@{\color{red}Undefined function or variable 'Hello'.}@>
@@ -160,9 +189,9 @@ Hello World
 		plus some help.
 
 		Hello World is understood by \matlab as a function/variable and then an option for this function.
-		\matlab hence thinks that Hello is something that already exists, and it is not the case here. An error follow.
+		\matlab hence thinks that Hello is something that already exists ; it is not the case here. As a consequence, an error follows.
 
-		The main reason behind that is that we want to print a string.
+		The main reason behind that is that the goal here is to print a string.
 
 		\defbox{String}{A string is a chain of characters. It is \emph{not} a number. 
 
@@ -179,7 +208,7 @@ Hello World
 
 			To solve the issue, double it ! \mcode{s = 'nah, can''t do} will work perfectly.
 		}
-		Try now to add a semi colon at the end of the line:
+		Let's try now to add a semi colon at the end of the line:
 \begin{lstlisting}
 >> 'Hello World';
 >>
@@ -191,7 +220,7 @@ Hello World
 
 		It is not a big deal when dealing with small matrices and small vectors.
 		But when an image is being manipulated, it means that \matlab is manipulated a matrix with dimension around $1000\times1000$.
-		Forgetting the ";" sign means that \matlab will show around a \emph{million} numbers every line of your script!
+		Forgetting the ";" sign means that \matlab will show around a \emph{million} numbers every line of a script!
 		}
 		\defbox{Command prompt}{The command prompt is the $>>$ sign. 
 		Command Prompt is a command line interpreter. It is used to execute entered commands. 
@@ -204,12 +233,12 @@ Hello World
 %%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\matlab as a calculator}
-	You can use \matlab as a calculator. 
+	\matlab can be used as a calculator. The prompt allows to interact directly with variables, quantity, and to do computations with them.
 	%%
 	% subsection
 	%%
 	\subsection{Algebra}
-		Click on the prompt: 
+		After clicking on the prompt, let's try some simple calculations:
 \begin{lstlisting}
 >> 4+3
 ans =
@@ -218,19 +247,21 @@ ans =
 ans =
 12
 \end{lstlisting}
-		As expected, \matlab respects the BODMAS (Brackets, Order, Division/Multiplication, Addition/Subtraction). 
+		It behaves as a calculator would.
+
+		\matlab respects the BODMAS (Brackets, Order, Division/Multiplication, Addition/Subtraction). 
 
 		\defbox{BODMAS}{It stands for Brackets, Order, Division/Multiplication, Addition/Subtraction.
 			\begin{enumerate}
-				\item You should start with resolving inside of the brackets: \\ $3\times (4+2) \times 4^2 + 1 = 3\times 6 \times 4^2 +1$
-				\item You should then resolve orders (powers, roots) : \\ $ 3 \times 6\times 4^2 +1 = 3\times 6 \times 16 +1  $.
-				\item You should then resolve division/multiplication : \\
+				\item start with resolving inside of the brackets: \\ $3\times (4+2) \times 4^2 + 1 = 3\times 6 \times 4^2 +1$
+				\item then resolve orders (powers, roots) : \\ $ 3 \times 6\times 4^2 +1 = 3\times 6 \times 16 +1  $.
+				\item then resolve division/multiplication : \\
 					$3\times 6 \times 16 +1 = 288 $
-				\item Then finish with addition/substraction: \\
+				\item then finish with addition/substraction: \\
 					$288+1 = 289$
 			\end{enumerate}
 		}
-		Try a few different operations !
+		Let's try a few different operations !
 \begin{lstlisting}
 >> (4+3)*2
 ans =
@@ -285,14 +316,15 @@ ans =
 
 				If all the results are named \mcode{result\_1,result\_2,result\_3}, it is hard to know what they should contain.
 
-				On the contrary, if you have the variable \mcode{name\_city}, you expect it to be a string and having a proper name.
+				On the contrary, when dealing with the variable \mcode{name\_city}, it is expected to be a string and having a proper name.
 
-				In a similar way, if you have the variable \mcode{motor\_freq}, you expect it to be a number.
+				In a similar way, the variable \mcode{motor\_freq} probably contains a number.
 
-				Also, if you have the variable \mcode{price\_pond}, the variable \mcode{price\_dollar} and the variable \mcode{rate\_dollar2pound}, the line \mcode{price\_pound = rate\_dollar2pond * price\_dollar} is pretty explicit.
+				Also, if the piece of code uses the variable \mcode{price\_pond}, the variable \mcode{price\_dollar} and the variable \mcode{rate\_dollar2pound}, them the line \mcode{price\_pound = rate\_dollar2pond * price\_dollar} is pretty explicit.
 				If the variables where instead named \mcode{x,y,z}, then the line \mcode{x = y*z} is much more cryptic.
 			}
-			The choice of a name is important, for you a, \mcode{x} is good for an unknown, \mcode{s} if you expect its value to be a string, \mcode{v} if it is a vector... 
+			The choice of a name is important! 
+			For instance, \mcode{x} is good for an unknown, \mcode{s} if its value is expected to be a string, \mcode{v} if it is a vector... 
 			More complex names can be used, such as \mcode{x\_problem\_1}. 
 			
 			Try to be consistent thorough the piece of code !
@@ -306,7 +338,7 @@ ans =
 			\tipbox{
 				Many naming convention exist.
 				
-				However, you can use the following name convention: \\
+				However, the following name convention is fine: \\
 				\begin{itemize}
 					\item \mcode{UpperCamelCase} for functions: \mcode{MyFunction}
 					\item \mbox{\mcode{CAPITALIZED\_WITH\_UNDERSCORES}} for constants \mcode{Pi=3.14}
@@ -315,9 +347,9 @@ ans =
 					}
 
 		\subsubsection{Reassignement}
-			Updating a variable is handy: you might want to change the variable \mcode{year} from \mcode{2017} to \mcode{2018}.
+			Updating a variable is handy: one might want to change the variable \mcode{year} from \mcode{2017} to \mcode{2018}.
 
-			You can easily update a variable, by reassigning a new value to it. It hence uses the sign "=".
+			A variable can be easily updated, by reassigning a new value to it. It hence uses the sign "=".
 			For instance:
 \begin{lstlisting}
 >> x = 2+2
@@ -335,7 +367,7 @@ x =
 	% subsection
 	%%
 	\subsection{Workspace}
-		When you have created a variable, it is available in the \emph{workspace}.
+		When a variable is created, it is available in the \emph{workspace}.
 		It is the area (usually) on the right.
 		It allows to:
 		\begin{itemize}
@@ -351,7 +383,7 @@ x =
 				\draw[very thick,red,->] (2,0) -- (3.5,2.5);
 			\end{tikzpicture}
 			\caption{
-				The workspace in \matlab. You can see here the variables \mcode{ans, str\_1, str\_2} and \mcode{x} as well as their contents.
+				The workspace in \matlab. Here are the variables \mcode{ans, str\_1, str\_2} and \mcode{x} as well as their contents.
 			}
 			\label{fig-workspace}
 		\end{figure}	
@@ -411,8 +443,8 @@ z =
 		One can think of common functions like sine or exponential, but \matlab also provides more complex functions like \mcode{imread}, that will import pictures, or \mcode{svd}, that will do some modal decomposition of a table of data.
 
 		\subsubsection{How to find a function or a command ?}
-			If you look for something, hit the help button.
-			For instance, if you want to look for the sine function:
+			When looking for something, hit the help button.
+			For instance, if one wants to look for the sine function:
 
 		\begin{figure}
 			\center
@@ -435,7 +467,7 @@ z =
 		\end{figure}	
 
 
-			\tipbox{Use the help! It is \emph{very} useful and you will mostly find any function/tool/infos that you need.
+			\tipbox{Use the help! It is \emph{very} useful and one will mostly find any function/tool/infos that is needed.
 			
 			Usually, the help contains a few examples. Do not hesitate to read them carefully, and to try them.
 			They will help understanding how to use the functions and properties of \matlab.
@@ -452,8 +484,8 @@ ans =
 \end{lstlisting}
 
 			\helpbox{sin}
-			You ask \matlab to evaluate the function \mcode{sin} in $3.14\approx \pi$. 
-			For that, you just put the argument in parenthesis.
+			\matlab is asked to evaluate the function \mcode{sin} in $3.14\approx \pi$. 
+			For that, the argument just has to be provided between the parenthesis.
 			\tipbox{
 			Trigonometric functions in \matlab are in radiant. \mcode{sin(360)} is hence different from $0$ but rather close to $0.96$.
 			
@@ -539,10 +571,11 @@ ans =
 >> 24 * 18.3636
 ans =
 440.7264
-\end{lstlisting}
+\end{lstlisting} 
 
 	\paragraph*{Solution with variables}
-		We can script the same code. It means that we would just have to replace the value in the first three lines to update the whole code. 
+	The same code can be scripted, see Chap.~\ref{chap-code}, Sec.~\ref{sec-script}. It means that we would just have to replace the value in the first three lines to update the whole code. 
+
 \begin{lstlisting}
 >> odormeter_before = 35201 ;
 >> odormeter_after = 35403 ; 
@@ -706,6 +739,9 @@ ans =
 ans = 
 4
 >> M = [[5,2];[9,-1]] ;
+>> M(1)
+ans =
+5 2
 >> M(1,1)
 ans =
 5
@@ -741,7 +777,7 @@ A =
 	%%
 	\subsection{Creation of a vector}
 		\subsubsection{Row vector}
-			Creating a vector \mcode{v} is easy. You just put all the components between brackets.
+			Creating a vector \mcode{v} is easy. All the components just have to be put between brackets.
 \begin{lstlisting}
 >> v = [1,2,3]
 v =
@@ -828,7 +864,7 @@ ans =
 -2.5
 \end{lstlisting}
 			The last element of a vector can be called using the argument \mcode{end}:
-			You can also call the ith item from the end using \mcode{end-i}. 
+			One can also call the ith item from the end using \mcode{end-i}. 
 \begin{lstlisting}
 >> x = [1 3 4 -2.5 8]
 x = 
@@ -1268,8 +1304,8 @@ v =
 >> A(1,1) = []
 <@{\color{red} A null assignment can have only one non-colon index.}@>
 \end{lstlisting}
-				You can remove a block, a column or a row from a matrix. 
-				But you can not remove a single element, if not, there would be a "hole".
+				It is easy to remove a block, a column or a row from a matrix. 
+				But a single element can not be removed:  there would be a "hole".
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1299,7 +1335,7 @@ ans =
 ans = 
 4 1
 \end{lstlisting}
-		To reuse the size, you can store it in variables:
+		To reuse the size, it can be stored it in variables:
 \begin{lstlisting}
 >> A = [ [1 3 4] ; [-2.5 8 9]] ; 
 >> size_a = size(A);
@@ -1350,7 +1386,7 @@ ans =
 0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.
 \end{lstlisting}
 
-		\subsubsection{Knowing well your matrix}
+		\subsubsection{Knowing well the matrix-at-hand}
 			\matlab is mainly good at manipulation matrices. It means that knowing the properties a the matrix-at-hand is fundamental.
 
 			\matlab hence provides many ad hoc functions to know and control the properties of matrices, see Tab.~\ref{tab-mat_infos}.
@@ -1458,7 +1494,7 @@ ans =
 	% subsection
 	%%
 	\subsection{Manipulating matrices}
-		You can
+		One can
 		\begin{itemize}
 			\item add (with "+"), subtract (with "-"), multiply (with "*") matrices if their sizes are compatible
 			\item access to the ith element of matrix \mcode{M} using \mcode{M(i)}
@@ -1487,7 +1523,7 @@ M =
 \chapter{Plotting data}
 One of the usefulness of \matlab is being able to easily plot, manipulate and modify data.
 
-With only a few commands, you can have publication-ready figures.
+With only a few commands, publication-ready figures can be produced.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1535,7 +1571,7 @@ With only a few commands, you can have publication-ready figures.
 		The command \mcode{figure} can be used for opening a new \emph{empty} figure window.
 
 		\matlab draw any new plot in the last active figure window, erasing the old figure. 
-		Creating a new window \emph{before plotting} ensures that your previous plot will not be lost:\\
+		Creating a new window \emph{before plotting} ensures that the previous plot will not be lost:\\
 		\mcode{figure ; plot(x,y)}
 	}
 
@@ -1580,7 +1616,7 @@ With only a few commands, you can have publication-ready figures.
 \end{lstlisting}
 		\mcode{xlabel} and \mcode{ylabel} are the \matlab functions that handle the labels.
 
-		You can see that the argument for these functions are between quotes "'".
+		The argument for these functions are between quotes "'".
 		A label is some text: it means that \matlab will need a string.
 \begin{lstlisting}
 >> x = 0:pi/10:4.*pi;
@@ -1676,7 +1712,7 @@ With only a few commands, you can have publication-ready figures.
 					\item add the style of the markers, e.g. x: \mcode{'k--x}
 					\item end the quotes: \mcode{'k--x'}
 				\end{enumerate}
-				you can now plot with the options:\\
+				One will then plot with the options:\\
 				\mcode{plot(x,y,'k--x')}
 			}
 
@@ -1685,7 +1721,7 @@ With only a few commands, you can have publication-ready figures.
 	%%
 	\subsection{Title}
 		Adding the title is simple.
-		In the same spirit of the labels, just pass your title to the function \mcode{title}.
+		In the same spirit of the labels, just pass the title to the function \mcode{title}.
 \begin{lstlisting}
 >> x = [1 2 3 4 5 6 7 8 9 10];
 >> y = [1 4 9 16 25 36 49 64 81 100];
@@ -1726,12 +1762,12 @@ With only a few commands, you can have publication-ready figures.
 			}
 		\label{fig-edit}
 		\end{figure}	
-	Then, double clicking on the curve will open an extra window where you can play with the properties.
+	Then, double clicking on the curve will open an extra window where one can play with the properties.
 
 	In particular there is two interesting properties:
 	\begin{enumerate}
-		\item \mcode{Line}, where you can edit the style of line (plain, dashed, etc.), the width of the line, and its color
-		\item \mcode{Marker}, where you can edit the type of markers (indication where each data is plotted, for instance with circles), the size of the markers, the color of the inside of the marker as well as the color of their edges
+		\item \mcode{Line}, where the style of line can be edited (plain, dashed, etc.), the width of the line, and its color
+		\item \mcode{Marker}, where the type of markers can be edited (indication where each data is plotted, for instance with circles), the size of the markers, the color of the inside of the marker as well as the color of their edges
 	\end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1798,7 +1834,7 @@ With only a few commands, you can have publication-ready figures.
 	%%
 	\subsection{legends}
 		Adding the legend is simple.
-		In the same spirit of the title, just pass your legends, one after the other, to the function \mcode{legend}:
+		In the same spirit of the title, just pass the legends, one after the other, to the function \mcode{legend}:
 \begin{lstlisting}
 >> plot(x,y_1,'-',x,y_2,':',x,y_3,'--')
 >> legend('cos(x)','cos(x+0.2)','cos(x+0.4)')
@@ -1824,10 +1860,11 @@ With only a few commands, you can have publication-ready figures.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Script}
+\section{Script}\label{sec-script}
 	Scripts are the simplest kind of program file because they have no input or output arguments. 
 
-	They are useful for automating series of \matlab commands, such as computations that you have to perform repeatedly from the command line or series of commands you have to reference.
+	They are useful for automating series of \matlab commands, such as computations that have to be performed repeatedly from the command line.
+
 
 	When execution of the script completes, the variables remain in the \matlab workspace. 
 
@@ -1844,7 +1881,7 @@ With only a few commands, you can have publication-ready figures.
 	% subsection
 	%%
 	\subsection{Create a script}
-		You can create a new script in the many ways.
+		One can create a new script in the many ways.
 		
 		\subsubsection{Creating a script with the prompt}
 			The \mcode{edit} command allows either to create a script, or to edit an existing script.
@@ -1854,7 +1891,7 @@ With only a few commands, you can have publication-ready figures.
 \end{lstlisting}
 			\matlab will then create and open the script.
 			The script is created in the current folder that \matlab is using. 
-			To change the folder, you can use the "current directory" windows on the left.
+			To change the folder, the "current directory" windows on the left should be used.
 		
 			To create a script named "my\_scipt.m", type:
 \begin{lstlisting}
@@ -1865,7 +1902,7 @@ With only a few commands, you can have publication-ready figures.
 		\subsubsection{Through \matlab interface}
 			Another way is through the IDE.
 			Click on the "EDITOR" tab, then on "+ New", and select script.
-			You can then save it with the desired name.
+			One can then save it with the desired name.
 
 		\subsubsection{Create a text file}
 			Just create a text file (file with the ".txt" extension) in windows, and change the extension to ".m".
@@ -1876,11 +1913,11 @@ With only a few commands, you can have publication-ready figures.
 	% subsection
 	%%
 	\subsection{Save a script}
-		Save your script and run the code using either of these methods:
+		Saving a script and running the code can be done using either of these methods:
 		\begin{itemize}
-			\item Type the script name on the command line and press Enter. 
-			\item Click the Run button on the Editor tab.
-			\item Click on the save icon.
+			\item Typing the script name on the command line and pressing Enter. 
+			\item Clicking the Run button on the Editor tab.
+			\item Clicking on the save icon.
 		\end{itemize}
 
 	%%
@@ -1892,7 +1929,7 @@ With only a few commands, you can have publication-ready figures.
 		\defbox{Comment}{
 			A comment is a part of the file that will \emph{not} be executed by \matlab.
 			It allows to give explanations on the script. 
-			When you will come later, or if someone else is reading the code, it gives invaluable informations on what the code is actually doing.
+			For later reading, or if someone else is reading the code, it will give invaluable information on what the code is actually doing.
 
 			Any line starting with the percentage symbol "\%" will be ignored.
 			Any part between "\%\{"  and "\%\}" will be ignored as well.
@@ -1960,8 +1997,9 @@ With only a few commands, you can have publication-ready figures.
 %%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Loops}
-	With loop control statements, you can repeatedly execute a block of code.
-	It is really convenient, as sometimes, you want to do \emph{almost} the same thing many times:
+	Loop control statements will repeatedly execute a block of code.
+	It is really convenient, as sometimes, one want to do \emph{almost} the same thing many times.
+	For instance, evaluating a series, such as the Fibonacci sequence, one needs to evaluate repeatedly the same expression $un = u_{n-1} + u_{n-2}$.
 
 
 
@@ -1985,52 +2023,54 @@ With only a few commands, you can have publication-ready figures.
 	% subsection
 	%%
 	\subsection{Loops based on For}
-		\subsubsection{Basics}
-			\mcode{for} loops are based on a finite number of iterations.
+		\mcode{for} loops are based on a finite number of iterations.
 
-			Executing this script:
+		Executing this script:
 \begin{lstlisting}
 for i=1:5,
   i
 end
 \end{lstlisting}
-			will lead in print i at every step of the loop. 
-			\mcode{i} will hence be 1 then 2 etc. up to 5.
-			\defbox{for}{
-				For making a \mcode{for} loop, you need:
-				\begin{itemize}
-					\item a list \mcode{my\_array}
-					\item a variable \mcode{var\_i}
-					\item some code \mcode{do stuff}
-				\end{itemize}
-				and to write:
-				\begin{enumerate}
-					\item \mcode{for var\_i=my\_array,} 
-					\item \mcode{do stuff}
-					\item \mcode{end}
-				\end{enumerate}
+		will lead in print i at every step of the loop. 
+		\mcode{i} will hence be 1 then 2 etc. up to 5.
+		\defbox{for}{
+			A \mcode{for} statement will execute a block of code repeatedly.
 
-					First, \mcode{var\_i} will, one after the other, be assigned to every value that exists in \mcode{my\_array}.
-					If \mcode{my\_array=[1,2,3]}, then \mcode{var\_i} will be 1, then 2, then 3.\\
 
-					Once \mcode{var\_i} has been assignated to a new value, \matlab will execute the code \mcode{do stuff}.
-					If \mcode{do stuff} is $i^2$, then \matlab will print $1$, then $4$, and finally $9$.
+			What is needed for making a \mcode{for} loop:
+			\begin{itemize}
+				\item a list \mcode{my\_array}
+				\item a variable \mcode{var\_i}
+				\item some code \mcode{do stuff}
+			\end{itemize}
+			
+			The \mcode{for} loop is written as:
+			\begin{enumerate}
+				\item \mcode{for var\_i=my\_array,} 
+				\item \mcode{do stuff}
+				\item \mcode{end}
+			\end{enumerate}
+			First, \mcode{var\_i} will, one after the other, be assigned to every value that exists in \mcode{my\_array}.
+		If \mcode{my\_array=[1,2,3]}, then \mcode{var\_i} will be 1, then 2, then 3.\\
+
+		Once \mcode{var\_i} has been assignated to a new value, \matlab will execute the code \mcode{do stuff}.
+		If \mcode{do stuff} is $i^2$, then \matlab will print $1$, then $4$, and finally $9$.
 \\
 
-					\mcode{end} says to \matlab that the part \mcode{do stuff} is finished and that he can loop.\\
+		\mcode{end} says to \matlab that the part \mcode{do stuff} is finished and that he can loop.\\
 
-					\mcode{do stuff} can be very complex instructions, and \mcode{my\_array} can be a very long list, for instance \mcode{1:10000}.
+		\mcode{do stuff} can be very complex instructions, and \mcode{my\_array} can be a very long list, for instance \mcode{1:10000}.
 			}
-			A useful example is construction of vectors.
-			Let's for instance construct the Fibonacci sequence up to 100:
+		A useful example is construction of vectors.
+		Let's for instance construct the Fibonacci sequence up to 100:
 \begin{lstlisting}
 fibo = ones(100);
 for i=3:100,
   fibo(i) = fibo(i-2) + fibo(i-1);
 end
 \end{lstlisting}
-			It is possible to nest loops, i.e., to have a loop in a loop. 
-			Let's construct a Vandermonde matrix.
+		It is possible to nest loops, i.e., to have a loop in a loop. 
+		Let's construct a Vandermonde matrix.
 \begin{lstlisting}
 v = 1:4;
 M = ones(4,4);
@@ -2040,24 +2080,101 @@ for i=1:4,
   end
 end
 \end{lstlisting}
-			\tipbox{
+		\tipbox{
 			Indent the loops for readability!
 
-				For each loops, indent by using tab or a few spaces.
+			For each loops, indent by using tab or a few spaces.
 
-				Without indentation, it is really hard to see when loops start and end.
-			}
+			Without indentation, it is really hard to see when loops start and end.
+		}
 
 
+	\subsection{Loop based on while}
+		
+	\subsection{Controls on loops}
+		Exiting a loop can be done programmatically by using a break statement, or skip to the next iteration of a loop using a \mcode{continue} statement.  Details will be given in Sec.~\ref{sec-if}
 
-			You can programmatically exit a loop using a break statement, or skip to the next iteration of a loop using a \mcode{continue} statement. 
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Conditions}
+\section{Conditions}\label{sec-if}
+	\subsection{Is $x>0.5$?}
+	\tipbox{
+		Checking is a quantity is equal to an other is \emph{very} important.
+		
+		For instance, it is pivotal in \mcode{if/else} statements. 
+		The condition has to be checked. Is it true or false ?
+
+		But \matlab can not understand \emph{condition} = true. 
+		That would assign true to the condition, which is \emph{very} different from checking if the condition is true.
+
+		Consequently, \matlab uses a special operator for checking if two quantities are equal: the "==" operator.
+	}
+	\todo{work here}	
+
+	\subsection{\mcode{if/else} statement}
+	More than often, computations depend on the situation. 
+	Think of a piece-wise function, define on $[0,1]$:
+	$$f(x) = \left\{\
+		\begin{array}{c}
+			-1 \text{if } x<0.5\\
+			 1 \text{if } x>0.5
+		\end{array}
+		\right.
+	$$
+	Evaluating $f$ hence depends if the argument $x$ is larger or lesser than $0.5$.
+	The keyword is \mcode{if}.
+
+	\defbox{if/else}{
+		The \mcode{if/else} statement executes a block of code if a specified condition is true. If the condition is false, another block of code can be executed.
+
+		What is needed for making a \mcode{for} loop:
+		\begin{itemize}
+			\item specified \emph{condition} to be verified
+			\item some code \mcode{do stuff} if the \emph{condition} is true
+			\item some other code \mcode{do other stuff} if the \emph{condition} is false
+		\end{itemize}
+	
+		The \mcode{if/else} statement is written as:
+		\begin{enumerate}
+			\item \mcode{if} \emph{condition} \mcode{== True,}
+			\item \mcode{do stuff}
+			\item \mcode{else,}
+			\item \mcode{do other stuff}
+			\item \mcode{end}				
+		\end{enumerate}
+
+		If there is no block \mcode{do other stuff} then the statement is slightly simpler:
+		\begin{enumerate}
+			\item \mcode{if} \emph{condition} \mcode{== True,}
+			\item \mcode{do stuff}
+			\item \mcode{end}				
+		\end{enumerate}
+	
+		First, \matlab will check if the condition is true. 
+		For instance, the condition can be $x$ larger than $0.5$.
+		The condition then writes \mcode{x>0.5}.
+		The first part, corresponding to the evaluation, of the \mcode{if/else}  statement is then: \mcode{if (x>0.5) == true,}.
+		Then, \mcode{do stuff} is executed if the \emph{condition} is true. 
+		For instance, the variable \mcode{fx} can be assigned to 1, with the piece of code \mcode{fx = 1;}.
+		Then, if specified and in the eventuality than the \emph{condition} is false, the alternative code can be executed, say that \mcode{do other stuff} is to assign -1 to the variable fx: \mcode{fx = -1}.
+		Finally, the \emph{end} statement will tell \matlab that the \mcode{if/else} block is finished.
+	}
 
 
+	Understanding if requires to understand 
+\begin{lstlisting}
+x = 0.6
+if (x>0.5) == true,
+	fx = 1;
+else,
+	fx = -1;
+end
+\end{lstlisting}
+
+	%\subsection{\mcode{switch} statement}
 
 \bibliographystyle{ieeetr}
 \bibliography{biblio}
